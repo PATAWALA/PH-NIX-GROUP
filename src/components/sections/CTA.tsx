@@ -22,7 +22,7 @@ export function CTASection() {
       {/* Background image */}
       <div className="absolute inset-0">
         <Image
-          src="/images/cta/construction-background.jpg"
+          src="/images/backgrundcta.jpg"
           alt="Projet PHÉNIX GROUP"
           fill
           className="object-cover"
