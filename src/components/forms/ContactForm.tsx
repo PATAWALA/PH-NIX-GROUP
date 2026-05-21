@@ -43,12 +43,14 @@ export function ContactForm() {
   const [currentStep, setCurrentStep] = useState(1)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
 
   const {
     register,
     handleSubmit,
     watch,
     trigger,
+    reset,
     formState: { errors },
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema),
@@ -83,6 +85,8 @@ export function ContactForm() {
 
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true)
+    setSubmitError(null)
+    
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
@@ -90,14 +94,26 @@ export function ContactForm() {
         body: JSON.stringify(data),
       })
 
-      if (!response.ok) throw new Error('Erreur lors de l\'envoi')
+      const result = await response.json()
+
+      if (!response.ok) {
+        throw new Error(result.message || 'Erreur lors de l\'envoi')
+      }
 
       setIsSuccess(true)
+      reset()
     } catch (error) {
       console.error('Erreur:', error)
+      setSubmitError(error instanceof Error ? error.message : 'Une erreur est survenue')
     } finally {
       setIsSubmitting(false)
     }
+  }
+
+  const handleNewRequest = () => {
+    setIsSuccess(false)
+    setCurrentStep(1)
+    setSubmitError(null)
   }
 
   if (isSuccess) {
@@ -105,11 +121,17 @@ export function ContactForm() {
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5 }}
         className="text-center py-12"
       >
-        <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+        <motion.div
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+          className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6"
+        >
           <CheckCircle2 className="h-10 w-10 text-green-600" />
-        </div>
+        </motion.div>
         <h3 className="text-2xl font-bold text-stone-900 mb-3 font-serif">
           Demande envoyée avec succès !
         </h3>
@@ -117,9 +139,14 @@ export function ContactForm() {
           Merci de votre confiance. Notre équipe étudie votre projet et vous recontacte 
           dans les 48 heures pour un accompagnement personnalisé.
         </p>
-        <Button onClick={() => setIsSuccess(false)} variant="outline">
-          Nouvelle demande
-        </Button>
+        <div className="flex flex-col sm:flex-row gap-3 justify-center">
+          <Button onClick={handleNewRequest} variant="outline">
+            Nouvelle demande
+          </Button>
+          <Button onClick={handleNewRequest} variant="gold">
+            Retour à l&apos;accueil
+          </Button>
+        </div>
       </motion.div>
     )
   }
@@ -127,6 +154,16 @@ export function ContactForm() {
   return (
     <div className="max-w-2xl mx-auto">
       <StepIndicator steps={steps} currentStep={currentStep} />
+
+      {submitError && (
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mt-6 p-4 bg-red-50 border border-red-200 rounded-xl text-sm text-red-700"
+        >
+          {submitError}
+        </motion.div>
+      )}
 
       <form onSubmit={handleSubmit(onSubmit)} className="mt-8">
         <AnimatePresence mode="wait">
@@ -137,6 +174,7 @@ export function ContactForm() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.3 }}
               className="space-y-4"
             >
               <h3 className="text-xl font-bold text-stone-900 mb-6 font-serif">
@@ -182,13 +220,14 @@ export function ContactForm() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.3 }}
               className="space-y-6"
             >
               <h3 className="text-xl font-bold text-stone-900 mb-6 font-serif">
                 Votre projet
               </h3>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {projectTypes.map((type) => {
                   const isSelected = watchAllFields.type_projet === type.value
                   return (
@@ -197,8 +236,8 @@ export function ContactForm() {
                       className={`
                         relative flex flex-col items-center p-6 rounded-xl border-2 cursor-pointer transition-all duration-300
                         ${isSelected 
-                          ? 'border-amber-500 bg-amber-50 shadow-lg' 
-                          : 'border-stone-200 hover:border-amber-300 hover:bg-stone-50'
+                          ? 'border-amber-500 bg-amber-50 shadow-lg scale-[1.02]' 
+                          : 'border-stone-200 hover:border-amber-300 hover:bg-stone-50 hover:scale-[1.01]'
                         }
                       `}
                     >
@@ -208,14 +247,18 @@ export function ContactForm() {
                         className="sr-only"
                         {...register('type_projet')}
                       />
-                      <type.icon className={`h-8 w-8 mb-3 ${isSelected ? 'text-amber-600' : 'text-stone-400'}`} />
-                      <span className={`text-sm font-medium text-center ${isSelected ? 'text-amber-900' : 'text-stone-700'}`}>
+                      <type.icon className={`h-8 w-8 mb-3 transition-colors duration-300 ${isSelected ? 'text-amber-600' : 'text-stone-400'}`} />
+                      <span className={`text-sm font-medium text-center transition-colors duration-300 ${isSelected ? 'text-amber-900' : 'text-stone-700'}`}>
                         {type.label}
                       </span>
                       {isSelected && (
-                        <div className="absolute top-2 right-2 w-5 h-5 bg-amber-500 rounded-full flex items-center justify-center">
+                        <motion.div
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          className="absolute top-2 right-2 w-5 h-5 bg-amber-500 rounded-full flex items-center justify-center"
+                        >
                           <CheckCircle2 className="h-4 w-4 text-white" />
-                        </div>
+                        </motion.div>
                       )}
                     </label>
                   )
@@ -243,6 +286,7 @@ export function ContactForm() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.3 }}
               className="space-y-4"
             >
               <h3 className="text-xl font-bold text-stone-900 mb-6 font-serif">
@@ -257,15 +301,18 @@ export function ContactForm() {
                 {...register('description')}
               />
 
-              <Select
-                id="budget"
-                label="Budget estimé"
-                options={budgetOptions}
-                placeholder="Sélectionnez une tranche de budget"
-                icon={<Euro className="h-4 w-4" />}
-                error={errors.budget?.message}
-                {...register('budget')}
-              />
+<Select
+  id="budget"
+  label="Budget estimé"
+  options={budgetOptions}
+  placeholder="Sélectionnez une tranche de budget"
+  error={errors.budget?.message}
+  value={watchAllFields.budget || ''}
+  onChange={(e) => {
+    const event = { target: { name: 'budget', value: e.target.value } }
+    register('budget').onChange(event)
+  }}
+/>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Input
@@ -284,13 +331,13 @@ export function ContactForm() {
                 />
               </div>
 
-              <label className="flex items-center gap-3 mt-6 cursor-pointer">
+              <label className="flex items-center gap-3 mt-6 cursor-pointer group">
                 <input
                   type="checkbox"
-                  className="w-4 h-4 rounded border-stone-300 text-amber-600 focus:ring-amber-500"
+                  className="w-4 h-4 rounded border-stone-300 text-amber-600 focus:ring-amber-500 cursor-pointer"
                   {...register('newsletter')}
                 />
-                <span className="text-sm text-stone-600">
+                <span className="text-sm text-stone-600 group-hover:text-stone-900 transition-colors">
                   Je souhaite recevoir les actualités et réalisations de PHÉNIX GROUP
                 </span>
               </label>
@@ -304,16 +351,17 @@ export function ContactForm() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.3 }}
               className="space-y-6"
             >
               <h3 className="text-xl font-bold text-stone-900 mb-6 font-serif">
                 Récapitulatif de votre demande
               </h3>
 
-              <div className="bg-stone-50 rounded-xl p-6 space-y-4">
-                <div className="grid grid-cols-2 gap-4">
+              <div className="bg-stone-50 rounded-xl p-6 space-y-4 border border-stone-200">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <p className="text-sm text-stone-500">Nom</p>
+                    <p className="text-sm text-stone-500">Nom complet</p>
                     <p className="font-medium text-stone-900">{watchAllFields.nom}</p>
                   </div>
                   <div>
@@ -335,15 +383,27 @@ export function ContactForm() {
                     <p className="font-medium text-stone-900">{watchAllFields.localisation}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-stone-500">Budget</p>
+                    <p className="text-sm text-stone-500">Budget estimé</p>
                     <p className="font-medium text-stone-900">
                       {budgetOptions.find(b => b.value === watchAllFields.budget)?.label}
                     </p>
                   </div>
+                  {watchAllFields.delai_souhaite && (
+                    <div>
+                      <p className="text-sm text-stone-500">Délai souhaité</p>
+                      <p className="font-medium text-stone-900">{watchAllFields.delai_souhaite}</p>
+                    </div>
+                  )}
+                  {watchAllFields.surface_approximative && (
+                    <div>
+                      <p className="text-sm text-stone-500">Surface approximative</p>
+                      <p className="font-medium text-stone-900">{watchAllFields.surface_approximative}</p>
+                    </div>
+                  )}
                 </div>
                 <div>
-                  <p className="text-sm text-stone-500">Description</p>
-                  <p className="font-medium text-stone-900 mt-1">{watchAllFields.description}</p>
+                  <p className="text-sm text-stone-500">Description du projet</p>
+                  <p className="font-medium text-stone-900 mt-1 leading-relaxed">{watchAllFields.description}</p>
                 </div>
               </div>
 
