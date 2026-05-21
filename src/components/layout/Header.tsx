@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
@@ -53,7 +54,6 @@ export function Header() {
       setIsScrolled(window.scrollY > 20)
     }
     window.addEventListener('scroll', handleScroll)
-    // Vérifier l'état initial
     handleScroll()
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
@@ -62,14 +62,12 @@ export function Header() {
     <header
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
-        // ✅ TOUJOURS un fond sur les autres pages
         !isHomePage && 'bg-white/95 backdrop-blur-md shadow-lg',
-        // ✅ Sur la home : transparent si pas scrollé, blanc si scrollé
         isHomePage && isScrolled && 'bg-white/95 backdrop-blur-md shadow-lg',
         isHomePage && !isScrolled && 'bg-transparent'
       )}
     >
-      {/* Top bar - visible seulement sur la home non scrollée */}
+      {/* Top bar */}
       <div className={cn(
         'bg-stone-900 text-white transition-all duration-500 overflow-hidden',
         (!isHomePage || isScrolled) ? 'h-0' : 'h-10'
@@ -80,7 +78,7 @@ export function Header() {
               <Phone className="h-3.5 w-3.5" />
               01 23 45 67 89
             </a>
-            <span>|</span>
+            <span className="text-stone-600">|</span>
             <span>L&apos;art et sa valeur depuis 1998</span>
           </div>
           <div className="flex items-center gap-4">
@@ -94,18 +92,35 @@ export function Header() {
       {/* Main navigation */}
       <nav className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <Link href="/" className="flex-shrink-0 group">
+          {/* Logo + Texte */}
+          <Link href="/" className="flex-shrink-0 group flex items-center gap-3">
+            {/* Logo image */}
+            <div className="relative w-10 h-10 flex-shrink-0">
+              <Image
+                src="/images/logo.jpg"
+                alt="PHÉNIX GROUP & JF DÉCOR"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+            
+            {/* Séparateur vertical */}
+            <div className={cn(
+              'w-px h-8 transition-colors duration-500',
+              (!isHomePage || isScrolled) ? 'bg-stone-300' : 'bg-white/30'
+            )} />
+            
+            {/* Texte du logo */}
             <div className="flex flex-col">
               <span className={cn(
-                'text-2xl font-bold font-serif tracking-wider transition-colors',
-                // ✅ Texte toujours sombre sauf sur la home non scrollée
+                'text-xl font-bold font-serif tracking-wider leading-tight transition-colors duration-500',
                 (!isHomePage || isScrolled) ? 'text-stone-900' : 'text-white'
               )}>
                 PHÉNIX GROUP
               </span>
               <span className={cn(
-                'text-xs tracking-[0.2em] uppercase transition-colors',
+                'text-[10px] tracking-[0.2em] uppercase transition-colors duration-500',
                 (!isHomePage || isScrolled) ? 'text-amber-700' : 'text-amber-400'
               )}>
                 & JF DÉCOR

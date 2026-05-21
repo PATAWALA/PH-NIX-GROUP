@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { 
   Phone, Mail, MapPin, Clock, 
@@ -5,8 +6,8 @@ import {
   ArrowRight 
 } from 'lucide-react'
 import {
-  FaLinkedin,
-  FaFacebook,
+  FaLinkedinIn,
+  FaFacebookF,
   FaInstagram
 } from 'react-icons/fa6'
 import { Button } from '@/components/ui/Button'
@@ -32,6 +33,12 @@ const footerLinks = {
   ],
 }
 
+const socialLinks = [
+  { icon: FaFacebookF, href: '#', label: 'Facebook' },
+  { icon: FaInstagram, href: '#', label: 'Instagram' },
+  { icon: FaLinkedinIn, href: '#', label: 'LinkedIn' },
+]
+
 export function Footer() {
   return (
     <footer className="bg-stone-900 text-stone-300">
@@ -39,7 +46,10 @@ export function Footer() {
       <div className="border-b border-stone-800">
         <div className="max-w-7xl mx-auto px-4 py-16">
           <div className="bg-gradient-to-r from-amber-600 to-amber-800 rounded-3xl p-8 md:p-12 relative overflow-hidden">
-            <div className="absolute inset-0 bg-[url('/patterns/topography.svg')] opacity-10" />
+            <div className="absolute inset-0 opacity-10" style={{
+              backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)',
+              backgroundSize: '20px 20px'
+            }} />
             <div className="relative flex flex-col md:flex-row items-center justify-between gap-8">
               <div>
                 <h2 className="text-3xl md:text-4xl font-bold text-white font-serif mb-3">
@@ -63,28 +73,44 @@ export function Footer() {
       {/* Main footer */}
       <div className="max-w-7xl mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-          {/* Company info */}
+          {/* Company info avec logo */}
           <div className="lg:col-span-1">
-            <div className="mb-6">
-              <h3 className="text-2xl font-bold text-white font-serif tracking-wider">
-                PHÉNIX GROUP
-              </h3>
-              <p className="text-amber-500 text-xs tracking-[0.2em] uppercase mt-1">
-                & JF DÉCOR
-              </p>
+            {/* Logo + Texte */}
+            <div className="flex items-center gap-3 mb-6">
+              <div className="relative w-10 h-10 flex-shrink-0">
+                <Image
+                  src="/images/logo.jpg"
+                  alt="PHÉNIX GROUP & JF DÉCOR"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <div className="w-px h-8 bg-stone-700" />
+              <div>
+                <h3 className="text-xl font-bold text-white font-serif tracking-wider leading-tight">
+                  PHÉNIX GROUP
+                </h3>
+                <p className="text-amber-500 text-[10px] tracking-[0.2em] uppercase mt-0.5">
+                  & JF DÉCOR
+                </p>
+              </div>
             </div>
+            
             <p className="text-stone-400 text-sm leading-relaxed mb-6">
               L&apos;art et sa valeur depuis 1998. Experts en construction, aménagement 
               et paysagisme pour des projets d&apos;exception.
             </p>
+            
+            {/* Réseaux sociaux */}
             <div className="flex items-center gap-3">
-              {[FaFacebook, FaInstagram, FaLinkedin].map((Icon, index) => (
+              {socialLinks.map((social, index) => (
                 <a
                   key={index}
-                  href="#"
+                  href={social.href}
+                  aria-label={social.label}
                   className="w-10 h-10 rounded-lg bg-stone-800 flex items-center justify-center text-stone-400 hover:bg-amber-700 hover:text-white transition-all duration-300"
                 >
-                  <Icon className="h-5 w-5" />
+                  <social.icon className="h-4 w-4" />
                 </a>
               ))}
             </div>
