@@ -9,12 +9,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-    // ✅ Ajoute ça pour voir les erreurs
-  logging: {
-    fetches: {
-      fullUrl: true,
-    },
-  }
 }
 
 export default nextConfig
