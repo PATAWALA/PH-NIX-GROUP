@@ -19,25 +19,25 @@ const statsList = [
   { 
     key: 'projects' as const, 
     icon: Building2, 
-    label: 'Projets réalisés', 
-    suffix: '+' 
+    label: 'Projets d’exception', 
+    suffix: '' 
   },
   { 
     key: 'experience' as const, 
     icon: Clock, 
-    label: 'Années d\'expérience', 
+    label: 'Années d’expérience', 
     suffix: '' 
   },
   { 
     key: 'clients' as const, 
     icon: Users, 
-    label: 'Clients satisfaits', 
+    label: 'Clients prestigieux', 
     suffix: '+' 
   },
   { 
     key: 'satisfaction' as const, 
     icon: ThumbsUp, 
-    label: '% de satisfaction', 
+    label: 'Satisfaction', 
     suffix: '%' 
   },
 ]
@@ -51,24 +51,24 @@ const values = [
   {
     icon: Award,
     title: 'Savoir-faire',
-    description: '25 ans d\'expérience et une équipe d\'artisans passionnés par la beauté du travail bien fait.'
+    description: '25 ans d’expérience et une équipe d’artisans passionnés par la beauté du travail bien fait.'
   },
   {
     icon: Users,
     title: 'Confiance',
-    description: 'Une relation de transparence avec nos clients, basée sur l\'écoute et le respect des engagements.'
+    description: 'Une relation de transparence avec nos clients, basée sur l’écoute et le respect des engagements.'
   },
 ]
 
 export function StatsSection({ stats }: StatsProps) {
   return (
     <section className="py-24 bg-stone-900 relative overflow-hidden">
-      {/* Background pattern */}
+      {/* Fond avec texture */}
       <div className="absolute inset-0 bg-[url('/patterns/topography.svg')] opacity-5" />
       <div className="absolute inset-0 bg-gradient-to-b from-stone-900 via-transparent to-stone-900" />
       
       <div className="relative max-w-7xl mx-auto px-4">
-        {/* Stats counters */}
+        {/* Compteurs */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-24">
           {statsList.map((stat, index) => (
             <motion.div
@@ -93,7 +93,7 @@ export function StatsSection({ stats }: StatsProps) {
           ))}
         </div>
 
-        {/* Values */}
+        {/* Valeurs */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -113,6 +113,7 @@ export function StatsSection({ stats }: StatsProps) {
           </p>
         </motion.div>
 
+        {/* Cartes sans aucune bordure, dégradé doré bien présent */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {values.map((value, index) => (
             <motion.div
@@ -121,17 +122,22 @@ export function StatsSection({ stats }: StatsProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
-              className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-amber-500/30 transition-all duration-300 hover:bg-white/10"
+              className="relative bg-white/5 backdrop-blur-sm rounded-2xl p-8 overflow-hidden"
             >
-              <div className="w-12 h-12 rounded-xl bg-amber-600/20 flex items-center justify-center mb-6">
-                <value.icon className="h-6 w-6 text-amber-400" />
+              {/* Dégradé permanent accentué */}
+              <div className="absolute inset-0 bg-gradient-to-br from-amber-600/30 via-amber-600/10 to-transparent" />
+              
+              <div className="relative z-10">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500/20 to-amber-700/20 flex items-center justify-center mb-6">
+                  <value.icon className="h-6 w-6 text-amber-400" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3 font-serif">
+                  {value.title}
+                </h3>
+                <p className="text-stone-400 leading-relaxed">
+                  {value.description}
+                </p>
               </div>
-              <h3 className="text-xl font-bold text-white mb-3 font-serif">
-                {value.title}
-              </h3>
-              <p className="text-stone-400 leading-relaxed">
-                {value.description}
-              </p>
             </motion.div>
           ))}
         </div>
