@@ -7,8 +7,8 @@ import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/Button'
 import { 
-  Menu, X, Phone, ChevronDown, 
-  Building2, Flower2, Palmtree 
+  Menu, X, ChevronDown, 
+  Building2, Flower2, Palmtree, Sparkles
 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -67,35 +67,12 @@ export function Header() {
         isHomePage && !isScrolled && 'bg-transparent'
       )}
     >
-      {/* Top bar */}
-      <div className={cn(
-        'bg-stone-900 text-white transition-all duration-500 overflow-hidden',
-        (!isHomePage || isScrolled) ? 'h-0' : 'h-10'
-      )}>
-        <div className="max-w-7xl mx-auto px-4 h-full flex items-center justify-between text-sm">
-          <div className="flex items-center gap-6">
-            <a href="tel:+33123456789" className="flex items-center gap-2 hover:text-amber-400 transition-colors">
-              <Phone className="h-3.5 w-3.5" />
-              01 23 45 67 89
-            </a>
-            <span className="text-stone-600">|</span>
-            <span>L&apos;art et sa valeur depuis 1998</span>
-          </div>
-          <div className="flex items-center gap-4">
-            <Link href="/contact" className="hover:text-amber-400 transition-colors">
-              Demander un devis
-            </Link>
-          </div>
-        </div>
-      </div>
-
       {/* Main navigation */}
       <nav className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo + Texte */}
           <Link href="/" className="flex-shrink-0 group flex items-center gap-3">
-            {/* Logo image */}
-            <div className="relative w-10 h-10 flex-shrink-0">
+            <div className="relative w-12 h-12 flex-shrink-0">
               <Image
                 src="/images/logo.jpg"
                 alt="PHÉNIX GROUP & JF DÉCOR"
@@ -105,13 +82,11 @@ export function Header() {
               />
             </div>
             
-            {/* Séparateur vertical */}
             <div className={cn(
-              'w-px h-8 transition-colors duration-500',
+              'w-px h-10 transition-colors duration-500',
               (!isHomePage || isScrolled) ? 'bg-stone-300' : 'bg-white/30'
             )} />
             
-            {/* Texte du logo */}
             <div className="flex flex-col">
               <span className={cn(
                 'text-xl font-bold font-serif tracking-wider leading-tight transition-colors duration-500',
@@ -167,7 +142,6 @@ export function Header() {
                   </Link>
                 )}
 
-                {/* Dropdown */}
                 <AnimatePresence>
                   {item.children && activeDropdown === item.name && (
                     <motion.div
@@ -184,7 +158,7 @@ export function Header() {
                             href={child.href}
                             className="flex items-start gap-3 p-3 rounded-lg hover:bg-amber-50 transition-colors group"
                           >
-                            <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-amber-100 flex items-center justify-center text-amber-700 group-hover:bg-amber-200 transition-colors">
+                            <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-amber-100 flex items-center justify-center text-amber-700">
                               <child.icon className="h-5 w-5" />
                             </div>
                             <div>
@@ -205,28 +179,44 @@ export function Header() {
             ))}
           </div>
 
-          {/* CTA and mobile menu button */}
+          {/* CTA + mobile menu */}
           <div className="flex items-center gap-4">
+            {/* Bouton vibrant avec texte plus grand */}
             <Link href="/contact" className="hidden lg:block">
-              <Button variant="gold" size="sm">
-                Devis gratuit
-              </Button>
-            </Link>
-            
+  <motion.div
+    animate={{ scale: [1, 1.02, 1] }}
+    transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+    className="inline-block"
+  >
+    <Button 
+      variant="gold" 
+      size="sm"                   // même taille que les liens
+      className="text-sm font-medium px-4 py-2 rounded-lg" // hauteur similaire
+    >
+      <span className="relative z-10 flex items-center gap-2">
+        <Sparkles className="h-3.5 w-3.5" />
+        Demander un devis gratuit
+      </span>
+    </Button>
+  </motion.div>
+</Link>
+            {/* Menu hamburger mobile avec animation d'attention */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className={cn(
-                'lg:hidden p-2 rounded-lg transition-colors',
+                'lg:hidden p-2 rounded-lg transition-all duration-300',
                 (!isHomePage || isScrolled)
-                  ? 'text-stone-900 hover:bg-stone-100'
-                  : 'text-white hover:bg-white/10'
+                  ? 'text-stone-900 hover:bg-amber-100'
+                  : 'text-white hover:bg-white/10',
+                isMobileMenuOpen && 'bg-amber-100 text-amber-700'
               )}
             >
-              {isMobileMenuOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <Menu className="h-6 w-6" />
-              )}
+              <motion.div
+                animate={!isMobileMenuOpen ? { rotate: [0, 5, -5, 0] } : {}}
+                transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+              >
+                {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              </motion.div>
             </button>
           </div>
         </div>
@@ -246,9 +236,7 @@ export function Header() {
                 <div key={item.name}>
                   {item.children ? (
                     <>
-                      <div className="font-medium text-stone-900 py-2">
-                        {item.name}
-                      </div>
+                      <div className="font-medium text-stone-900 py-2">{item.name}</div>
                       <div className="ml-4 space-y-1">
                         {item.children.map((child) => (
                           <Link
@@ -268,9 +256,7 @@ export function Header() {
                       href={item.href}
                       className={cn(
                         'block py-2 font-medium transition-colors',
-                        pathname === item.href
-                          ? 'text-amber-700'
-                          : 'text-stone-900 hover:text-amber-700'
+                        pathname === item.href ? 'text-amber-700' : 'text-stone-900 hover:text-amber-700'
                       )}
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
@@ -279,13 +265,9 @@ export function Header() {
                   )}
                 </div>
               ))}
-              <Link
-                href="/contact"
-                className="block mt-4"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                <Button variant="gold" fullWidth>
-                  Devis gratuit
+              <Link href="/contact" className="block mt-4" onClick={() => setIsMobileMenuOpen(false)}>
+                <Button variant="gold" fullWidth size="lg" className="text-base">
+                  Demander un devis gratuit
                 </Button>
               </Link>
             </div>

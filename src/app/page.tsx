@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import { HeroSection } from '@/components/sections/Hero'
 import { ServicesSection } from '@/components/sections/Services'
 import { StatsSection } from '@/components/sections/Stats'
+import { FeaturedProjects } from '@/components/sections/FeaturedProjects'  // ✅ ajout
 import { TestimonialsSection } from '@/components/sections/Testimonials'
 import { CTASection } from '@/components/sections/CTA'
 
@@ -10,8 +11,8 @@ export const metadata: Metadata = {
   description: 'Experts en construction, aménagement et paysagisme. 25 ans d\'excellence pour vos projets d\'exception.',
 }
 
-// ✅ Désactivé temporairement pour tester Vercel
 async function getStats() {
+  // Données statiques (ou appel Supabase)
   return {
     projects: 150,
     clients: 200,
@@ -27,6 +28,7 @@ export default async function HomePage() {
     <>
       <HeroSection />
       <ServicesSection />
+      <FeaturedProjects />   {/* ✅ inséré entre services et stats */}
       <StatsSection stats={stats} />
       <TestimonialsSection />
       <CTASection />
