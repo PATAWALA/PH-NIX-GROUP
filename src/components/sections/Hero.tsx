@@ -41,7 +41,6 @@ export function HeroSection() {
         style={{ opacity }}
         className="relative z-20 h-full flex items-center"
       >
-        {/* ✅ pt-28 sur mobile, pt-20 sur desktop */}
         <div className="max-w-7xl mx-auto px-4 w-full pt-28 md:pt-20">
           <div className="max-w-3xl">
             <motion.div
@@ -57,7 +56,7 @@ export function HeroSection() {
               <div className="w-px h-4 bg-stone-600" />
               <div className="flex items-center gap-2">
                 <Star className="h-4 w-4 md:h-5 md:w-5 text-amber-400 fill-amber-400" />
-                <span className="text-xs md:text-sm text-stone-300">98% de satisfaction</span>
+                <span className="text-xs md:text-sm text-stone-300">97% de satisfaction</span>
               </div>
             </motion.div>
 
@@ -109,9 +108,9 @@ export function HeroSection() {
               className="grid grid-cols-3 gap-4 md:gap-8 mt-12 md:mt-16 pt-6 md:pt-8 border-t border-white/10"
             >
               {[
-                { value: '150+', label: 'Projets réalisés' },
+                { value: '26+', label: 'Projets réalisés' },
                 { value: '25', label: 'Ans d\'expérience' },
-                { value: '200+', label: 'Clients satisfaits' },
+                { value: '97%', label: 'Clients satisfaits' },
               ].map((stat, index) => (
                 <div key={index}>
                   <div className="text-2xl md:text-3xl font-bold text-amber-400 font-serif">{stat.value}</div>
@@ -123,12 +122,12 @@ export function HeroSection() {
         </div>
       </motion.div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator – descendu pour ne pas superposer les stats */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
+        className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20"
       >
         <div className="w-6 h-10 rounded-full border-2 border-stone-400 flex items-start justify-center p-1">
           <motion.div
