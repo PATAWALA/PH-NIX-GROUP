@@ -66,7 +66,7 @@ export function CTASection() {
               ))}
             </div>
 
-            {/* CTA buttons */}
+            {/* CTA buttons – sans bordures */}
             <div className="flex flex-col sm:flex-row gap-4">
               <Link href="/contact">
                 <Button 
@@ -79,9 +79,9 @@ export function CTASection() {
               </Link>
               <a href="tel:+2250506960582">
                 <Button 
-                  variant="outline" 
+                  variant="ghost" 
                   size="lg"
-                  className="border-white/30 text-white hover:bg-white/10 hover:border-white/50"
+                  className="text-white/80 hover:text-white hover:bg-white/10 backdrop-blur-sm"
                   leftIcon={<Phone className="h-5 w-5" />}
                 >
                   +225 05 06 96 05 82
@@ -90,7 +90,7 @@ export function CTASection() {
             </div>
           </motion.div>
 
-          {/* Contact cards */}
+          {/* Contact cards – sans bordures, avec dégradé subtil */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -99,8 +99,10 @@ export function CTASection() {
             className="space-y-6"
           >
             {/* Phone card */}
-            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300">
-              <div className="flex items-center gap-4">
+            <div className="relative bg-white/5 backdrop-blur-md rounded-2xl p-6 overflow-hidden group transition-all duration-300 hover:bg-white/10">
+              {/* Dégradé subtil en fond */}
+              <div className="absolute inset-0 bg-gradient-to-br from-amber-600/10 via-transparent to-transparent" />
+              <div className="relative flex items-center gap-4">
                 <div className="w-14 h-14 rounded-xl bg-amber-500/20 flex items-center justify-center flex-shrink-0">
                   <Phone className="h-7 w-7 text-amber-400" />
                 </div>
@@ -118,8 +120,9 @@ export function CTASection() {
             </div>
 
             {/* Email card */}
-            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300">
-              <div className="flex items-center gap-4">
+            <div className="relative bg-white/5 backdrop-blur-md rounded-2xl p-6 overflow-hidden group transition-all duration-300 hover:bg-white/10">
+              <div className="absolute inset-0 bg-gradient-to-br from-amber-600/10 via-transparent to-transparent" />
+              <div className="relative flex items-center gap-4">
                 <div className="w-14 h-14 rounded-xl bg-amber-500/20 flex items-center justify-center flex-shrink-0">
                   <Mail className="h-7 w-7 text-amber-400" />
                 </div>
@@ -137,8 +140,9 @@ export function CTASection() {
             </div>
 
             {/* Appointment card */}
-            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300">
-              <div className="flex items-center gap-4">
+            <div className="relative bg-white/5 backdrop-blur-md rounded-2xl p-6 overflow-hidden group transition-all duration-300 hover:bg-white/10">
+              <div className="absolute inset-0 bg-gradient-to-br from-amber-600/10 via-transparent to-transparent" />
+              <div className="relative flex items-center gap-4">
                 <div className="w-14 h-14 rounded-xl bg-amber-500/20 flex items-center justify-center flex-shrink-0">
                   <Calendar className="h-7 w-7 text-amber-400" />
                 </div>
