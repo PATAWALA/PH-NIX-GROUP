@@ -19,7 +19,7 @@ export function AboutSection() {
   return (
     <section className="relative bg-stone-50 py-16 lg:py-24 overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        {/* En-tête de section */}
+        {/* En-tête de section enrichi */}
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -30,6 +30,9 @@ export function AboutSection() {
           <span className="text-amber-700 text-xs sm:text-sm font-semibold uppercase tracking-[0.3em]">
             À propos
           </span>
+          <h2 className="mt-3 text-2xl sm:text-3xl lg:text-4xl font-serif font-light text-stone-800">
+            Qui sommes-nous ?
+          </h2>
           <div className="mt-3 mx-auto w-16 h-px bg-gradient-to-r from-transparent via-amber-300 to-transparent" />
         </motion.div>
 
@@ -101,7 +104,7 @@ export function AboutSection() {
                 {[
                   { icon: Home, value: '12', label: 'Villas & Résidences' },
                   { icon: Waves, value: '8', label: 'Piscines & Spas' },
-                  { icon: Palmtree, value: '6', label: 'Aménagements Paysagers' },
+                  { icon: Palmtree, value: '6', label: 'Paysagisme' },
                 ].map((item) => (
                   <div
                     key={item.label}
