@@ -77,14 +77,14 @@ export function CTASection() {
                   Demander mon devis gratuit
                 </Button>
               </Link>
-              <a href="tel:+33123456789">
+              <a href="tel:+2250506960582">
                 <Button 
                   variant="outline" 
                   size="lg"
                   className="border-white/30 text-white hover:bg-white/10 hover:border-white/50"
                   leftIcon={<Phone className="h-5 w-5" />}
                 >
-                  01 23 45 67 89
+                  +225 05 06 96 05 82
                 </Button>
               </a>
             </div>
@@ -108,10 +108,10 @@ export function CTASection() {
                   <h3 className="text-white font-bold text-lg">Appelez-nous</h3>
                   <p className="text-stone-300 text-sm">Consultation téléphonique gratuite</p>
                   <a 
-                    href="tel:+33123456789" 
+                    href="tel:+2250506960582" 
                     className="text-amber-400 font-semibold text-lg hover:text-amber-300 transition-colors"
                   >
-                    01 23 45 67 89
+                    +225 05 06 96 05 82
                   </a>
                 </div>
               </div>
@@ -127,10 +127,10 @@ export function CTASection() {
                   <h3 className="text-white font-bold text-lg">Email</h3>
                   <p className="text-stone-300 text-sm">Réponse garantie sous 24h</p>
                   <a 
-                    href="mailto:contact@phenixgroup.fr" 
+                    href="mailto:contact@phenixgroup.ci" 
                     className="text-amber-400 font-semibold hover:text-amber-300 transition-colors"
                   >
-                    contact@phenixgroup.fr
+                    contact@phenixgroup.ci
                   </a>
                 </div>
               </div>

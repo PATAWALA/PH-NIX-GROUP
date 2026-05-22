@@ -10,9 +10,9 @@ import { Textarea } from '@/components/ui/Textarea'
 import { Select } from '@/components/ui/Select'
 import { Button } from '@/components/ui/Button'
 import { StepIndicator } from './StepIndicator'
-import { 
-  User, Mail, Phone, MapPin, 
-  Home, Euro, Calendar, Ruler,
+import {
+  User, Mail, Phone, MapPin,
+  Home, Calendar,
   CheckCircle2, Send, ArrowRight, ArrowLeft,
   Building2, Flower2, Palmtree, HelpCircle
 } from 'lucide-react'
@@ -32,10 +32,10 @@ const projectTypes = [
 ]
 
 const budgetOptions = [
-  { value: 'moins_100k', label: 'Moins de 100 000 €' },
-  { value: '100k_500k', label: '100 000 € - 500 000 €' },
-  { value: '500k_1m', label: '500 000 € - 1 M€' },
-  { value: 'plus_1m', label: 'Plus de 1 M€' },
+  { value: 'moins_100k', label: 'Moins de 10 000 000 FCFA' },
+  { value: '100k_500k', label: '10 000 000 – 50 000 000 FCFA' },
+  { value: '500k_1m', label: '50 000 000 – 100 000 000 FCFA' },
+  { value: 'plus_1m', label: 'Plus de 100 000 000 FCFA' },
   { value: 'non_defini', label: 'Budget non défini' },
 ]
 
@@ -43,7 +43,6 @@ export function ContactForm() {
   const [currentStep, setCurrentStep] = useState(1)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
-  const [submitError, setSubmitError] = useState<string | null>(null)
 
   const {
     register,
@@ -83,37 +82,39 @@ export function ContactForm() {
     setCurrentStep((prev) => Math.max(prev - 1, 1))
   }
 
-  const onSubmit = async (data: ContactFormData) => {
+  const onSubmit = (data: ContactFormData) => {
     setIsSubmitting(true)
-    setSubmitError(null)
-    
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      })
 
-      const result = await response.json()
+    // Construire le message WhatsApp
+    const message = `
+✨ *Nouvelle demande de devis* ✨
 
-      if (!response.ok) {
-        throw new Error(result.message || 'Erreur lors de l\'envoi')
-      }
+👤 *Nom* : ${data.nom}
+📧 *Email* : ${data.email}
+📞 *Téléphone* : ${data.telephone}
+🏗️ *Type de projet* : ${projectTypes.find(t => t.value === data.type_projet)?.label}
+📍 *Localisation* : ${data.localisation}
+💰 *Budget* : ${budgetOptions.find(b => b.value === data.budget)?.label}
+📝 *Description* : ${data.description}
+${data.delai_souhaite ? `⏱️ *Délai souhaité* : ${data.delai_souhaite}` : ''}
+${data.surface_approximative ? `📐 *Surface approx.* : ${data.surface_approximative}` : ''}
+`.trim()
 
-      setIsSuccess(true)
-      reset()
-    } catch (error) {
-      console.error('Erreur:', error)
-      setSubmitError(error instanceof Error ? error.message : 'Une erreur est survenue')
-    } finally {
-      setIsSubmitting(false)
-    }
+    const encodedMessage = encodeURIComponent(message)
+    const waUrl = `https://wa.me/22542550779?text=${encodedMessage}`
+
+    // Ouvrir WhatsApp dans un nouvel onglet
+    window.open(waUrl, '_blank')
+
+    // Afficher le message de succès
+    setIsSubmitting(false)
+    setIsSuccess(true)
+    reset()
   }
 
   const handleNewRequest = () => {
     setIsSuccess(false)
     setCurrentStep(1)
-    setSubmitError(null)
   }
 
   if (isSuccess) {
@@ -127,7 +128,7 @@ export function ContactForm() {
         <motion.div
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
-          transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+          transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
           className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6"
         >
           <CheckCircle2 className="h-10 w-10 text-green-600" />
@@ -136,15 +137,11 @@ export function ContactForm() {
           Demande envoyée avec succès !
         </h3>
         <p className="text-stone-600 mb-6 max-w-md mx-auto">
-          Merci de votre confiance. Notre équipe étudie votre projet et vous recontacte 
-          dans les 48 heures pour un accompagnement personnalisé.
+          Votre demande a été transmise via WhatsApp. Notre équipe vous recontactera dans les plus brefs délais.
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <Button onClick={handleNewRequest} variant="outline">
             Nouvelle demande
-          </Button>
-          <Button onClick={handleNewRequest} variant="gold">
-            Retour à l&apos;accueil
           </Button>
         </div>
       </motion.div>
@@ -154,16 +151,6 @@ export function ContactForm() {
   return (
     <div className="max-w-2xl mx-auto">
       <StepIndicator steps={steps} currentStep={currentStep} />
-
-      {submitError && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mt-6 p-4 bg-red-50 border border-red-200 rounded-xl text-sm text-red-700"
-        >
-          {submitError}
-        </motion.div>
-      )}
 
       <form onSubmit={handleSubmit(onSubmit)} className="mt-8">
         <AnimatePresence mode="wait">
@@ -180,7 +167,7 @@ export function ContactForm() {
               <h3 className="text-xl font-bold text-stone-900 mb-6 font-serif">
                 Vos informations de contact
               </h3>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Input
                   id="nom"
@@ -194,18 +181,18 @@ export function ContactForm() {
                   id="email"
                   type="email"
                   label="Email *"
-                  placeholder="jean@exemple.fr"
+                  placeholder="jean@exemple.ci"
                   icon={<Mail className="h-4 w-4" />}
                   error={errors.email?.message}
                   {...register('email')}
                 />
               </div>
-              
+
               <Input
                 id="telephone"
                 type="tel"
                 label="Téléphone *"
-                placeholder="06 12 34 56 78"
+                placeholder="+225 05 06 96 05 82"
                 icon={<Phone className="h-4 w-4" />}
                 error={errors.telephone?.message}
                 {...register('telephone')}
@@ -233,13 +220,11 @@ export function ContactForm() {
                   return (
                     <label
                       key={type.value}
-                      className={`
-                        relative flex flex-col items-center p-6 rounded-xl border-2 cursor-pointer transition-all duration-300
-                        ${isSelected 
-                          ? 'border-amber-500 bg-amber-50 shadow-lg scale-[1.02]' 
+                      className={`relative flex flex-col items-center p-6 rounded-xl border-2 cursor-pointer transition-all duration-300 ${
+                        isSelected
+                          ? 'border-amber-500 bg-amber-50 shadow-lg scale-[1.02]'
                           : 'border-stone-200 hover:border-amber-300 hover:bg-stone-50 hover:scale-[1.01]'
-                        }
-                      `}
+                      }`}
                     >
                       <input
                         type="radio"
@@ -271,7 +256,7 @@ export function ContactForm() {
               <Input
                 id="localisation"
                 label="Localisation du projet *"
-                placeholder="Ville, département"
+                placeholder="Abidjan, Yamoussoukro…"
                 icon={<MapPin className="h-4 w-4" />}
                 error={errors.localisation?.message}
                 {...register('localisation')}
@@ -296,29 +281,29 @@ export function ContactForm() {
               <Textarea
                 id="description"
                 label="Description du projet *"
-                placeholder="Décrivez votre projet, vos besoins et vos attentes..."
+                placeholder="Décrivez votre projet, vos besoins et vos attentes…"
                 error={errors.description?.message}
                 {...register('description')}
               />
 
-<Select
-  id="budget"
-  label="Budget estimé"
-  options={budgetOptions}
-  placeholder="Sélectionnez une tranche de budget"
-  error={errors.budget?.message}
-  value={watchAllFields.budget || ''}
-  onChange={(e) => {
-    const event = { target: { name: 'budget', value: e.target.value } }
-    register('budget').onChange(event)
-  }}
-/>
+              <Select
+                id="budget"
+                label="Budget estimé"
+                options={budgetOptions}
+                placeholder="Sélectionnez une tranche"
+                error={errors.budget?.message}
+                value={watchAllFields.budget || ''}
+                onChange={(e) => {
+                  const event = { target: { name: 'budget', value: e.target.value } }
+                  register('budget').onChange(event)
+                }}
+              />
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Input
                   id="delai_souhaite"
                   label="Délai souhaité"
-                  placeholder="Ex: 6 mois, 1 an"
+                  placeholder="Ex: 6 mois"
                   icon={<Calendar className="h-4 w-4" />}
                   {...register('delai_souhaite')}
                 />
@@ -326,7 +311,6 @@ export function ContactForm() {
                   id="surface_approximative"
                   label="Surface approximative"
                   placeholder="Ex: 150 m²"
-                  icon={<Ruler className="h-4 w-4" />}
                   {...register('surface_approximative')}
                 />
               </div>
@@ -360,51 +344,16 @@ export function ContactForm() {
 
               <div className="bg-stone-50 rounded-xl p-6 space-y-4 border border-stone-200">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <p className="text-sm text-stone-500">Nom complet</p>
-                    <p className="font-medium text-stone-900">{watchAllFields.nom}</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-stone-500">Email</p>
-                    <p className="font-medium text-stone-900">{watchAllFields.email}</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-stone-500">Téléphone</p>
-                    <p className="font-medium text-stone-900">{watchAllFields.telephone}</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-stone-500">Type de projet</p>
-                    <p className="font-medium text-stone-900">
-                      {projectTypes.find(t => t.value === watchAllFields.type_projet)?.label}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-stone-500">Localisation</p>
-                    <p className="font-medium text-stone-900">{watchAllFields.localisation}</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-stone-500">Budget estimé</p>
-                    <p className="font-medium text-stone-900">
-                      {budgetOptions.find(b => b.value === watchAllFields.budget)?.label}
-                    </p>
-                  </div>
-                  {watchAllFields.delai_souhaite && (
-                    <div>
-                      <p className="text-sm text-stone-500">Délai souhaité</p>
-                      <p className="font-medium text-stone-900">{watchAllFields.delai_souhaite}</p>
-                    </div>
-                  )}
-                  {watchAllFields.surface_approximative && (
-                    <div>
-                      <p className="text-sm text-stone-500">Surface approximative</p>
-                      <p className="font-medium text-stone-900">{watchAllFields.surface_approximative}</p>
-                    </div>
-                  )}
+                  <div><p className="text-sm text-stone-500">Nom complet</p><p className="font-medium text-stone-900">{watchAllFields.nom}</p></div>
+                  <div><p className="text-sm text-stone-500">Email</p><p className="font-medium text-stone-900">{watchAllFields.email}</p></div>
+                  <div><p className="text-sm text-stone-500">Téléphone</p><p className="font-medium text-stone-900">{watchAllFields.telephone}</p></div>
+                  <div><p className="text-sm text-stone-500">Type de projet</p><p className="font-medium text-stone-900">{projectTypes.find(t => t.value === watchAllFields.type_projet)?.label}</p></div>
+                  <div><p className="text-sm text-stone-500">Localisation</p><p className="font-medium text-stone-900">{watchAllFields.localisation}</p></div>
+                  <div><p className="text-sm text-stone-500">Budget estimé</p><p className="font-medium text-stone-900">{budgetOptions.find(b => b.value === watchAllFields.budget)?.label}</p></div>
+                  {watchAllFields.delai_souhaite && <div><p className="text-sm text-stone-500">Délai souhaité</p><p className="font-medium text-stone-900">{watchAllFields.delai_souhaite}</p></div>}
+                  {watchAllFields.surface_approximative && <div><p className="text-sm text-stone-500">Surface approximative</p><p className="font-medium text-stone-900">{watchAllFields.surface_approximative}</p></div>}
                 </div>
-                <div>
-                  <p className="text-sm text-stone-500">Description du projet</p>
-                  <p className="font-medium text-stone-900 mt-1 leading-relaxed">{watchAllFields.description}</p>
-                </div>
+                <div><p className="text-sm text-stone-500">Description du projet</p><p className="font-medium text-stone-900 mt-1 leading-relaxed">{watchAllFields.description}</p></div>
               </div>
 
               <p className="text-sm text-stone-500 text-center">
@@ -418,34 +367,17 @@ export function ContactForm() {
         {/* Navigation buttons */}
         <div className="flex justify-between mt-8">
           {currentStep > 1 && currentStep < 4 && (
-            <Button
-              type="button"
-              variant="outline"
-              onClick={handlePrevious}
-              leftIcon={<ArrowLeft className="h-4 w-4" />}
-            >
+            <Button type="button" variant="outline" onClick={handlePrevious} leftIcon={<ArrowLeft className="h-4 w-4" />}>
               Précédent
             </Button>
           )}
-          
+
           {currentStep < 4 ? (
-            <Button
-              type="button"
-              onClick={handleNext}
-              className="ml-auto"
-              rightIcon={<ArrowRight className="h-4 w-4" />}
-            >
+            <Button type="button" onClick={handleNext} className="ml-auto" rightIcon={<ArrowRight className="h-4 w-4" />}>
               Suivant
             </Button>
           ) : (
-            <Button
-              type="submit"
-              variant="gold"
-              size="lg"
-              className="ml-auto"
-              isLoading={isSubmitting}
-              rightIcon={<Send className="h-4 w-4" />}
-            >
+            <Button type="submit" variant="gold" size="lg" className="ml-auto" isLoading={isSubmitting} rightIcon={<Send className="h-4 w-4" />}>
               Envoyer ma demande
             </Button>
           )}

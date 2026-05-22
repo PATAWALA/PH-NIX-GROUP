@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils'
 import { Check } from 'lucide-react'
-import { type LucideIcon } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
 
 interface Step {
   id: number
@@ -21,7 +21,6 @@ export function StepIndicator({ steps, currentStep }: StepIndicatorProps) {
           const StepIcon = step.icon
           const isCompleted = currentStep > step.id
           const isCurrent = currentStep === step.id
-
           return (
             <div key={step.id} className="flex flex-col items-center relative z-10">
               <div
@@ -32,11 +31,7 @@ export function StepIndicator({ steps, currentStep }: StepIndicatorProps) {
                   !isCompleted && !isCurrent && 'bg-stone-200 text-stone-400'
                 )}
               >
-                {isCompleted ? (
-                  <Check className="h-5 w-5" />
-                ) : (
-                  <StepIcon className="h-5 w-5" />
-                )}
+                {isCompleted ? <Check className="h-5 w-5" /> : <StepIcon className="h-5 w-5" />}
               </div>
               <span
                 className={cn(
@@ -50,15 +45,11 @@ export function StepIndicator({ steps, currentStep }: StepIndicatorProps) {
           )
         })}
       </div>
-      
-      {/* Progress bar */}
       <div className="absolute top-5 left-0 right-0 h-0.5 -z-0">
         <div className="absolute inset-0 bg-stone-200" />
         <div
           className="absolute inset-y-0 left-0 bg-amber-600 transition-all duration-500"
-          style={{
-            width: `${((currentStep - 1) / (steps.length - 1)) * 100}%`,
-          }}
+          style={{ width: `${((currentStep - 1) / (steps.length - 1)) * 100}%` }}
         />
       </div>
     </div>

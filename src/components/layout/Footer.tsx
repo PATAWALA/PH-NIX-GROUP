@@ -1,3 +1,6 @@
+'use client'
+
+import { usePathname } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import { 
@@ -41,42 +44,46 @@ const socialLinks = [
 ]
 
 export function Footer() {
+  const pathname = usePathname()
+  const isContactPage = pathname === '/contact'
+
   return (
     <footer className="bg-stone-900 text-stone-300">
-      {/* CTA Section */}
-      <div className="border-b border-stone-800">
-        <div className="max-w-7xl mx-auto px-4 py-16">
-          <div className="bg-gradient-to-r from-amber-600 to-amber-800 rounded-3xl p-8 md:p-12 relative overflow-hidden">
-            <div className="absolute inset-0 opacity-10" style={{
-              backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)',
-              backgroundSize: '20px 20px'
-            }} />
-            <div className="relative flex flex-col md:flex-row items-center justify-between gap-8">
-              <div>
-                <h2 className="text-3xl md:text-4xl font-bold text-white font-serif mb-3">
-                  Prêt à donner vie à votre projet ?
-                </h2>
-                <p className="text-amber-100 text-lg max-w-2xl">
-                  Bénéficiez d&apos;un accompagnement personnalisé et d&apos;un devis gratuit sous 48h.
-                </p>
+      {/* CTA Section – masquée sur la page Contact */}
+      {!isContactPage && (
+        <div className="border-b border-stone-800">
+          <div className="max-w-7xl mx-auto px-4 py-16">
+            <div className="bg-gradient-to-r from-amber-600 to-amber-800 rounded-3xl p-8 md:p-12 relative overflow-hidden">
+              <div className="absolute inset-0 opacity-10" style={{
+                backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)',
+                backgroundSize: '20px 20px'
+              }} />
+              <div className="relative flex flex-col md:flex-row items-center justify-between gap-8">
+                <div>
+                  <h2 className="text-3xl md:text-4xl font-bold text-white font-serif mb-3">
+                    L’excellence à votre service
+                  </h2>
+                  <p className="text-amber-100 text-lg max-w-2xl">
+                    Un accompagnement sur mesure et un devis gratuit sous 48h pour concrétiser vos ambitions.
+                  </p>
+                </div>
+                <Link href="/contact">
+                  <Button variant="secondary" size="lg" className="bg-white text-amber-800 hover:bg-amber-50 whitespace-nowrap">
+                    Demander mon devis
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </Link>
               </div>
-              <Link href="/contact">
-                <Button variant="secondary" size="lg" className="bg-white text-amber-800 hover:bg-amber-50 whitespace-nowrap">
-                  Demander mon devis
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
             </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* Main footer */}
       <div className="max-w-7xl mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Company info avec logo */}
           <div className="lg:col-span-1">
-            {/* Logo + Texte */}
             <div className="flex items-center gap-3 mb-6">
               <div className="relative w-10 h-10 flex-shrink-0">
                 <Image
@@ -102,7 +109,6 @@ export function Footer() {
               et paysagisme pour des projets d&apos;exception.
             </p>
             
-            {/* Réseaux sociaux */}
             <div className="flex items-center gap-3">
               {socialLinks.map((social, index) => (
                 <a
