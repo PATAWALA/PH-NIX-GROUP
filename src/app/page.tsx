@@ -4,6 +4,7 @@ import { ServicesSection } from '@/components/sections/Services'
 import { StatsSection } from '@/components/sections/Stats'
 import { FeaturedProjects } from '@/components/sections/FeaturedProjects'  // ✅ ajout
 import { TestimonialsSection } from '@/components/sections/Testimonials'
+import { AboutSection } from '@/components/sections/AboutSection'
 import { CTASection } from '@/components/sections/CTA'
 
 export const metadata: Metadata = {
@@ -27,6 +28,7 @@ export default async function HomePage() {
   return (
     <>
       <HeroSection />
+      <AboutSection /> 
       <ServicesSection />
       <FeaturedProjects />   {/* ✅ inséré entre services et stats */}
       <StatsSection stats={stats} />

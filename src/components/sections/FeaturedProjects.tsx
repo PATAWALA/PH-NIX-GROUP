@@ -22,7 +22,7 @@ const projects = [
     id: '2',
     titre: 'Aménagement du Jardin Botanique',
     categorie: 'amenagement' as const,
-    images: ['/images/jardin1.jpg'],
+    images: ['/images/amenagement1.jpg'],
     localisation: 'Bingerville',
     annee: 2025,
   },
