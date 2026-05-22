@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import { HeroSection } from '@/components/sections/Hero'
 import { ServicesSection } from '@/components/sections/Services'
 import { StatsSection } from '@/components/sections/Stats'
+import { AboutSection } from '@/components/sections/AboutSection'
 import { FeaturedProjects } from '@/components/sections/FeaturedProjects'  // ✅ ajout
 import { TestimonialsSection } from '@/components/sections/Testimonials'
 import { CTASection } from '@/components/sections/CTA'
@@ -27,6 +28,7 @@ export default async function HomePage() {
   return (
     <>
       <HeroSection />
+      <AboutSection />
       <ServicesSection />
       <FeaturedProjects />   {/* ✅ inséré entre services et stats */}
       <StatsSection stats={stats} />
