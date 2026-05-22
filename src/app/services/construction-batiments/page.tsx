@@ -89,39 +89,37 @@ export default function ConstructionBatimentsPage() {
             </Link>
           </div>
 
-          {/* Droite : deux images professionnelles superposées */}
-          <div className="relative h-[500px] lg:h-[550px]">
-            {/* Image principale (premier plan) */}
-            <div className="absolute top-0 right-0 w-[85%] h-[75%] rounded-2xl overflow-hidden shadow-2xl z-10 border-4 border-white">
+          {/* Droite : trois images en disposition équilibrée */}
+          <div className="grid grid-cols-2 grid-rows-2 gap-4 h-[500px] lg:h-[550px]">
+            {/* Image large en haut (occupe toute la largeur) */}
+            <div className="col-span-2 row-span-1 rounded-3xl overflow-hidden shadow-2xl border-2 border-stone-100 relative">
               <Image
                 src="/images/hotel1.jpg"
-                alt="Intérieur d'un hôtel de luxe"
+                alt="Hôtel de luxe construit"
                 fill
                 className="object-cover"
-                sizes="(max-width: 768px) 100vw, 40vw"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                priority
               />
-              <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-lg text-xs font-semibold text-stone-700 shadow">
-                Intérieur – Hôtel Majestic
-              </div>
             </div>
-
-            {/* Image secondaire (arrière-plan, décalée) */}
-            <div className="absolute bottom-0 left-0 w-[70%] h-[65%] rounded-2xl overflow-hidden shadow-xl border-4 border-white">
+            {/* Deux images en bas */}
+            <div className="rounded-3xl overflow-hidden shadow-2xl border-2 border-stone-100 relative">
               <Image
-                src="/images/façade-service.jpg"
-                alt="Façade d'un restaurant construit"
+                src="/images/restaurant.jpg"
+                alt="Restaurant construit"
                 fill
                 className="object-cover"
-                sizes="(max-width: 768px) 100vw, 35vw"
+                sizes="(max-width: 768px) 50vw, 25vw"
               />
-              <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-lg text-xs font-semibold text-stone-700 shadow">
-                Façade – Restaurant La Terrasse
-              </div>
             </div>
-
-            {/* Badge "Avant / Après" flottant */}
-            <div className="absolute top-6 left-6 bg-amber-600 text-white text-xs px-3 py-1.5 rounded-full shadow-lg z-20 font-medium">
-              Avant / Après
+            <div className="rounded-3xl overflow-hidden shadow-2xl border-2 border-stone-100 relative">
+              <Image
+                src="/images/villa.jpg"
+                alt="Villa de luxe"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 50vw, 25vw"
+              />
             </div>
           </div>
         </div>

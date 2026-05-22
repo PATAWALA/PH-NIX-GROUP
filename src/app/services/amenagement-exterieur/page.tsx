@@ -89,39 +89,47 @@ export default function AmenagementExterieurPage() {
             </Link>
           </div>
 
-          {/* Droite : deux images superposées */}
-          <div className="relative h-[500px] lg:h-[550px]">
-            {/* Image principale (piscine) */}
-            <div className="absolute top-0 right-0 w-[85%] h-[75%] rounded-2xl overflow-hidden shadow-2xl z-10 border-4 border-white">
+          {/* Droite : galerie structurée (4 images) */}
+          <div className="grid grid-cols-2 grid-rows-3 gap-3 h-[500px] lg:h-[550px]">
+            {/* Grande image piscine (gauche, 2 lignes) */}
+            <div className="row-span-2 rounded-2xl overflow-hidden shadow-xl border-2 border-white/20 relative">
               <Image
                 src="/images/pscine-service.jpg"
-                alt="Piscine design avec terrasse"
+                alt="Piscine design"
                 fill
                 className="object-cover"
-                sizes="(max-width: 768px) 100vw, 40vw"
+                sizes="(max-width: 768px) 50vw, 30vw"
               />
-              <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-lg text-xs font-semibold text-stone-700 shadow">
-                Piscine – Villa Les Oliviers, Cocody
-              </div>
             </div>
-
-            {/* Image secondaire (jardin) */}
-            <div className="absolute bottom-0 left-0 w-[70%] h-[65%] rounded-2xl overflow-hidden shadow-xl border-4 border-white">
+            {/* Jardin (haut droite) */}
+            <div className="rounded-2xl overflow-hidden shadow-xl border-2 border-white/20 relative">
               <Image
-                src="/images/decoration-service.jpg"
-                alt="Jardin paysager luxuriant"
+                src="/images/jardin.jpg"
+                alt="Jardin paysager"
                 fill
                 className="object-cover"
-                sizes="(max-width: 768px) 100vw, 35vw"
+                sizes="25vw"
               />
-              <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-lg text-xs font-semibold text-stone-700 shadow">
-                Jardin – Résidence Bingerville
-              </div>
             </div>
-
-            {/* Badge "Avant / Après" */}
-            <div className="absolute top-6 left-6 bg-amber-600 text-white text-xs px-3 py-1.5 rounded-full shadow-lg z-20 font-medium">
-              Avant / Après
+            {/* Terrasse (milieu droite) */}
+            <div className="rounded-2xl overflow-hidden shadow-xl border-2 border-white/20 relative">
+              <Image
+                src="/images/façade-service.jpg"
+                alt="Terrasse aménagée"
+                fill
+                className="object-cover"
+                sizes="25vw"
+              />
+            </div>
+            {/* Éclairage (bas, pleine largeur) */}
+            <div className="col-span-2 rounded-2xl overflow-hidden shadow-xl border-2 border-white/20 relative">
+              <Image
+                src="/images/eclairage.jpg"
+                alt="Éclairage extérieur"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 60vw"
+              />
             </div>
           </div>
         </div>
