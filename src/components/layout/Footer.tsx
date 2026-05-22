@@ -26,9 +26,10 @@ const footerLinks = {
     { name: 'Politique de confidentialité', href: '/confidentialite' },
   ],
   contact: [
-    { icon: Phone, text: '01 23 45 67 89', href: 'tel:+33123456789' },
-    { icon: Mail, text: 'contact@phenixgroup.fr', href: 'mailto:contact@phenixgroup.fr' },
-    { icon: MapPin, text: '123 Avenue des Champs-Élysées, 75008 Paris' },
+    { icon: Phone, text: '+225 05 06 96 05 82', href: 'tel:+2250506960582' },
+    { icon: Phone, text: '+225 42 55 07 79', href: 'tel:+22542550779' },
+    { icon: Mail, text: 'contact@phenixgroup.ci', href: 'mailto:contact@phenixgroup.ci' },
+    { icon: MapPin, text: 'Abidjan, Côte d\'Ivoire' },
     { icon: Clock, text: 'Lun-Ven: 8h-19h | Sam: 9h-17h' },
   ],
 }
