@@ -28,7 +28,7 @@ const services = [
       'Éclairage extérieur',
       'Mobilier sur mesure',
     ],
-    imageUrl: '/images/jardin1.jpg',
+    imageUrl: '/images/backgrundcta.jpg',
     href: '/services/amenagement-exterieur',
   },
   {
