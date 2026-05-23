@@ -1,5 +1,4 @@
 'use client'
-
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -8,8 +7,7 @@ import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/Button'
 import { 
   Menu, X, ChevronDown, 
-  Building2, Flower2, Palmtree, Sparkles,
-  ArrowRight
+  Building2, Flower2, Palmtree, Sparkles
 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -59,25 +57,16 @@ export function Header() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Verrouiller le défilement quand le menu mobile est ouvert
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = 'unset'
-    }
-    return () => { document.body.style.overflow = 'unset' }
-  }, [isMobileMenuOpen])
-
   return (
     <header
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
-        !isHomePage && 'bg-white/90 backdrop-blur-xl shadow-[0_1px_3px_rgba(0,0,0,0.02)]',
-        isHomePage && isScrolled && 'bg-white/90 backdrop-blur-xl shadow-[0_1px_3px_rgba(0,0,0,0.02)]',
+        !isHomePage && 'bg-white/95 backdrop-blur-md shadow-lg',
+        isHomePage && isScrolled && 'bg-white/95 backdrop-blur-md shadow-lg',
         isHomePage && !isScrolled && 'bg-transparent'
       )}
     >
+      {/* Main navigation */}
       <nav className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo + Texte */}
@@ -189,119 +178,101 @@ export function Header() {
             ))}
           </div>
 
-          {/* CTA + hamburger */}
+          {/* CTA + mobile menu */}
           <div className="flex items-center gap-4">
+            {/* Bouton vibrant avec texte plus grand */}
             <Link href="/contact" className="hidden lg:block">
-              <motion.div
-                animate={{ scale: [1, 1.02, 1] }}
-                transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-                className="inline-block"
-              >
-                <Button 
-                  variant="gold" 
-                  size="sm"
-                  className="text-sm font-medium px-4 py-2 rounded-lg"
-                >
-                  <span className="relative z-10 flex items-center gap-2">
-                    <Sparkles className="h-3.5 w-3.5" />
-                    Demander un devis gratuit
-                  </span>
-                </Button>
-              </motion.div>
-            </Link>
-
-            {/* Hamburger */}
+  <motion.div
+    animate={{ scale: [1, 1.02, 1] }}
+    transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+    className="inline-block"
+  >
+    <Button 
+      variant="gold" 
+      size="sm"                   // même taille que les liens
+      className="text-sm font-medium px-4 py-2 rounded-lg" // hauteur similaire
+    >
+      <span className="relative z-10 flex items-center gap-2">
+        <Sparkles className="h-3.5 w-3.5" />
+        Demander un devis gratuit
+      </span>
+    </Button>
+  </motion.div>
+</Link>
+            {/* Menu hamburger mobile avec animation d'attention */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className={cn(
-                'lg:hidden p-2 rounded-lg transition-all duration-300 relative z-50',
-                (!isHomePage || isScrolled) ? 'text-stone-900' : 'text-white',
-                isMobileMenuOpen && 'text-stone-900'
+                'lg:hidden p-2 rounded-lg transition-all duration-300',
+                (!isHomePage || isScrolled)
+                  ? 'text-stone-900 hover:bg-amber-100'
+                  : 'text-white hover:bg-white/10',
+                isMobileMenuOpen && 'bg-amber-100 text-amber-700'
               )}
-              aria-label="Menu"
             >
-              {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              <motion.div
+                animate={!isMobileMenuOpen ? { rotate: [0, 5, -5, 0] } : {}}
+                transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+              >
+                {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              </motion.div>
             </button>
           </div>
         </div>
       </nav>
 
-      {/* Mobile menu fullscreen */}
+      {/* Mobile menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-white/95 backdrop-blur-xl lg:hidden"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="lg:hidden bg-white border-t border-stone-200"
           >
-            <div className="flex flex-col h-full pt-20 pb-8 px-6 overflow-y-auto">
-              <nav className="flex-1 flex flex-col gap-2">
-                {navigation.map((item, index) => (
-                  <motion.div
-                    key={item.name}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 20 }}
-                    transition={{ duration: 0.3, delay: index * 0.1 }}
-                  >
-                    {item.children ? (
-                      <div className="mb-4">
-                        <h3 className="text-lg font-semibold text-stone-900 mb-3">{item.name}</h3>
-                        <div className="space-y-2 pl-4">
-                          {item.children.map((child) => (
-                            <Link
-                              key={child.name}
-                              href={child.href}
-                              onClick={() => setIsMobileMenuOpen(false)}
-                              className="flex items-center gap-3 py-2 text-stone-600 hover:text-amber-700 transition-colors"
-                            >
-                              <child.icon className="h-5 w-5 text-amber-600" />
-                              <div>
-                                <div className="font-medium">{child.name}</div>
-                                <div className="text-sm text-stone-400">{child.description}</div>
-                              </div>
-                            </Link>
-                          ))}
-                        </div>
+            <div className="px-4 py-4 space-y-2">
+              {navigation.map((item) => (
+                <div key={item.name}>
+                  {item.children ? (
+                    <>
+                      <div className="font-medium text-stone-900 py-2">{item.name}</div>
+                      <div className="ml-4 space-y-1">
+                        {item.children.map((child) => (
+                          <Link
+                            key={child.name}
+                            href={child.href}
+                            className="flex items-center gap-3 py-2 text-stone-600 hover:text-amber-700 transition-colors"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                          >
+                            <child.icon className="h-4 w-4" />
+                            {child.name}
+                          </Link>
+                        ))}
                       </div>
-                    ) : (
-                      <Link
-                        href={item.href}
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className={cn(
-                          'block py-3 text-lg font-medium border-b border-stone-100 transition-colors',
-                          pathname === item.href ? 'text-amber-700' : 'text-stone-900 hover:text-amber-700'
-                        )}
-                      >
-                        {item.name}
-                      </Link>
-                    )}
-                  </motion.div>
-                ))}
-              </nav>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-                className="mt-8"
-              >
-                <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
-                  <Button variant="gold" fullWidth size="lg" className="text-base">
-                    <span className="flex items-center justify-center gap-2">
-                      <Sparkles className="h-5 w-5" />
-                      Demander un devis gratuit
-                      <ArrowRight className="h-5 w-5" />
-                    </span>
-                  </Button>
-                </Link>
-              </motion.div>
+                    </>
+                  ) : (
+                    <Link
+                      href={item.href}
+                      className={cn(
+                        'block py-2 font-medium transition-colors',
+                        pathname === item.href ? 'text-amber-700' : 'text-stone-900 hover:text-amber-700'
+                      )}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
+                  )}
+                </div>
+              ))}
+              <Link href="/contact" className="block mt-4" onClick={() => setIsMobileMenuOpen(false)}>
+                <Button variant="gold" fullWidth size="lg" className="text-base">
+                  Demander un devis gratuit
+                </Button>
+              </Link>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
     </header>
   )
-}
+} 
