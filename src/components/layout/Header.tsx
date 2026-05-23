@@ -193,8 +193,8 @@ export function Header() {
           <div className="flex items-center gap-4">
             <Link href="/contact" className="hidden lg:block">
               <motion.div
-                animate={{ scale: [1, 1.02, 1] }}
-                transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                animate={{ scale: [1, 1.04, 1] }}
+                transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
                 className="inline-block"
               >
                 <Button 
@@ -203,7 +203,13 @@ export function Header() {
                   className="text-sm font-medium px-4 py-2 rounded-lg"
                 >
                   <span className="relative z-10 flex items-center gap-2">
-                    <Sparkles className="h-3.5 w-3.5" />
+                    <motion.span
+                      animate={{ rotate: [0, 15, -15, 0] }}
+                      transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                      className="inline-flex"
+                    >
+                      <Sparkles className="h-3.5 w-3.5" />
+                    </motion.span>
                     Demander un devis gratuit
                   </span>
                 </Button>
@@ -238,7 +244,6 @@ export function Header() {
             style={{ position: 'fixed', inset: 0, zIndex: 40 }}
             className="bg-white/95 backdrop-blur-xl lg:hidden"
           >
-            {/* Bouton de fermeture dans l'overlay */}
             <button
               onClick={() => setIsMobileMenuOpen(false)}
               className="absolute top-6 right-6 z-50 w-12 h-12 flex items-center justify-center rounded-full bg-stone-100 text-stone-700 hover:bg-amber-100 hover:text-amber-700 transition-colors"
