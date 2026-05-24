@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, type Variants } from 'framer-motion'
-import { ArrowRight, Home, Waves, Palmtree } from 'lucide-react'
+import { ArrowRight, Building2, Waves, Palmtree, Brush } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 
 export function AboutSection() {
@@ -19,7 +19,7 @@ export function AboutSection() {
   return (
     <section className="relative bg-stone-50 py-16 lg:py-24 overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        {/* En-tête de section enrichi */}
+        {/* En-tête de section */}
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -37,7 +37,7 @@ export function AboutSection() {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-8 lg:gap-12">
-          {/* Image */}
+          {/* Image avec badge corrigé */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -49,7 +49,7 @@ export function AboutSection() {
               <div className="aspect-[4/5] max-h-[400px] lg:max-h-[480px] w-full">
                 <Image
                   src="/images/logo.jpg"
-                  alt="Logo de la maison – Architecture & Aménagement de luxe"
+                  alt="PHÉNIX GROUP & JF DÉCOR – Groupe d’architecture et d’aménagement"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
@@ -58,11 +58,11 @@ export function AboutSection() {
               </div>
             </Link>
 
-            {/* Badge */}
+            {/* Badge mis à jour */}
             <div className="absolute -bottom-2 left-4 z-10">
               <span className="inline-flex items-center gap-1.5 bg-gradient-to-r from-amber-500 to-amber-700 text-white shadow-lg shadow-amber-900/20 px-3 py-1 rounded-full text-xs font-medium">
                 <span className="w-1.5 h-1.5 bg-white rounded-full" />
-                Maison fondée en 1998
+                Groupe fondé en 2008
               </span>
             </div>
           </motion.div>
@@ -76,7 +76,7 @@ export function AboutSection() {
           >
             <div className="flex flex-col gap-4 lg:gap-6">
               <span className="text-amber-700 text-xs font-semibold uppercase tracking-[0.25em] border-l-2 border-amber-600 pl-3">
-                Architecture & Aménagement d’Exception
+                Construction, Aménagement & Paysagisme d’Exception
               </span>
 
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-light tracking-tight leading-tight">
@@ -88,23 +88,25 @@ export function AboutSection() {
 
               <div className="space-y-2 text-sm text-stone-600 leading-relaxed max-w-lg">
                 <p>
-                  Depuis plus de 25 ans, nous concevons et réalisons des projets d’exception
-                  pour villas contemporaines, piscines à débordement, aménagements paysagers
-                  et résidences privées. Chaque ouvrage est un héritage architectural mêlant
-                  volumes intemporels, matériaux nobles et précision d’exécution.
+                  Depuis plus de 16 ans, le groupe PHÉNIX GROUP & JF DÉCOR conçoit et réalise
+                  des projets d’exception en Côte d’Ivoire : construction de bâtiments (hôtels,
+                  restaurants, résidences), piscines design, aménagements paysagers complets,
+                  décors artistiques, cascades et grottes artificielles. Chaque ouvrage est un
+                  héritage architectural mêlant volumes intemporels, matériaux nobles et
+                  précision d’exécution.
                 </p>
                 <p>
-                  Notre approche sur‑mesure transforme vos espaces en tableaux vivants, où
+                  Notre approche sur‑mesure transforme vos espaces en œuvres vivantes, où
                   l’élégance fonctionnelle rencontre la pérennité structurelle.
                 </p>
               </div>
 
-              {/* Métriques */}
+              {/* Métriques représentatives des trois piliers */}
               <div className="grid grid-cols-3 gap-3 sm:gap-4 pt-1">
                 {[
-                  { icon: Home, value: '12', label: 'Villas & Résidences' },
+                  { icon: Building2, value: '12', label: 'Bâtiments' },
                   { icon: Waves, value: '8', label: 'Piscines & Spas' },
-                  { icon: Palmtree, value: '6', label: 'Paysagisme' },
+                  { icon: Palmtree, value: '6', label: 'Grottes & Paysagisme' },
                 ].map((item) => (
                   <div
                     key={item.label}
