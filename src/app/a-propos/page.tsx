@@ -25,10 +25,10 @@ export default function AProposPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
           {[
-            { icon: Clock, title: '25 ans', description: 'D\'expérience' },
-            { icon: Award, title: '150+', description: 'Projets réalisés' },
+            { icon: Clock, title: '16 ans', description: 'D\'expérience' },
+            { icon: Award, title: '16+', description: 'Projets réalisés' },
             { icon: Users, title: '200+', description: 'Clients satisfaits' },
-            { icon: Target, title: '100%', description: 'Sur mesure' },
+            { icon: Target, title: '97%', description: 'Sur mesure' },
           ].map((stat, index) => (
             <div key={index} className="text-center p-6">
               <stat.icon className="h-10 w-10 text-amber-600 mx-auto mb-4" />
