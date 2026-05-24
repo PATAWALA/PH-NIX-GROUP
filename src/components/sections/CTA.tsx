@@ -77,14 +77,14 @@ export function CTASection() {
                   Demander mon devis gratuit
                 </Button>
               </Link>
-              <a href="tel:+2250506960582">
+              <a href="tel:+2250749966009">
                 <Button 
                   variant="ghost" 
                   size="lg"
                   className="text-white/80 hover:text-white hover:bg-white/10 backdrop-blur-sm"
                   leftIcon={<Phone className="h-5 w-5" />}
                 >
-                  +225 05 06 96 05 82
+                  +2250749966009
                 </Button>
               </a>
             </div>
