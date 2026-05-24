@@ -51,7 +51,7 @@ export function HeroSection() {
             >
               <div className="flex items-center gap-2">
                 <Award className="h-4 w-4 md:h-5 md:w-5 text-amber-400" />
-                <span className="text-xs md:text-sm text-stone-300">25 ans d&apos;excellence</span>
+                <span className="text-xs md:text-sm text-stone-300">16 ans d&apos;excellence</span>
               </div>
               <div className="w-px h-4 bg-stone-600" />
               <div className="flex items-center gap-2">
