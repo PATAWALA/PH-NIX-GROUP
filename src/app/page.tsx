@@ -15,10 +15,10 @@ export const metadata: Metadata = {
 async function getStats() {
   // Données statiques (ou appel Supabase)
   return {
-    projects: 150,
+    projects: 26,
     clients: 200,
-    experience: 25,
-    satisfaction: 98,
+    experience: 16,
+    satisfaction: 97,
   }
 }
 

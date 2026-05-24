@@ -1,8 +1,10 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Star, Quote, ChevronLeft, ChevronRight } from 'lucide-react'
-import { createClient } from '@/lib/client' // ✅
+import { Star, Quote, ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react'
+import { createClient } from '@/lib/client' // ✅ import corrigé
+import { Button } from '@/components/ui/Button'
+import Link from 'next/link'
 import type { Testimonial } from '@/types/database'
 
 // Témoignages par défaut en attendant le chargement depuis Supabase
@@ -259,6 +261,21 @@ export function TestimonialsSection() {
             </motion.div>
           ))}
         </div>
+
+        {/* Call to action */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="text-center mt-12"
+        >
+          <Link href="/contact">
+            <Button variant="gold" size="lg" rightIcon={<ArrowRight className="h-5 w-5" />}>
+              Demander un devis gratuit
+            </Button>
+          </Link>
+        </motion.div>
       </div>
     </section>
   )

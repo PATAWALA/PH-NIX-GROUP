@@ -3,8 +3,10 @@
 import { motion } from 'framer-motion'
 import { 
   Building2, Users, Award, ThumbsUp,
-  Clock, Shield
+  Clock, Shield, PhoneCall
 } from 'lucide-react'
+import { Button } from '@/components/ui/Button'
+import Link from 'next/link'
 
 interface StatsProps {
   stats: {
@@ -31,7 +33,7 @@ const statsList = [
   { 
     key: 'clients' as const, 
     icon: Users, 
-    label: 'Clients prestigieux', 
+    label: 'Clients satisfaits', 
     suffix: '+' 
   },
   { 
@@ -51,7 +53,7 @@ const values = [
   {
     icon: Award,
     title: 'Savoir-faire',
-    description: '25 ans d’expérience et une équipe d’artisans passionnés par la beauté du travail bien fait.'
+    description: '16 ans d’expérience et une équipe d’artisans passionnés par la beauté du travail bien fait.'
   },
   {
     icon: Users,
@@ -113,8 +115,8 @@ export function StatsSection({ stats }: StatsProps) {
           </p>
         </motion.div>
 
-        {/* Cartes sans aucune bordure, dégradé doré bien présent */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Cartes valeurs */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
           {values.map((value, index) => (
             <motion.div
               key={value.title}
@@ -124,9 +126,7 @@ export function StatsSection({ stats }: StatsProps) {
               transition={{ duration: 0.5, delay: index * 0.2 }}
               className="relative bg-white/5 backdrop-blur-sm rounded-2xl p-8 overflow-hidden"
             >
-              {/* Dégradé permanent accentué */}
               <div className="absolute inset-0 bg-gradient-to-br from-amber-600/30 via-amber-600/10 to-transparent" />
-              
               <div className="relative z-10">
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500/20 to-amber-700/20 flex items-center justify-center mb-6">
                   <value.icon className="h-6 w-6 text-amber-400" />
@@ -141,6 +141,35 @@ export function StatsSection({ stats }: StatsProps) {
             </motion.div>
           ))}
         </div>
+
+        {/* Bouton CTA ajouté */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+        >
+          <a href="tel:+2250506960582">
+            <Button 
+              variant="gold" 
+              size="lg" 
+              leftIcon={<PhoneCall className="h-5 w-5" />}
+              className="w-full sm:w-auto"
+            >
+              Faire appel à nous
+            </Button>
+          </a>
+          <Link href="/contact">
+            <Button 
+              variant="outline" 
+              size="lg"
+              className="border-amber-500 text-amber-400 hover:bg-amber-500 hover:text-white transition-colors w-full sm:w-auto"
+            >
+              Demander un devis gratuit
+            </Button>
+          </Link>
+        </motion.div>
       </div>
     </section>
   )

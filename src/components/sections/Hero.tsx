@@ -109,7 +109,7 @@ export function HeroSection() {
             >
               {[
                 { value: '26+', label: 'Projets réalisés' },
-                { value: '25', label: 'Ans d\'expérience' },
+                { value: '16', label: 'Ans d\'expérience' },
                 { value: '97%', label: 'Clients satisfaits' },
               ].map((stat, index) => (
                 <div key={index}>
