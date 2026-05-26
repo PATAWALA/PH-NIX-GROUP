@@ -70,13 +70,13 @@ export function Header() {
 
   return (
     <header
-      style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 99999 }}
-      className={cn(
-        'transition-all duration-500',
-        !isHomePage && 'bg-white/95 shadow-lg',
-        isHomePage && isScrolled && 'bg-white/95 shadow-lg',
-        isHomePage && !isScrolled && 'bg-transparent'
-      )}
+      style={{ position: 'fixed', top: 0, left: 0, right: 0 }}
+        className={cn(
+    'fixed top-0 left-0 right-0 z-50 transition-all duration-500', // <-- z-50 seulement
+    !isHomePage && 'bg-white/95 shadow-lg',
+    isHomePage && isScrolled && 'bg-white/95 shadow-lg',
+    isHomePage && !isScrolled && 'bg-transparent'
+  )}
     >
       <nav className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-20">

@@ -1,120 +1,76 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import Image from 'next/image'
 import { GalleryFilter } from './GalleryFilter'
-import { GalleryModal } from './GalleryModal'
+import { GalleryLightbox } from './GalleryLightbox'
+import { createClient } from '@/lib/client'
+import { ZoomIn } from 'lucide-react' // ✅ import icône
 
 interface Project {
   id: string
-  title: string
-  description: string
-  category: 'construction' | 'amenagement' | 'paysagisme'
+  categorie: string
   images: string[]
-  location: string
-  year: number
 }
 
-// Données de démonstration
-const demoProjects: Project[] = [
-  {
-    id: '1',
-    title: 'Hôtel Le Majestic',
-    description: 'Construction complète d\'un hôtel 5 étoiles avec spa et restaurant gastronomique.',
-    category: 'construction',
-    images: ['/images/villa.jpg'],
-    location: 'Paris',
-    year: 2023,
-  },
-  {
-    id: '2',
-    title: 'Villa Les Oliviers',
-    description: 'Aménagement paysager complet avec piscine à débordement et jardin méditerranéen.',
-    category: 'amenagement',
-    images: ['/images/terasse.jpg'],
-    location: 'Côte d\'Azur',
-    year: 2023,
-  },
-  {
-    id: '3',
-    title: 'Cascade Artificielle',
-    description: 'Création d\'une cascade naturelle avec grotte décorative pour un parc privé.',
-    category: 'paysagisme',
-    images: ['/images/cascade.jpg'],
-    location: 'Lyon',
-    year: 2022,
-  },
-  {
-    id: '4',
-    title: 'Restaurant La Terrasse',
-    description: 'Construction et aménagement d\'un restaurant panoramique avec vue sur la mer.',
-    category: 'construction',
-    images: ['/images/restaurant.jpg'],
-    location: 'Marseille',
-    year: 2022,
-  },
-  {
-    id: '5',
-    title: 'Jardin Zen',
-    description: 'Création d\'un jardin japonais avec bassin, pont et végétation soigneusement sélectionnée.',
-    category: 'amenagement',
-    images: ['/images/jardin.jpg'],
-    location: 'Bordeaux',
-    year: 2021,
-  },
-  {
-    id: '6',
-    title: 'Grotte Décorative',
-    description: 'Réalisation d\'une grotte artificielle avec jeux de lumière pour un complexe hôtelier.',
-    category: 'paysagisme',
-    images: ['/images/decoration.jpg'],
-    location: 'Nice',
-    year: 2021,
-  },
-]
-
 export function GalleryGrid() {
-  const [activeFilter, setActiveFilter] = useState<string>('all')
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+  const [projects, setProjects] = useState<Project[]>([])
+  const [activeFilter, setActiveFilter] = useState('all')
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
+  const supabase = createClient()
 
-  const filteredProjects = activeFilter === 'all'
-    ? demoProjects
-    : demoProjects.filter(project => project.category === activeFilter)
+  useEffect(() => {
+    const load = async () => {
+      const { data } = await supabase
+        .from('realisations')
+        .select('*')
+        .order('created_at', { ascending: false })
+      if (data) setProjects(data)
+    }
+    load()
+  }, [])
+
+  const filtered = activeFilter === 'all'
+    ? projects
+    : projects.filter(p => p.categorie === activeFilter)
 
   return (
     <>
-      <GalleryFilter
-        activeFilter={activeFilter}
-        onFilterChange={setActiveFilter}
-      />
+      <GalleryFilter activeFilter={activeFilter} onFilterChange={setActiveFilter} />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* Masonry layout : 2 colonnes mobile, 4 colonnes desktop */}
+      <div className="columns-2 lg:columns-4 gap-3 space-y-3">
         <AnimatePresence mode="popLayout">
-          {filteredProjects.map((project) => (
+          {filtered.map((project, index) => (
             <motion.div
               key={project.id}
               layout
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
+              exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.3 }}
-              className="group cursor-pointer"
-              onClick={() => setSelectedProject(project)}
+              className="break-inside-avoid overflow-hidden rounded-2xl shadow-sm hover:shadow-xl transition-shadow cursor-pointer group bg-stone-100"
+              onClick={() => setSelectedIndex(index)}
             >
-              <div className="relative h-64 rounded-2xl overflow-hidden bg-stone-200">
-                <Image
-                  src={project.images[0]}
-                  alt={project.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                  <h3 className="text-lg font-bold mb-1">{project.title}</h3>
-                  <p className="text-sm text-white/80">{project.location} • {project.year}</p>
+              <div className="relative overflow-hidden">
+                {project.images[0] ? (
+                  <img
+                    src={project.images[0]}
+                    alt=""
+                    className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                ) : (
+                  <div className="flex items-center justify-center h-48 text-stone-400 text-sm">
+                    Aucune image
+                  </div>
+                )}
+
+                {/* ✅ Overlay "Agrandir" au survol */}
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center gap-2 text-white">
+                    <ZoomIn className="h-8 w-8" />
+                    <span className="text-sm font-medium">Agrandir</span>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -122,9 +78,11 @@ export function GalleryGrid() {
         </AnimatePresence>
       </div>
 
-      <GalleryModal
-        project={selectedProject}
-        onClose={() => setSelectedProject(null)}
+      <GalleryLightbox
+        projects={filtered}
+        currentIndex={selectedIndex}
+        onClose={() => setSelectedIndex(null)}
+        onNavigate={setSelectedIndex}
       />
     </>
   )

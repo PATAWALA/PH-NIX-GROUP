@@ -26,7 +26,16 @@ export async function proxy(request: NextRequest) {
     }
   )
 
-  await supabase.auth.getSession()
+  const { data: { session } } = await supabase.auth.getSession()
+
+  // Protéger /admin sauf la page de login
+  if (request.nextUrl.pathname.startsWith('/admin') &&
+      !request.nextUrl.pathname.startsWith('/admin/login')) {
+    if (!session) {
+      const loginUrl = new URL('/admin/login', request.url)
+      return NextResponse.redirect(loginUrl)
+    }
+  }
 
   return response
 }

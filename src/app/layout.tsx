@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import { Inter, Playfair_Display } from 'next/font/google'
-import { Header } from '@/components/layout/Header'
-import { Footer } from '@/components/layout/Footer'
+import { AdminAwareLayout } from '@/components/layout/AdminAwareLayout'
 import { WhatsAppWidget } from '@/components/ui/WhatsAppWidget'
+import { AdminAwareWidget } from '@/components/layout/AdminAwareWidget'
 import './globals.css'
 
 const inter = Inter({ 
@@ -31,7 +31,15 @@ export const metadata: Metadata = {
     siteName: 'PHÉNIX GROUP & JF DÉCOR',
     title: 'PHÉNIX GROUP & JF DÉCOR | L\'art et sa valeur',
     description: 'Experts en construction, aménagement et paysagisme depuis 16 ans.',
-    url: 'https://www.phenixgroup-jfdecor.ci',
+    url: 'https://ph-nix-group.vercel.app',
+    images: [
+      {
+        url: 'https://ph-nix-group.vercel.app/images/logo.jpg',
+        width: 800,
+        height: 600,
+        alt: 'PHÉNIX GROUP & JF DÉCOR',
+      },
+    ],
   },
   metadataBase: new URL('https://www.phenixgroup-jfdecor.ci'),
 }
@@ -44,10 +52,8 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${inter.variable} ${playfair.variable}`}>
       <body className="min-h-screen bg-stone-50 font-sans antialiased">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <WhatsAppWidget />
+        <AdminAwareLayout>{children}</AdminAwareLayout>
+        <AdminAwareWidget />
       </body>
     </html>
   )
