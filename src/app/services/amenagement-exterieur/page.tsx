@@ -5,8 +5,17 @@ import { Button } from '@/components/ui/Button'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Aménagement Extérieur | PHÉNIX GROUP & JF DÉCOR',
-  description: 'Création de jardins, piscines et terrasses. Aménagement paysager haut de gamme.',
+  title: 'Aménagement Extérieur | Jardins, piscines, terrasses | PHÉNIX GROUP',
+  description: 'Paysagiste à Abidjan. Création de jardins, piscines design, terrasses en bois exotique. Devis gratuit.',
+  alternates: {
+    canonical: 'https://www.phenixgroupdecor.com/services/amenagement-exterieur',
+  },
+  keywords: [
+    'paysagiste Abidjan',
+    'création jardin Cocody',
+    'piscine à débordement Côte d\'Ivoire',
+    'aménagement terrasse Abidjan',
+  ],
 }
 
 const prestations = [

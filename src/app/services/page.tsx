@@ -4,8 +4,9 @@ import { Building2, Flower2, Palmtree, ArrowRight } from 'lucide-react'
 import { Card } from '@/components/ui/Card'
 
 export const metadata: Metadata = {
-  title: 'Nos Services | PHÉNIX GROUP & JF DÉCOR',
-  description: 'Découvrez nos trois piliers d\'excellence : Construction, Aménagement et Paysagisme.',
+  title: 'Nos Services | Construction, Aménagement & Paysagisme | PHÉNIX GROUP',
+  description: 'Découvrez nos trois piliers d\'excellence : construction de bâtiments, aménagement extérieur et paysagisme artistique en Côte d\'Ivoire.',
+  alternates: { canonical: 'https://www.phenixgroupdecor.com/services' },
 }
 
 const services = [

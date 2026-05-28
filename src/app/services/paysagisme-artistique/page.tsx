@@ -5,8 +5,17 @@ import { Button } from '@/components/ui/Button'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Paysagisme Artistique | PHÉNIX GROUP & JF DÉCOR',
-  description: 'Cascades, grottes et décors naturels spectaculaires. L\'art du paysagisme.',
+  title: 'Paysagisme Artistique | Cascades & grottes décoratives | PHÉNIX GROUP',
+  description: 'Création de cascades, grottes artificielles et décors spectaculaires en Côte d\'Ivoire. Devis gratuit.',
+  alternates: {
+    canonical: 'https://www.phenixgroupdecor.com/services/paysagisme-artistique',
+  },
+  keywords: [
+    'cascade artificielle Abidjan',
+    'grotte décorative Côte d\'Ivoire',
+    'paysagisme artistique Abidjan',
+    'rochers décoratifs Abidjan',
+  ],
 }
 
 const prestations = [

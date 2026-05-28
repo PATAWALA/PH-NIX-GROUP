@@ -5,8 +5,17 @@ import { Button } from '@/components/ui/Button'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Construction de Bâtiments | PHÉNIX GROUP & JF DÉCOR',
-  description: 'Experts en construction de bâtiments, hôtels, restaurants et complexes. Devis gratuit.',
+  title: 'Construction de Bâtiments | Hôtels, villas & restaurants | PHÉNIX GROUP',
+  description: 'Experts en construction de bâtiments de luxe à Abidjan, Cocody, Bingerville. Hôtels, restaurants, villas, résidences. Devis gratuit.',
+  alternates: {
+    canonical: 'https://www.phenixgroupdecor.com/services/construction-batiments',
+  },
+  keywords: [
+    'construction hôtel Abidjan',
+    'construction villa Cocody',
+    'entreprise BTP Côte d\'Ivoire',
+    'rénovation haut de gamme Abidjan',
+  ],
 }
 
 const prestations = [
