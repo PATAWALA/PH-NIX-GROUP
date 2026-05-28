@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter, Playfair_Display } from 'next/font/google'
 import { AdminAwareLayout } from '@/components/layout/AdminAwareLayout'
-import { WhatsAppWidget } from '@/components/ui/WhatsAppWidget'
 import { AdminAwareWidget } from '@/components/layout/AdminAwareWidget'
 import './globals.css'
 
@@ -31,17 +30,17 @@ export const metadata: Metadata = {
     siteName: 'PHÉNIX GROUP & JF DÉCOR',
     title: 'PHÉNIX GROUP & JF DÉCOR | L\'art et sa valeur',
     description: 'Experts en construction, aménagement et paysagisme depuis 16 ans.',
-    url: 'https://ph-nix-group.vercel.app',
+    url: 'https://www.phenixgroupdecor.com/',
     images: [
       {
-        url: 'https://ph-nix-group.vercel.app/images/logo.jpg',
+        url: 'https://www.phenixgroupdecor.com/images/logo.jpg',
         width: 800,
         height: 600,
         alt: 'PHÉNIX GROUP & JF DÉCOR',
       },
     ],
   },
-  metadataBase: new URL('https://www.phenixgroup-jfdecor.ci'),
+  metadataBase: new URL('https://www.phenixgroupdecor.com/'),
 }
 
 export default function RootLayout({
