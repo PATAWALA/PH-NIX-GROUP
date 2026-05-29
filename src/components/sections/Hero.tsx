@@ -36,7 +36,7 @@ export function HeroSection() {
       <div className="absolute inset-0 bg-gradient-to-r from-stone-900/90 via-stone-900/70 to-transparent z-10" />
       <div className="absolute inset-0 bg-gradient-to-t from-stone-900/40 via-transparent to-transparent z-10" />
 
-      {/* Content - centré verticalement */}
+      {/* Content */}
       <motion.div
         style={{ opacity }}
         className="relative z-20 h-full flex items-center"
@@ -93,7 +93,7 @@ export function HeroSection() {
                 <Button 
                   variant="outline" 
                   size="lg" 
-                  className="w-full sm:w-auto border-white/30 text-white hover:bg-white/10 hover:border-white/50"
+                  className="w-full sm:w-auto border-white/30 text-white"  // ❌ retrait de hover:
                   leftIcon={<Play className="h-5 w-5" />}
                 >
                   Voir nos réalisations
@@ -122,7 +122,7 @@ export function HeroSection() {
         </div>
       </motion.div>
 
-      {/* Scroll indicator – descendu pour ne pas superposer les stats */}
+      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

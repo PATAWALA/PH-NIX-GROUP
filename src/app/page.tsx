@@ -56,9 +56,9 @@ export default async function HomePage() {
   return (
     <>
       <HeroSection />
-      <AboutSection />
       <ServicesSection />
-      <FeaturedProjects />   {/* ✅ inséré entre services et stats */}
+      <FeaturedProjects />   {/* ✅ Les images tout de suite après le héros */}
+      <AboutSection />
       <StatsSection stats={stats} />
       <TestimonialsSection />
       <CTASection />
