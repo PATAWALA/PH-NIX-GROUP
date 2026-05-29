@@ -2,6 +2,7 @@
 module.exports = {
   siteUrl: 'https://www.phenixgroupdecor.com',
   generateRobotsTxt: true,
+  generateIndexSitemap: false,   // ← pas d'index, un seul fichier sitemap.xml
   sitemapSize: 7000,
   changefreq: 'weekly',
   priority: 0.7,
@@ -10,7 +11,7 @@ module.exports = {
     policies: [
       { userAgent: '*', allow: '/' },
       { userAgent: 'Googlebot', allow: '/' },
-    ]
+    ],
   },
   transform: async (config, path) => {
     if (path === '/') return { loc: path, priority: 1.0, changefreq: 'daily' }
