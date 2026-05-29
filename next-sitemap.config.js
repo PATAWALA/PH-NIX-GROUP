@@ -10,8 +10,7 @@ module.exports = {
     policies: [
       { userAgent: '*', allow: '/' },
       { userAgent: 'Googlebot', allow: '/' },
-    ],
-    // Retirez le bloc additionalSitemaps ci-dessous
+    ]
   },
   transform: async (config, path) => {
     if (path === '/') return { loc: path, priority: 1.0, changefreq: 'daily' }
