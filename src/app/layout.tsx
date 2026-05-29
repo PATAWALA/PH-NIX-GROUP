@@ -23,6 +23,9 @@ export const metadata: Metadata = {
   },
   description: 'Experts en construction, aménagement et paysagisme depuis 16 ans. Découvrez l\'excellence artisanale pour vos projets d\'exception en Côte d\'Ivoire.',
   keywords: ['construction', 'aménagement', 'paysagisme', 'bâtiment', 'décoration', 'jardin', 'piscine', 'Côte d\'Ivoire', 'Abidjan'],
+    verification: {
+    google: 'zI43rJUyCYAdsMUrDrFmUQJuNAI840WoitX6M3KX0tg',
+  },
   authors: [{ name: 'PHÉNIX GROUP & JF DÉCOR' }],
   openGraph: {
     type: 'website',

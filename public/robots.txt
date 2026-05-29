@@ -11,4 +11,3 @@ Host: https://www.phenixgroupdecor.com
 
 # Sitemaps
 Sitemap: https://www.phenixgroupdecor.com/sitemap.xml
-Sitemap: https://www.phenixgroupdecor.com/sitemap-0.xml
