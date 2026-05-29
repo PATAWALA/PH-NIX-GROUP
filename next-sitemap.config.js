@@ -11,9 +11,7 @@ module.exports = {
       { userAgent: '*', allow: '/' },
       { userAgent: 'Googlebot', allow: '/' },
     ],
-    additionalSitemaps: [
-      'https://www.phenixgroupdecor.com/sitemap-0.xml',
-    ],
+    // Retirez le bloc additionalSitemaps ci-dessous
   },
   transform: async (config, path) => {
     if (path === '/') return { loc: path, priority: 1.0, changefreq: 'daily' }
