@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   },
   description: 'Experts en construction, aménagement et paysagisme depuis 16 ans. Découvrez l\'excellence artisanale pour vos projets d\'exception en Côte d\'Ivoire.',
   keywords: ['construction', 'aménagement', 'paysagisme', 'bâtiment', 'décoration', 'jardin', 'piscine', 'Côte d\'Ivoire', 'Abidjan'],
-    verification: {
+  verification: {
     google: 'zI43rJUyCYAdsMUrDrFmUQJuNAI840WoitX6M3KX0tg',
   },
   authors: [{ name: 'PHÉNIX GROUP & JF DÉCOR' }],
@@ -54,6 +54,35 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${inter.variable} ${playfair.variable}`}>
       <body className="min-h-screen bg-stone-50 font-sans antialiased">
+        {/* Données structurées LocalBusiness */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'GeneralContractor',
+              name: 'PHÉNIX GROUP & JF DÉCOR',
+              description: 'Construction, aménagement et paysagisme de luxe en Côte d’Ivoire.',
+              url: 'https://www.phenixgroupdecor.com',
+              telephone: '+225 05 06 96 05 82',
+              email: 'contact@phenixgroupdecor.com',
+              address: {
+                '@type': 'PostalAddress',
+                addressLocality: 'Abidjan',
+                addressRegion: 'Abidjan',
+                addressCountry: 'CI',
+              },
+              areaServed: ['Abidjan', 'Cocody', 'Bingerville', 'Grand-Bassam', 'Côte d\'Ivoire'],
+              image: 'https://www.phenixgroupdecor.com/images/logo.jpg',
+              openingHoursSpecification: {
+                '@type': 'OpeningHoursSpecification',
+                dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+                opens: '08:00',
+                closes: '18:00',
+              },
+            }),
+          }}
+        />
         <AdminAwareLayout>{children}</AdminAwareLayout>
         <AdminAwareWidget />
       </body>
