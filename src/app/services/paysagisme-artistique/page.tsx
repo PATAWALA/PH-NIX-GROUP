@@ -64,6 +64,25 @@ const faqData = [
 
 export default function PaysagismeArtistiquePage() {
   return (
+    <>
+      {/* Script FAQ */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: faqData.map((faq) => ({
+              '@type': 'Question',
+              name: faq.question,
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: faq.answer,
+              },
+            })),
+          }),
+        }}
+      />
     <div className="pt-32 pb-24">
       <div className="max-w-7xl mx-auto px-4">
         {/* Section principale */}
@@ -173,5 +192,6 @@ export default function PaysagismeArtistiquePage() {
         </div>
       </div>
     </div>
+    </>
   )
 }
