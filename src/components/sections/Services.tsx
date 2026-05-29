@@ -1,4 +1,7 @@
+'use client'
+
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 import { ServiceCard } from '@/components/ui/Card'
 import { Building2, Flower2, Palmtree, ArrowRight } from 'lucide-react'
 
@@ -52,7 +55,13 @@ export function ServicesSection() {
     <section className="py-24 bg-stone-50">
       <div className="max-w-7xl mx-auto px-4">
         {/* Section header */}
-        <div className="text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
           <span className="text-amber-700 font-semibold text-sm uppercase tracking-wider">
             Nos Expertises
           </span>
@@ -63,20 +72,31 @@ export function ServicesSection() {
             De la conception à la réalisation, notre équipe d&apos;experts vous accompagne 
             dans tous vos projets de construction, d&apos;aménagement et de paysagisme.
           </p>
-        </div>
+        </motion.div>
 
         {/* Services grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <ServiceCard
+            <motion.div
               key={index}
-              {...service}
-            />
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.15 }}
+            >
+              <ServiceCard {...service} />
+            </motion.div>
           ))}
         </div>
 
         {/* Bottom CTA */}
-        <div className="text-center mt-12">
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="text-center mt-12"
+        >
           <Link
             href="/services"
             className="inline-flex items-center text-amber-700 font-semibold hover:text-amber-800 transition-colors group"
@@ -84,7 +104,7 @@ export function ServicesSection() {
             Découvrir tous nos services
             <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
           </Link>
-        </div>
+        </motion.div>
       </div>
     </section>
   )
