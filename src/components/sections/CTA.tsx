@@ -84,7 +84,7 @@ export function CTASection() {
                   className="text-white/80 hover:text-white hover:bg-white/10 backdrop-blur-sm"
                   leftIcon={<Phone className="h-5 w-5" />}
                 >
-                  +2250749966009
+                  +2250506960582
                 </Button>
               </a>
             </div>
