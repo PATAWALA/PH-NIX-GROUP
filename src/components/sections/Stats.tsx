@@ -150,7 +150,7 @@ export function StatsSection({ stats }: StatsProps) {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <a href="tel:+2250506960582">
+          <a href="tel:+2250142550779">
             <Button 
               variant="gold" 
               size="lg" 
