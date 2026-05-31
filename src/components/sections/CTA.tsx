@@ -113,7 +113,7 @@ export function CTASection() {
                     href="tel:+2250506960582" 
                     className="text-amber-400 font-semibold text-lg hover:text-amber-300 transition-colors"
                   >
-                    +2250749966009
+                    +2250142550779
                   </a>
                 </div>
               </div>
