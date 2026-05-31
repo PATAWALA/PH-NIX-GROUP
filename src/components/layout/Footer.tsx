@@ -29,7 +29,7 @@ const footerLinks = {
     { name: 'Politique de confidentialité', href: '/confidentialite' },
   ],
   contact: [
-    { icon: Phone, text: '+225 05 06 96 05 82', href: 'tel:+2250506960582' },
+    { icon: Phone, text: '+2250749966009', href: 'tel:+2250749966009' },
     { icon: Phone, text: '+225 42 55 07 79', href: 'tel:+22542550779' },
     { icon: Mail, text: 'contact@phenixgroup.ci', href: 'mailto:contact@phenixgroup.ci' },
     { icon: MapPin, text: 'Abidjan, Côte d\'Ivoire' },
