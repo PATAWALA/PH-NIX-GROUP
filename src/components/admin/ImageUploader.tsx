@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { Plus, X, Loader2 } from 'lucide-react'
-import { createClient } from '@/lib/client'
+import { createClient } from '@/lib/supabase/client'
 
 interface ImageUploaderProps {
   images: string[]
@@ -68,11 +68,11 @@ export function ImageUploader({ images, onImagesChange }: ImageUploaderProps) {
             </button>
           </div>
         ))}
-        <label className="h-32 rounded-lg border-2 border-dashed border-stone-300 flex items-center justify-center cursor-pointer hover:border-amber-500 transition-colors">
+        <label className="h-32 rounded-lg border-2 border-dashed border-stone-400 flex items-center justify-center cursor-pointer hover:border-amber-500 transition-colors bg-stone-50">
           {uploading ? (
-            <Loader2 className="h-6 w-6 animate-spin text-stone-400" />
+            <Loader2 className="h-6 w-6 animate-spin text-stone-500" />
           ) : (
-            <Plus className="h-6 w-6 text-stone-400" />
+            <Plus className="h-6 w-6 text-stone-500" />
           )}
           <input type="file" accept="image/*" multiple onChange={handleUpload} className="hidden" />
         </label>

@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Plus, Edit3, Trash2, Loader2 } from 'lucide-react'
-import { createClient } from '@/lib/client'
+import { createClient } from '@/lib/supabase/client'
 import { ImageUploader } from './ImageUploader'
 import { Button } from '@/components/ui/Button'
 
@@ -70,7 +70,12 @@ export function ProjectManager() {
     <div>
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-semibold text-stone-800">Projets ({projects.length})</h2>
-        <Button variant="gold" size="sm" onClick={() => { resetForm(); setShowForm(!showForm) }}>
+        <Button
+          variant="gold"
+          size="sm"
+          onClick={() => { resetForm(); setShowForm(!showForm) }}
+          className="!bg-amber-600 !text-white hover:!bg-amber-700 shadow-lg shadow-amber-600/30"
+        >
           <Plus className="h-4 w-4 mr-2" /> Nouveau projet
         </Button>
       </div>
@@ -90,7 +95,7 @@ export function ProjectManager() {
                 <select
                   value={form.categorie}
                   onChange={(e) => setForm({ ...form, categorie: e.target.value })}
-                  className="w-full h-11 rounded-lg border border-stone-300 px-4 text-sm focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                  className="w-full h-11 rounded-lg border border-stone-300 px-4 text-sm text-stone-900 bg-white focus:ring-2 focus:ring-amber-500 focus:border-transparent"
                 >
                   <option value="construction">Construction</option>
                   <option value="amenagement">Aménagement</option>
@@ -100,8 +105,12 @@ export function ProjectManager() {
               <ImageUploader images={form.images} onImagesChange={(images) => setForm({ ...form, images })} />
             </div>
             <div className="flex gap-3 mt-6">
-              <Button type="submit" variant="gold" size="sm">{editingProject ? 'Mettre à jour' : 'Publier'}</Button>
-              <Button type="button" variant="outline" size="sm" onClick={resetForm}>Annuler</Button>
+              <Button type="submit" variant="gold" size="sm" className="!bg-amber-600 !text-white hover:!bg-amber-700 shadow-lg shadow-amber-600/30">
+                {editingProject ? 'Mettre à jour' : 'Publier'}
+              </Button>
+              <Button type="button" variant="outline" size="sm" onClick={resetForm} className="text-stone-700 border-stone-300">
+                Annuler
+              </Button>
             </div>
           </motion.form>
         )}
@@ -123,7 +132,7 @@ export function ProjectManager() {
                 ) : (
                   <div className="flex items-center justify-center h-full text-stone-400">Aucune image</div>
                 )}
-                <span className="absolute top-2 left-2 bg-white/90 text-xs px-2 py-1 rounded-full capitalize">
+                <span className="absolute top-2 left-2 bg-white/90 text-xs px-2 py-1 rounded-full capitalize text-stone-800">
                   {project.categorie}
                 </span>
               </div>
