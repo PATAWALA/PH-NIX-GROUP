@@ -74,6 +74,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr" className={`${inter.variable} ${playfair.variable}`}>
+            <head>
+        <StructuredData />
+      </head>
       <body className="min-h-screen bg-stone-50 font-sans antialiased">
         {/* Données structurées LocalBusiness */}
         <script
