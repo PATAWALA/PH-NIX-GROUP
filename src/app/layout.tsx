@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter, Playfair_Display } from 'next/font/google'
 import { AdminAwareLayout } from '@/components/layout/AdminAwareLayout'
+import { StructuredData } from '@/components/SEO/StructuredData'
 import { AdminAwareWidget } from '@/components/layout/AdminAwareWidget'
 import './globals.css'
 
@@ -18,22 +19,27 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   title: {
-    default: 'PHÉNIX GROUP & JF DÉCOR | L\'art et sa valeur',
-    template: '%s | PHÉNIX GROUP & JF DÉCOR'
+    default: 'PHÉNIX GROUP & JF DÉCOR | Construction, aménagement & paysagisme de luxe',
+    template: '%s | PHÉNIX GROUP & JF DÉCOR',
   },
-  description: 'Experts en construction, aménagement et paysagisme depuis 16 ans. Découvrez l\'excellence artisanale pour vos projets d\'exception en Côte d\'Ivoire.',
-  keywords: ['construction', 'aménagement', 'paysagisme', 'bâtiment', 'décoration', 'jardin', 'piscine', 'Côte d\'Ivoire', 'Abidjan'],
-  verification: {
-    google: 'zI43rJUyCYAdsMUrDrFmUQJuNAI840WoitX6M3KX0tg',
-  },
-  authors: [{ name: 'PHÉNIX GROUP & JF DÉCOR' }],
+  description:
+    'Experts en construction, aménagement extérieur et paysagisme artistique en Côte d’Ivoire. Devis gratuit. 16 ans d’excellence.',
+  keywords: [
+    'construction villa Abidjan',
+    'paysagiste Cocody',
+    'aménagement piscine Abidjan',
+    'décoration intérieure Côte d\'Ivoire',
+    'entreprise BTP Abidjan',
+    'architecte d\'intérieur Abidjan',
+    'jardin tropical Abidjan',
+  ],
   openGraph: {
     type: 'website',
     locale: 'fr_FR',
+    url: 'https://www.phenixgroupdecor.com',
     siteName: 'PHÉNIX GROUP & JF DÉCOR',
     title: 'PHÉNIX GROUP & JF DÉCOR | L\'art et sa valeur',
-    description: 'Experts en construction, aménagement et paysagisme depuis 16 ans.',
-    url: 'https://www.phenixgroupdecor.com/',
+    description: 'Experts en construction, aménagement et paysagisme depuis 16 ans en Côte d’Ivoire.',
     images: [
       {
         url: 'https://www.phenixgroupdecor.com/images/logo.jpg',
@@ -43,9 +49,24 @@ export const metadata: Metadata = {
       },
     ],
   },
-  metadataBase: new URL('https://www.phenixgroupdecor.com/'),
+  twitter: {
+    card: 'summary_large_image',
+    title: 'PHÉNIX GROUP & JF DÉCOR | L\'art et sa valeur',
+    description: 'Experts en construction, aménagement et paysagisme depuis 16 ans en Côte d’Ivoire.',
+    images: ['https://www.phenixgroupdecor.com/images/logo.jpg'],
+  },
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
+  },
+  alternates: {
+    canonical: 'https://www.phenixgroupdecor.com',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 }
-
 export default function RootLayout({
   children,
 }: {
