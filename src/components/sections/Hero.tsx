@@ -22,14 +22,14 @@ export function HeroSection() {
       {/* Image de fond avec parallax */}
       <motion.div style={{ y }} className="absolute inset-0 h-[120%] -top-[10%]">
         <Image
-          src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070&auto=format&fit=crop"
-          alt="Construction de luxe par PHÉNIX GROUP"
-          fill
-          className="object-cover"
-          priority
-          sizes="100vw"
-          quality={85}
-        />
+  src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop"
+  alt="Construction de luxe par PHÉNIX GROUP"
+  fill
+  className="object-cover"
+  priority
+  sizes="100vw"
+  quality={75}
+/>
       </motion.div>
 
       {/* Overlays */}
