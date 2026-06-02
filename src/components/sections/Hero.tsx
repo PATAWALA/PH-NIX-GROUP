@@ -30,7 +30,7 @@ export function HeroSection() {
           sizes="100vw"
           quality={75}
           placeholder="blur"
-          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMCwsKCwsM... (mets une vraie base64 minuscule)"
+          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMCwsKCwsM... (utilisez votre propre miniature base64)"
         />
       </motion.div>
 
@@ -44,7 +44,7 @@ export function HeroSection() {
         className="relative z-20 h-full flex items-center"
       >
         <div className="max-w-7xl mx-auto px-4 w-full pt-28 md:pt-20">
-          <div className="max-w-3xl">
+          <div className="max-w-3xl mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -57,7 +57,7 @@ export function HeroSection() {
                   et sa valeur
                 </span>
               </h1>
-              <p className="text-base md:text-xl text-stone-300 mb-8 md:mb-10 max-w-2xl leading-relaxed">
+              <p className="text-base md:text-xl text-stone-300 mb-8 md:mb-10 max-w-2xl mx-auto leading-relaxed">
                 PHÉNIX GROUP & JF DÉCOR transforme vos rêves architecturaux en réalité. 
                 Construction, aménagement et paysagisme d&apos;exception.
               </p>
@@ -67,7 +67,7 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="flex flex-col sm:flex-row gap-3 md:gap-4"
+              className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center"
             >
               <Link href="/contact">
                 <Button variant="gold" size="lg" className="w-full sm:w-auto" rightIcon={<ArrowRight className="h-5 w-5" />}>
