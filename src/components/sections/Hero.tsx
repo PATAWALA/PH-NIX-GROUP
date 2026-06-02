@@ -43,7 +43,7 @@ export function HeroSection() {
         style={{ opacity }}
         className="relative z-20 h-full flex items-center"
       >
-        <div className="max-w-7xl mx-auto px-4 w-full pt-28 md:pt-20">
+        <div className="max-w-7xl mx-auto px-4 w-full pt-26 md:pt-20">
           <div className="max-w-3xl mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
