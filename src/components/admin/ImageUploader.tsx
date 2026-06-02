@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { Plus, X, Loader2 } from 'lucide-react'
-import { createClient } from '@/lib/supabase/client'
+import { createClient } from '@/lib/client'
 
 interface ImageUploaderProps {
   images: string[]
