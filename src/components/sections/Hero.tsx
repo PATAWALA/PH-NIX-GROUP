@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { Button } from '@/components/ui/Button'
-import { ArrowRight, Play, Award, Star } from 'lucide-react'
+import { ArrowRight, Play } from 'lucide-react'
 
 export function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -21,17 +21,17 @@ export function HeroSection() {
     <section ref={containerRef} className="relative h-screen min-h-[800px] overflow-hidden">
       {/* Image de fond avec parallax */}
       <motion.div style={{ y }} className="absolute inset-0 h-[120%] -top-[10%]">
-<Image
-  src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop"
-  alt="Construction de luxe par PHÉNIX GROUP"
-  fill
-  className="object-cover"
-  priority
-  sizes="100vw"
-  quality={75}
-  placeholder="blur"
-  blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg=="
-/>
+        <Image
+          src="/images/hero.jpeg"
+          alt="Construction de luxe par PHÉNIX GROUP"
+          fill
+          className="object-cover"
+          priority
+          sizes="100vw"
+          quality={75}
+          placeholder="blur"
+          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMCwsKCwsM... (mets une vraie base64 minuscule)"
+        />
       </motion.div>
 
       {/* Overlays */}
@@ -46,26 +46,9 @@ export function HeroSection() {
         <div className="max-w-7xl mx-auto px-4 w-full pt-28 md:pt-20">
           <div className="max-w-3xl">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="flex items-center gap-4 md:gap-6 mb-6 md:mb-8"
-            >
-              <div className="flex items-center gap-2">
-                <Award className="h-4 w-4 md:h-5 md:w-5 text-amber-400" />
-                <span className="text-xs md:text-sm text-stone-300">16 ans d&apos;excellence</span>
-              </div>
-              <div className="w-px h-4 bg-stone-600" />
-              <div className="flex items-center gap-2">
-                <Star className="h-4 w-4 md:h-5 md:w-5 text-amber-400 fill-amber-400" />
-                <span className="text-xs md:text-sm text-stone-300">97% de satisfaction</span>
-              </div>
-            </motion.div>
-
-            <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
             >
               <h1 className="text-4xl md:text-7xl lg:text-8xl font-bold text-white font-serif leading-tight mb-4 md:mb-6">
                 L&apos;art
@@ -74,7 +57,7 @@ export function HeroSection() {
                   et sa valeur
                 </span>
               </h1>
-              <p className="text-base md:text-xl text-stone-300 mb-6 md:mb-8 max-w-2xl leading-relaxed">
+              <p className="text-base md:text-xl text-stone-300 mb-8 md:mb-10 max-w-2xl leading-relaxed">
                 PHÉNIX GROUP & JF DÉCOR transforme vos rêves architecturaux en réalité. 
                 Construction, aménagement et paysagisme d&apos;exception.
               </p>
@@ -83,7 +66,7 @@ export function HeroSection() {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
               className="flex flex-col sm:flex-row gap-3 md:gap-4"
             >
               <Link href="/contact">
@@ -95,49 +78,32 @@ export function HeroSection() {
                 <Button 
                   variant="outline" 
                   size="lg" 
-                  className="w-full sm:w-auto border-white/30 text-white"  // ❌ retrait de hover:
+                  className="w-full sm:w-auto border-white/30 text-white"
                   leftIcon={<Play className="h-5 w-5" />}
                 >
                   Voir nos réalisations
                 </Button>
               </Link>
             </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-              className="grid grid-cols-3 gap-4 md:gap-8 mt-12 md:mt-16 pt-6 md:pt-8 border-t border-white/10"
-            >
-              {[
-                { value: '26+', label: 'Projets réalisés' },
-                { value: '16', label: 'Ans d\'expérience' },
-                { value: '97%', label: 'Clients satisfaits' },
-              ].map((stat, index) => (
-                <div key={index}>
-                  <div className="text-2xl md:text-3xl font-bold text-amber-400 font-serif">{stat.value}</div>
-                  <div className="text-xs md:text-sm text-stone-400 mt-1">{stat.label}</div>
-                </div>
-              ))}
-            </motion.div>
           </div>
         </div>
       </motion.div>
+
       {/* Scroll indicator – visible uniquement sur mobile */}
-<motion.div
-  initial={{ opacity: 0 }}
-  animate={{ opacity: 1 }}
-  transition={{ delay: 1.5 }}
-  className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 md:hidden"
->
-  <div className="w-6 h-10 rounded-full border-2 border-stone-400 flex items-start justify-center p-1">
-    <motion.div
-      animate={{ y: [0, 12, 0] }}
-      transition={{ duration: 1.5, repeat: Infinity }}
-      className="w-1.5 h-1.5 rounded-full bg-amber-400"
-    />
-  </div>
-</motion.div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5 }}
+        className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 md:hidden"
+      >
+        <div className="w-6 h-10 rounded-full border-2 border-stone-400 flex items-start justify-center p-1">
+          <motion.div
+            animate={{ y: [0, 12, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+            className="w-1.5 h-1.5 rounded-full bg-amber-400"
+          />
+        </div>
+      </motion.div>
     </section>
   )
 }
