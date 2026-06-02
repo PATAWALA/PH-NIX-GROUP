@@ -23,7 +23,7 @@ export function HeroSection() {
       <motion.div style={{ y }} className="absolute inset-0 h-[120%] -top-[10%]">
         <Image
           src="/images/hero.jpeg"
-          alt="Construction de luxe par PHÉNIX GROUP"
+          alt="PHÉNIX GROUP & JF DÉCOR – Construction de luxe"
           fill
           className="object-cover"
           priority
@@ -51,15 +51,16 @@ export function HeroSection() {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <h1 className="text-4xl md:text-7xl lg:text-8xl font-bold text-white font-serif leading-tight mb-4 md:mb-6">
-                L&apos;art
+                PHÉNIX GROUP
                 <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-600">
-                  et sa valeur
+                  & JF DÉCOR
                 </span>
               </h1>
               <p className="text-base md:text-xl text-stone-300 mb-8 md:mb-10 max-w-2xl mx-auto leading-relaxed">
-                PHÉNIX GROUP & JF DÉCOR transforme vos rêves architecturaux en réalité. 
-                Construction, aménagement et paysagisme d&apos;exception.
+                Construction, aménagement et paysagisme d&apos;exception en Côte d&apos;Ivoire. 
+                Nous concevons et réalisons des projets haut de gamme qui allient esthétique, 
+                durabilité et savoir‑faire artisanal à Abidjan, Bingerville et Grand‑Bassam.
               </p>
             </motion.div>
 
