@@ -38,12 +38,12 @@ export function HeroSection() {
       <div className="absolute inset-0 bg-gradient-to-r from-stone-900/90 via-stone-900/70 to-transparent z-10" />
       <div className="absolute inset-0 bg-gradient-to-t from-stone-900/40 via-transparent to-transparent z-10" />
 
-      {/* Content */}
+      {/* Contenu positionné en haut */}
       <motion.div
         style={{ opacity }}
-        className="relative z-20 flex flex-col justify-center h-full"
+        className="relative z-20 flex flex-col justify-start h-full pt-32 md:pt-36"
       >
-        <div className="max-w-7xl mx-auto px-4 w-full pt-20 md:pt-30 lg:pt-35">
+        <div className="max-w-7xl mx-auto px-4 w-full">
           <div className="max-w-3xl mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
