@@ -21,7 +21,7 @@ export function HeroSection() {
     <section ref={containerRef} className="relative h-screen min-h-[800px] overflow-hidden">
       {/* Image de fond avec parallax */}
       <motion.div style={{ y }} className="absolute inset-0 h-[120%] -top-[10%]">
-        <Image
+<Image
   src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop"
   alt="Construction de luxe par PHÉNIX GROUP"
   fill
@@ -29,6 +29,8 @@ export function HeroSection() {
   priority
   sizes="100vw"
   quality={75}
+  placeholder="blur"
+  blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg=="
 />
       </motion.div>
 
