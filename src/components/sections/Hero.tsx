@@ -30,7 +30,7 @@ export function HeroSection() {
           sizes="100vw"
           quality={75}
           placeholder="blur"
-          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMCwsKCwsM... (utilisez votre propre miniature base64)"
+          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMCwsKCwsM..."
         />
       </motion.div>
 
@@ -41,9 +41,9 @@ export function HeroSection() {
       {/* Content */}
       <motion.div
         style={{ opacity }}
-        className="relative z-20 h-full flex items-center"
+        className="relative z-20 flex flex-col justify-center h-full"
       >
-        <div className="max-w-7xl mx-auto px-4 w-full pt-26 md:pt-20">
+        <div className="max-w-7xl mx-auto px-4 w-full pt-28 md:pt-32 lg:pt-40">
           <div className="max-w-3xl mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
