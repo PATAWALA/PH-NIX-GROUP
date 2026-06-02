@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Plus, Edit3, Trash2, Loader2 } from 'lucide-react'
-import { createClient } from '@/lib/supabase/client'
+import { createClient } from '@/lib/client'
 import { ImageUploader } from './ImageUploader'
 import { Button } from '@/components/ui/Button'
 
