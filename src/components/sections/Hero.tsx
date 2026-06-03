@@ -22,7 +22,7 @@ export function HeroSection() {
       {/* Image de fond avec parallax */}
       <motion.div style={{ y }} className="absolute inset-0 h-[120%] -top-[10%]">
         <Image
-          src="/images/hero.jpeg"
+          src="/images/hero1.png"
           alt="PHÉNIX GROUP & JF DÉCOR – Construction de luxe"
           fill
           className="object-cover"
