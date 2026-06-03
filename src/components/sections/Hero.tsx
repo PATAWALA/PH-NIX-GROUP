@@ -64,28 +64,28 @@ export function HeroSection() {
               </p>
             </motion.div>
 
-<motion.div
-  initial={{ opacity: 0, y: 30 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.8, delay: 0.4 }}
-  className="flex flex-col items-center sm:flex-row gap-3 md:gap-4 justify-center"
->
-  <Link href="/contact" className="w-full sm:w-auto">
-    <Button variant="gold" size="lg" className="w-full" rightIcon={<ArrowRight className="h-5 w-5" />}>
-      Demander un devis gratuit
-    </Button>
-  </Link>
-  <Link href="/realisations" className="w-4/5 sm:w-auto">
-    <Button 
-      variant="outline" 
-      size="lg" 
-      className="w-full border border-white/10 text-white hover:bg-white/10 hover:border-white/20 transition-colors"
-      leftIcon={<Play className="h-5 w-5" />}
-    >
-      Voir nos réalisations
-    </Button>
-  </Link>
-</motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="flex flex-col items-center sm:flex-row gap-3 md:gap-4 justify-center"
+            >
+              <Link href="/contact" className="w-full sm:w-auto">
+                <Button variant="gold" size="lg" className="w-full" rightIcon={<ArrowRight className="h-5 w-5" />}>
+                  Demander un devis gratuit
+                </Button>
+              </Link>
+              <Link href="/realisations" className="w-4/5 sm:w-auto">
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  className="w-full border border-white/10 text-white hover:bg-white/10 hover:border-white/20 transition-colors"
+                  leftIcon={<Play className="h-5 w-5" />}
+                >
+                  Voir nos réalisations
+                </Button>
+              </Link>
+            </motion.div>
           </div>
         </div>
       </motion.div>
