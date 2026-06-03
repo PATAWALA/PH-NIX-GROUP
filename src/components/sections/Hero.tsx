@@ -50,14 +50,14 @@ export function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <h1 className="text-4xl md:text-7xl lg:text-8xl font-bold text-white font-serif leading-tight mb-4 md:mb-6">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white font-serif leading-tight mb-4 md:mb-6">
                 PHÉNIX GROUP
                 <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-600">
                   & JF DÉCOR
                 </span>
               </h1>
-              <p className="text-base md:text-xl text-stone-300 mb-8 md:mb-10 max-w-2xl mx-auto leading-relaxed">
+              <p className="text-base md:text-lg text-stone-300 mb-8 md:mb-10 max-w-2xl mx-auto leading-relaxed">
                 Construction, aménagement et paysagisme d&apos;exception en Côte d&apos;Ivoire. 
                 Nous concevons et réalisons des projets haut de gamme qui allient esthétique, 
                 durabilité et savoir‑faire artisanal à Abidjan, Bingerville et Grand‑Bassam.
