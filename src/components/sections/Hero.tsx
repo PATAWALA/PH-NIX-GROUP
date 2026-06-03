@@ -75,16 +75,16 @@ export function HeroSection() {
                   Demander un devis gratuit
                 </Button>
               </Link>
-              <Link href="/realisations">
-                <Button 
-                  variant="outline" 
-                  size="lg" 
-                  className="w-full sm:w-auto border-white/30 text-white"
-                  leftIcon={<Play className="h-5 w-5" />}
-                >
-                  Voir nos réalisations
-                </Button>
-              </Link>
+<Link href="/realisations">
+  <Button 
+    variant="outline" 
+    size="lg" 
+    className="w-full sm:w-auto border-transparent text-white hover:bg-white/10 hover:border-transparent transition-colors"
+    leftIcon={<Play className="h-5 w-5" />}
+  >
+    Voir nos réalisations
+  </Button>
+</Link>
             </motion.div>
           </div>
         </div>
