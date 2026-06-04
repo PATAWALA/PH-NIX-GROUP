@@ -2,6 +2,8 @@ import { Metadata } from 'next'
 import { ContactForm } from '@/components/forms/ContactForm'
 import { Phone, Mail, MapPin, Clock, MessageSquare } from 'lucide-react'
 import { Card } from '@/components/ui/Card'
+import { Button } from '@/components/ui/Button'
+import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Contact & Devis | PHÉNIX GROUP & JF DÉCOR',
@@ -84,13 +86,26 @@ export default function ContactPage() {
               </Card>
             ))}
 
-            <Card className="p-0 overflow-hidden">
-              <div className="h-64 bg-stone-200 flex items-center justify-center">
-                <div className="text-center">
-                  <MapPin className="h-8 w-8 text-stone-400 mx-auto mb-2" />
-                  <p className="text-sm text-stone-500">Carte interactive</p>
-                  <p className="text-xs text-stone-400">Google Maps à intégrer</p>
-                </div>
+            {/* Bouton WhatsApp direct */}
+            <Card className="p-6 bg-green-50 border-green-200">
+              <div className="text-center">
+                <p className="text-sm text-green-800 mb-3 font-medium">
+                  Ou écrivez-nous directement sur WhatsApp
+                </p>
+                <a
+                  href="https://wa.me/22542550779?text=Bonjour%20PHÉNIX%20GROUP%20%26%20JF%20DÉCOR,%20je%20souhaite%20échanger%20au%20sujet%20d'un%20projet."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button
+                    variant="gold"
+                    size="lg"
+                    className="w-full bg-green-600 hover:bg-green-700 text-white shadow-lg shadow-green-600/30"
+                  >
+                    <MessageSquare className="h-5 w-5 mr-2" />
+                    Discuter sur WhatsApp
+                  </Button>
+                </a>
               </div>
             </Card>
           </div>
