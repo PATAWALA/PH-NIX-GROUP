@@ -56,8 +56,18 @@ export const metadata: Metadata = {
     images: ['https://www.phenixgroupdecor.com/images/logo.jpg'],
   },
   icons: {
-    icon: '/favicon.ico',
-    apple: '/apple-touch-icon.png',
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+    other: [
+      { url: '/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
+    ],
   },
   alternates: {
     canonical: 'https://www.phenixgroupdecor.com',
@@ -67,6 +77,7 @@ export const metadata: Metadata = {
     follow: true,
   },
 }
+
 export default function RootLayout({
   children,
 }: {
@@ -74,51 +85,48 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr" className={`${inter.variable} ${playfair.variable}`}>
-            <head>
+      <head>
         <StructuredData />
       </head>
       <body className="min-h-screen bg-stone-50 font-sans antialiased">
-        {/* Données structurées LocalBusiness */}
         <script
-  type="application/ld+json"
-  dangerouslySetInnerHTML={{
-    __html: JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'HomeAndConstructionBusiness',
-      name: 'PHÉNIX GROUP & JF DÉCOR',
-      description: 'Construction, aménagement et paysagisme de luxe en Côte d’Ivoire.',
-      url: 'https://www.phenixgroupdecor.com',
-      telephone: '+225 05 06 96 05 82',
-      email: 'contact@phenixgroupdecor.com',
-      address: {
-        '@type': 'PostalAddress',
-        addressLocality: 'Abidjan',
-        addressRegion: 'Abidjan',
-        addressCountry: 'CI',
-      },
-      areaServed: ['Abidjan', 'Cocody', 'Bingerville', 'Grand-Bassam', 'Côte d\'Ivoire'],
-      image: 'https://www.phenixgroupdecor.com/images/logo.jpg',
-      openingHoursSpecification: {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-        opens: '08:00',
-        closes: '18:00',
-      },
-      // 👇 Ajout du contact WhatsApp
-      contactPoint: [
-        {
-          '@type': 'ContactPoint',
-          telephone: '+225 42 55 07 79',
-          contactType: 'customer service',
-          availableLanguage: ['French'],
-          areaServed: 'CI',
-          // Optionnel : préciser qu'il s'agit de WhatsApp
-          description: 'Contactez-nous via WhatsApp pour un devis rapide.',
-        },
-      ],
-    }),
-  }}
-/>
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'HomeAndConstructionBusiness',
+              name: 'PHÉNIX GROUP & JF DÉCOR',
+              description: 'Construction, aménagement et paysagisme de luxe en Côte d’Ivoire.',
+              url: 'https://www.phenixgroupdecor.com',
+              telephone: '+225 05 06 96 05 82',
+              email: 'contact@phenixgroupdecor.com',
+              address: {
+                '@type': 'PostalAddress',
+                addressLocality: 'Abidjan',
+                addressRegion: 'Abidjan',
+                addressCountry: 'CI',
+              },
+              areaServed: ['Abidjan', 'Cocody', 'Bingerville', 'Grand-Bassam', 'Côte d\'Ivoire'],
+              image: 'https://www.phenixgroupdecor.com/images/logo.jpg',
+              openingHoursSpecification: {
+                '@type': 'OpeningHoursSpecification',
+                dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+                opens: '08:00',
+                closes: '18:00',
+              },
+              contactPoint: [
+                {
+                  '@type': 'ContactPoint',
+                  telephone: '+225 42 55 07 79',
+                  contactType: 'customer service',
+                  availableLanguage: ['French'],
+                  areaServed: 'CI',
+                  description: 'Contactez-nous via WhatsApp pour un devis rapide.',
+                },
+              ],
+            }),
+          }}
+        />
         <AdminAwareLayout>{children}</AdminAwareLayout>
         <AdminAwareWidget />
       </body>
