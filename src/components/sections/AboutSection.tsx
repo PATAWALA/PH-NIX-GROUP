@@ -1,10 +1,26 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, type Variants } from 'framer-motion'
 import { ArrowRight, Building2, Waves, Palmtree, Brush } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
+
+// Imports Swiper pour le carrousel
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Autoplay, EffectFade } from 'swiper/modules'
+import 'swiper/css'
+import 'swiper/css/effect-fade'
+
+// Liste des images de l'équipe / réalisations
+const aboutImages = [
+  { src: '/images/(1).jpeg', alt: 'PHÉNIX GROUP & JF DÉCOR – Réalisation 1' },
+  { src: '/images/(2).jpeg', alt: 'PHÉNIX GROUP & JF DÉCOR – Réalisation 2' },
+  { src: '/images/(3).jpeg', alt: 'PHÉNIX GROUP & JF DÉCOR – Réalisation 3' },
+  { src: '/images/(4).jpeg', alt: 'PHÉNIX GROUP & JF DÉCOR – Réalisation 4' },
+  { src: '/images/(5).jpeg', alt: 'PHÉNIX GROUP & JF DÉCOR – Réalisation 5' },
+]
 
 export function AboutSection() {
   const fadeInUp: Variants = {
@@ -37,7 +53,7 @@ export function AboutSection() {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-8 lg:gap-12">
-          {/* Image avec badge corrigé */}
+          {/* Carrousel d'images automatisé en fondu */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -45,20 +61,35 @@ export function AboutSection() {
             variants={fadeInUp}
             className="relative"
           >
-            <Link href="/" className="group block overflow-hidden rounded-2xl shadow-xl shadow-stone-900/5 border border-stone-200/60">
-              <div className="aspect-[4/5] max-h-[400px] lg:max-h-[480px] w-full">
-                <Image
-                  src="/images/logo.jpg"
-                  alt="PHÉNIX GROUP & JF DÉCOR – Groupe d’architecture et d’aménagement"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                  priority
-                />
-              </div>
-            </Link>
+            <div className="overflow-hidden rounded-2xl shadow-xl shadow-stone-900/5 border border-stone-200/60 aspect-[4/5] max-h-[400px] lg:max-h-[480px] w-full">
+              <Swiper
+                modules={[Autoplay, EffectFade]}
+                effect="fade"
+                fadeEffect={{ crossFade: true }}
+                loop={true}
+                speed={1200}
+                autoplay={{
+                  delay: 3500,
+                  disableOnInteraction: false,
+                }}
+                className="h-full w-full"
+              >
+                {aboutImages.map((img, index) => (
+                  <SwiperSlide key={index} className="relative h-full w-full">
+                    <Image
+                      src={img.src}
+                      alt={img.alt}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover"
+                      priority={index === 0}
+                    />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
 
-            {/* Badge mis à jour */}
+            {/* Badge conservé à l'identique */}
             <div className="absolute -bottom-2 left-4 z-10">
               <span className="inline-flex items-center gap-1.5 bg-gradient-to-r from-amber-500 to-amber-700 text-white shadow-lg shadow-amber-900/20 px-3 py-1 rounded-full text-xs font-medium">
                 <span className="w-1.5 h-1.5 bg-white rounded-full" />
