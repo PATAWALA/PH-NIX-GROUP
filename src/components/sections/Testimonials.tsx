@@ -1,8 +1,9 @@
 'use client'
+
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Star, Quote, ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react'
-import { createClient } from '@/lib/client' // ✅ import corrigé
+import { createClient } from '@/lib/client'
 import { Button } from '@/components/ui/Button'
 import Link from 'next/link'
 import type { Testimonial } from '@/types/database'
@@ -13,17 +14,17 @@ const defaultTestimonials: Testimonial[] = [
     id: '1',
     author: 'Pierre Martin',
     role: 'Directeur',
-    company: 'Hôtel Le Majestic',
-    content: 'PHÉNIX GROUP a transformé notre vision en réalité. La construction de notre complexe hôtelier a dépassé toutes nos attentes. Leur souci du détail et leur professionnalisme sont exceptionnels.',
+    company: 'Résidence Les Jardins',
+    content: 'PHÉNIX GROUP a transformé notre jardin en un véritable paradis tropical. Leur sens du détail et leur créativité sont exceptionnels.',
     rating: 5,
-    project_type: 'construction',
+    project_type: 'amenagement',
   },
   {
     id: '2',
     author: 'Sophie Dubois',
     role: 'Propriétaire',
     company: 'Villa Les Oliviers',
-    content: 'L\'aménagement de notre jardin avec piscine est tout simplement magnifique. L\'équipe a su créer un espace qui allie élégance et fonctionnalité. Un travail d\'artiste !',
+    content: 'L\'aménagement de notre espace extérieur avec piscine est tout simplement magnifique. Un travail d\'artiste !',
     rating: 5,
     project_type: 'amenagement',
   },
@@ -32,7 +33,7 @@ const defaultTestimonials: Testimonial[] = [
     author: 'Marc Lefebvre',
     role: 'Architecte',
     company: 'Studio Lefebvre & Associés',
-    content: 'La cascade artificielle créée par PHÉNIX GROUP est une véritable œuvre d\'art. Leur maîtrise du paysagisme artistique est impressionnante. Je les recommande vivement.',
+    content: 'La cascade artificielle créée par PHÉNIX GROUP est une véritable œuvre d\'art. Leur maîtrise du paysagisme est impressionnante.',
     rating: 5,
     project_type: 'paysagisme',
   },
@@ -40,10 +41,10 @@ const defaultTestimonials: Testimonial[] = [
     id: '4',
     author: 'Isabelle Moreau',
     role: 'Gérante',
-    company: 'Restaurant La Terrasse',
-    content: 'De la conception à la réalisation, PHÉNIX GROUP a fait preuve d\'un professionnalisme remarquable. Notre restaurant est devenu un lieu unique grâce à leur travail.',
+    company: 'Hôtel La Palmeraie',
+    content: 'L\'entretien régulier de nos jardins par PHÉNIX GROUP maintient notre établissement dans un état impeccable toute l\'année.',
     rating: 5,
-    project_type: 'construction',
+    project_type: 'entretien',
   },
 ]
 
@@ -62,7 +63,18 @@ export function TestimonialsSection() {
         .order('created_at', { ascending: false })
       
       if (data && data.length > 0) {
-        setTestimonials(data)
+        // Mapper les noms de colonnes français vers les propriétés anglaises
+        const mappedData = data.map((item: any) => ({
+          id: item.id,
+          author: item.auteur,
+          role: item.role_entreprise || '',
+          company: item.role_entreprise || '',
+          content: item.contenu,
+          rating: item.note || 5,
+          project_type: item.type_projet,
+          affiche: item.affiche,
+        }))
+        setTestimonials(mappedData)
       }
     }
     
@@ -116,7 +128,7 @@ export function TestimonialsSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <span className="text-amber-700 font-semibold text-sm uppercase tracking-wider">
+          <span className="text-emerald-700 font-semibold text-sm uppercase tracking-wider">
             Témoignages
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-stone-900 mt-3 mb-6 font-serif">
@@ -131,13 +143,13 @@ export function TestimonialsSection() {
         <div className="relative max-w-4xl mx-auto">
           {/* Quote icon */}
           <div className="absolute -top-6 left-1/2 -translate-x-1/2">
-            <div className="w-16 h-16 rounded-2xl bg-amber-100 flex items-center justify-center rotate-3">
-              <Quote className="h-8 w-8 text-amber-600" />
+            <div className="w-16 h-16 rounded-2xl bg-emerald-100 flex items-center justify-center rotate-3">
+              <Quote className="h-8 w-8 text-emerald-600" />
             </div>
           </div>
 
           <div className="bg-stone-50 rounded-3xl p-8 md:p-12 mt-8 relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-amber-50 to-transparent opacity-50" />
+            <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 to-transparent opacity-50" />
             
             <div className="relative min-h-[300px] flex items-center">
               <AnimatePresence mode="wait" custom={direction}>
@@ -158,7 +170,7 @@ export function TestimonialsSection() {
                         key={i}
                         className={`h-6 w-6 ${
                           i < currentTestimonial.rating
-                            ? 'text-amber-400 fill-amber-400'
+                            ? 'text-emerald-400 fill-emerald-400'
                             : 'text-stone-300'
                         }`}
                       />
@@ -188,10 +200,11 @@ export function TestimonialsSection() {
                   {/* Project type badge */}
                   {currentTestimonial.project_type && (
                     <div className="flex justify-center mt-4">
-                      <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-amber-100 text-amber-700">
-                        {currentTestimonial.project_type === 'construction' && 'Construction'}
-                        {currentTestimonial.project_type === 'amenagement' && 'Aménagement'}
-                        {currentTestimonial.project_type === 'paysagisme' && 'Paysagisme'}
+                      <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-emerald-100 text-emerald-700">
+                        {currentTestimonial.project_type === 'amenagement' && 'Aménagement Extérieur'}
+                        {currentTestimonial.project_type === 'paysagisme' && 'Paysagisme Artistique'}
+                        {currentTestimonial.project_type === 'entretien' && 'Entretien de Jardins'}
+                        {currentTestimonial.project_type === 'autre' && 'Autre Projet Paysager'}
                       </span>
                     </div>
                   )}
@@ -202,14 +215,14 @@ export function TestimonialsSection() {
             {/* Navigation buttons */}
             <button
               onClick={handlePrevious}
-              className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center text-stone-600 hover:text-amber-700 hover:shadow-xl transition-all duration-300"
+              className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center text-stone-600 hover:text-emerald-700 hover:shadow-xl transition-all duration-300"
               aria-label="Témoignage précédent"
             >
               <ChevronLeft className="h-5 w-5" />
             </button>
             <button
               onClick={handleNext}
-              className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center text-stone-600 hover:text-amber-700 hover:shadow-xl transition-all duration-300"
+              className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center text-stone-600 hover:text-emerald-700 hover:shadow-xl transition-all duration-300"
               aria-label="Témoignage suivant"
             >
               <ChevronRight className="h-5 w-5" />
@@ -227,7 +240,7 @@ export function TestimonialsSection() {
                 }}
                 className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
                   index === currentIndex
-                    ? 'bg-amber-600 w-8'
+                    ? 'bg-emerald-600 w-8'
                     : 'bg-stone-300 hover:bg-stone-400'
                 }`}
                 aria-label={`Aller au témoignage ${index + 1}`}
@@ -252,8 +265,8 @@ export function TestimonialsSection() {
               transition={{ duration: 0.3, delay: index * 0.1 }}
               className="flex items-center gap-3"
             >
-              <div className="flex-shrink-0 w-5 h-5 rounded-full bg-green-100 flex items-center justify-center">
-                <svg className="w-3 h-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div className="flex-shrink-0 w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center">
+                <svg className="w-3 h-3 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                 </svg>
               </div>

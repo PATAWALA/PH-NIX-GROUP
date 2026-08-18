@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, type Variants } from 'framer-motion'
-import { ArrowRight, Building2, Waves, Palmtree, Brush } from 'lucide-react'
+import { ArrowRight, Flower2, Waves, Palmtree, Leaf } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 
 // Imports Swiper pour le carrousel
@@ -43,13 +43,13 @@ export function AboutSection() {
           variants={fadeInUp}
           className="mb-10 text-center"
         >
-          <span className="text-amber-700 text-xs sm:text-sm font-semibold uppercase tracking-[0.3em]">
+          <span className="text-emerald-700 text-xs sm:text-sm font-semibold uppercase tracking-[0.3em]">
             À propos
           </span>
           <h2 className="mt-3 text-2xl sm:text-3xl lg:text-4xl font-serif font-light text-stone-800">
             Qui sommes-nous ?
           </h2>
-          <div className="mt-3 mx-auto w-16 h-px bg-gradient-to-r from-transparent via-amber-300 to-transparent" />
+          <div className="mt-3 mx-auto w-16 h-px bg-gradient-to-r from-transparent via-emerald-300 to-transparent" />
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-8 lg:gap-12">
@@ -89,9 +89,9 @@ export function AboutSection() {
               </Swiper>
             </div>
 
-            {/* Badge conservé à l'identique */}
+            {/* Badge */}
             <div className="absolute -bottom-2 left-4 z-10">
-              <span className="inline-flex items-center gap-1.5 bg-gradient-to-r from-amber-500 to-amber-700 text-white shadow-lg shadow-amber-900/20 px-3 py-1 rounded-full text-xs font-medium">
+              <span className="inline-flex items-center gap-1.5 bg-gradient-to-r from-emerald-500 to-emerald-700 text-white shadow-lg shadow-emerald-900/20 px-3 py-1 rounded-full text-xs font-medium">
                 <span className="w-1.5 h-1.5 bg-white rounded-full" />
                 Groupe fondé en 2008
               </span>
@@ -106,42 +106,41 @@ export function AboutSection() {
             variants={fadeInUp}
           >
             <div className="flex flex-col gap-4 lg:gap-6">
-              <span className="text-amber-700 text-xs font-semibold uppercase tracking-[0.25em] border-l-2 border-amber-600 pl-3">
-                Construction, Aménagement & Paysagisme d’Exception
+              <span className="text-emerald-700 text-xs font-semibold uppercase tracking-[0.25em] border-l-2 border-emerald-600 pl-3">
+                Aménagement & Paysagisme d'Exception
               </span>
 
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-light tracking-tight leading-tight">
-                <span className="text-stone-800">L’art de</span>{' '}
-                <span className="font-bold bg-gradient-to-r from-amber-600 to-amber-800 bg-clip-text text-transparent">
-                  bâtir l’excellence
+                <span className="text-stone-800">L'art de</span>{' '}
+                <span className="font-bold bg-gradient-to-r from-emerald-600 to-emerald-800 bg-clip-text text-transparent">
+                  sublimer la nature
                 </span>
               </h2>
 
               <div className="space-y-2 text-sm text-stone-600 leading-relaxed max-w-lg">
                 <p>
                   Depuis plus de 16 ans, le groupe PHÉNIX GROUP & JF DÉCOR conçoit et réalise
-                  des projets d’exception en Côte d’Ivoire : construction de bâtiments (hôtels,
-                  restaurants, résidences), piscines design, aménagements paysagers complets,
-                  décors artistiques, cascades et grottes artificielles. Chaque ouvrage est un
-                  héritage architectural mêlant volumes intemporels, matériaux nobles et
-                  précision d’exécution.
+                  des projets paysagers d'exception en Côte d'Ivoire : jardins luxuriants,
+                  piscines design, terrasses élégantes, décors artistiques, cascades et 
+                  grottes artificielles. Chaque création est un héritage paysager mêlant 
+                  esthétique naturelle, matériaux nobles et précision d'exécution.
                 </p>
                 <p>
-                  Notre approche sur‑mesure transforme vos espaces en œuvres vivantes, où
-                  l’élégance fonctionnelle rencontre la pérennité structurelle.
+                  Notre approche sur-mesure transforme vos espaces extérieurs en œuvres 
+                  vivantes, où l'élégance fonctionnelle rencontre la beauté naturelle.
                 </p>
               </div>
 
               {/* Métriques représentatives des trois piliers */}
               <div className="grid grid-cols-3 gap-3 sm:gap-4 pt-1">
                 {[
-                  { icon: Building2, value: '12', label: 'Bâtiments' },
+                  { icon: Flower2, value: '12', label: 'Jardins créés' },
                   { icon: Waves, value: '8', label: 'Piscines & Spas' },
-                  { icon: Palmtree, value: '6', label: 'Grottes & Paysagisme' },
+                  { icon: Palmtree, value: '6', label: 'Cascades & Décors' },
                 ].map((item) => (
                   <div
                     key={item.label}
-                    className="flex flex-col items-start gap-1 border-l-2 border-amber-200 pl-3"
+                    className="flex flex-col items-start gap-1 border-l-2 border-emerald-200 pl-3"
                   >
                     <item.icon className="h-4 w-4 text-stone-400" />
                     <div className="font-serif text-xl sm:text-2xl font-semibold text-stone-800">

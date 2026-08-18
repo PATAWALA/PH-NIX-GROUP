@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/Button'
 import { 
   Menu, X, ChevronDown, 
-  Building2, Flower2, Palmtree, Sparkles,
+  Flower2, Palmtree, Leaf, Sparkles,
   ArrowRight
 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -20,12 +20,6 @@ const navigation = [
     href: '/services',
     children: [
       { 
-        name: 'Construction Bâtiments',
-        href: '/services/construction-batiments',
-        description: 'Hôtels, restaurants, complexes',
-        icon: Building2
-      },
-      { 
         name: 'Aménagement Extérieur',
         href: '/services/amenagement-exterieur',
         description: 'Jardins, piscines, terrasses',
@@ -36,6 +30,12 @@ const navigation = [
         href: '/services/paysagisme-artistique',
         description: 'Cascades, grottes, décors',
         icon: Palmtree
+      },
+      { 
+        name: 'Entretien de Jardins',
+        href: '/services/entretien-jardins',
+        description: 'Maintenance et soins',
+        icon: Leaf
       },
     ]
   },
@@ -70,13 +70,12 @@ export function Header() {
 
   return (
     <header
-      style={{ position: 'fixed', top: 0, left: 0, right: 0 }}
-        className={cn(
-    'fixed top-0 left-0 right-0 z-50 transition-all duration-500', // <-- z-50 seulement
-    !isHomePage && 'bg-white/95 shadow-lg',
-    isHomePage && isScrolled && 'bg-white/95 shadow-lg',
-    isHomePage && !isScrolled && 'bg-transparent'
-  )}
+      className={cn(
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
+        !isHomePage && 'bg-white/95 shadow-lg',
+        isHomePage && isScrolled && 'bg-white/95 shadow-lg',
+        isHomePage && !isScrolled && 'bg-transparent'
+      )}
     >
       <nav className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-20">
@@ -106,7 +105,7 @@ export function Header() {
               </span>
               <span className={cn(
                 'text-[10px] tracking-[0.2em] uppercase transition-colors duration-500',
-                (!isHomePage || isScrolled) ? 'text-amber-700' : 'text-amber-400'
+                (!isHomePage || isScrolled) ? 'text-emerald-700' : 'text-emerald-400'
               )}>
                 & JF DÉCOR
               </span>
@@ -127,7 +126,7 @@ export function Header() {
                     className={cn(
                       'px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 flex items-center gap-1',
                       (!isHomePage || isScrolled)
-                        ? 'text-stone-700 hover:text-amber-700 hover:bg-amber-50'
+                        ? 'text-stone-700 hover:text-emerald-700 hover:bg-emerald-50'
                         : 'text-white/90 hover:text-white hover:bg-white/10'
                     )}
                   >
@@ -141,10 +140,10 @@ export function Header() {
                       'px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 block',
                       pathname === item.href
                         ? (!isHomePage || isScrolled)
-                          ? 'text-amber-700 bg-amber-50'
+                          ? 'text-emerald-700 bg-emerald-50'
                           : 'text-white bg-white/10'
                         : (!isHomePage || isScrolled)
-                          ? 'text-stone-700 hover:text-amber-700 hover:bg-amber-50'
+                          ? 'text-stone-700 hover:text-emerald-700 hover:bg-emerald-50'
                           : 'text-white/90 hover:text-white hover:bg-white/10'
                     )}
                   >
@@ -166,13 +165,13 @@ export function Header() {
                           <Link
                             key={child.name}
                             href={child.href}
-                            className="flex items-start gap-3 p-3 rounded-lg hover:bg-amber-50 transition-colors group"
+                            className="flex items-start gap-3 p-3 rounded-lg hover:bg-emerald-50 transition-colors group"
                           >
-                            <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-amber-100 flex items-center justify-center text-amber-700">
+                            <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-700">
                               <child.icon className="h-5 w-5" />
                             </div>
                             <div>
-                              <div className="font-medium text-stone-900 group-hover:text-amber-700 transition-colors">
+                              <div className="font-medium text-stone-900 group-hover:text-emerald-700 transition-colors">
                                 {child.name}
                               </div>
                               <div className="text-sm text-stone-500 mt-0.5">
@@ -221,9 +220,9 @@ export function Header() {
               className={cn(
                 'lg:hidden p-2 rounded-lg transition-all duration-300',
                 (!isHomePage || isScrolled)
-                  ? 'text-stone-900 hover:bg-amber-100'
+                  ? 'text-stone-900 hover:bg-emerald-100'
                   : 'text-white hover:bg-white/10',
-                isMobileMenuOpen && 'bg-amber-100 text-amber-700'
+                isMobileMenuOpen && 'bg-emerald-100 text-emerald-700'
               )}
               aria-label="Menu"
             >
@@ -233,7 +232,7 @@ export function Header() {
         </div>
       </nav>
 
-      {/* Mobile menu fullscreen avec croix de fermeture bien visible */}
+      {/* Mobile menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
@@ -246,7 +245,7 @@ export function Header() {
           >
             <button
               onClick={() => setIsMobileMenuOpen(false)}
-              className="absolute top-6 right-6 z-50 w-12 h-12 flex items-center justify-center rounded-full bg-stone-100 text-stone-700 hover:bg-amber-100 hover:text-amber-700 transition-colors"
+              className="absolute top-6 right-6 z-50 w-12 h-12 flex items-center justify-center rounded-full bg-stone-100 text-stone-700 hover:bg-emerald-100 hover:text-emerald-700 transition-colors"
               aria-label="Fermer le menu"
             >
               <X className="h-6 w-6" />
@@ -271,9 +270,9 @@ export function Header() {
                               key={child.name}
                               href={child.href}
                               onClick={() => setIsMobileMenuOpen(false)}
-                              className="flex items-center gap-3 py-2 text-stone-600 hover:text-amber-700 transition-colors"
+                              className="flex items-center gap-3 py-2 text-stone-600 hover:text-emerald-700 transition-colors"
                             >
-                              <child.icon className="h-5 w-5 text-amber-600" />
+                              <child.icon className="h-5 w-5 text-emerald-600" />
                               <div>
                                 <div className="font-medium">{child.name}</div>
                                 <div className="text-sm text-stone-400">{child.description}</div>
@@ -288,7 +287,7 @@ export function Header() {
                         onClick={() => setIsMobileMenuOpen(false)}
                         className={cn(
                           'block py-3 text-lg font-medium border-b border-stone-100 transition-colors',
-                          pathname === item.href ? 'text-amber-700' : 'text-stone-900 hover:text-amber-700'
+                          pathname === item.href ? 'text-emerald-700' : 'text-stone-900 hover:text-emerald-700'
                         )}
                       >
                         {item.name}

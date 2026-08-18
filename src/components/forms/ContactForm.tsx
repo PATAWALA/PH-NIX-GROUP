@@ -14,7 +14,7 @@ import {
   User, Mail, Phone, MapPin,
   Home, Calendar,
   CheckCircle2, Send, ArrowRight, ArrowLeft,
-  Building2, Flower2, Palmtree, HelpCircle
+  Flower2, Palmtree, Leaf, HelpCircle
 } from 'lucide-react'
 
 const steps = [
@@ -25,10 +25,10 @@ const steps = [
 ]
 
 const projectTypes = [
-  { value: 'construction', label: 'Construction de bâtiments', icon: Building2 },
-  { value: 'amenagement', label: 'Aménagement extérieur', icon: Flower2 },
-  { value: 'paysagisme', label: 'Paysagisme artistique', icon: Palmtree },
-  { value: 'autre', label: 'Autre projet', icon: HelpCircle },
+  { value: 'amenagement', label: 'Aménagement Extérieur', icon: Flower2 },
+  { value: 'paysagisme', label: 'Paysagisme Artistique', icon: Palmtree },
+  { value: 'entretien', label: 'Entretien de Jardins', icon: Leaf },
+  { value: 'autre', label: 'Autre Projet Paysager', icon: HelpCircle },
 ]
 
 const budgetOptions = [
@@ -92,7 +92,7 @@ export function ContactForm() {
 👤 *Nom* : ${data.nom}
 📧 *Email* : ${data.email}
 📞 *Téléphone* : ${data.telephone}
-🏗️ *Type de projet* : ${projectTypes.find(t => t.value === data.type_projet)?.label}
+🌿 *Type de projet* : ${projectTypes.find(t => t.value === data.type_projet)?.label}
 📍 *Localisation* : ${data.localisation}
 💰 *Budget* : ${budgetOptions.find(b => b.value === data.budget)?.label}
 📝 *Description* : ${data.description}
@@ -129,9 +129,9 @@ ${data.surface_approximative ? `📐 *Surface approx.* : ${data.surface_approxim
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
-          className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6"
+          className="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6"
         >
-          <CheckCircle2 className="h-10 w-10 text-green-600" />
+          <CheckCircle2 className="h-10 w-10 text-emerald-600" />
         </motion.div>
         <h3 className="text-2xl font-bold text-stone-900 mb-3 font-serif">
           Demande envoyée avec succès !
@@ -211,7 +211,7 @@ ${data.surface_approximative ? `📐 *Surface approx.* : ${data.surface_approxim
               className="space-y-6"
             >
               <h3 className="text-xl font-bold text-stone-900 mb-6 font-serif">
-                Votre projet
+                Votre projet paysager
               </h3>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -222,8 +222,8 @@ ${data.surface_approximative ? `📐 *Surface approx.* : ${data.surface_approxim
                       key={type.value}
                       className={`relative flex flex-col items-center p-6 rounded-xl border-2 cursor-pointer transition-all duration-300 ${
                         isSelected
-                          ? 'border-amber-500 bg-amber-50 shadow-lg scale-[1.02]'
-                          : 'border-stone-200 hover:border-amber-300 hover:bg-stone-50 hover:scale-[1.01]'
+                          ? 'border-emerald-500 bg-emerald-50 shadow-lg scale-[1.02]'
+                          : 'border-stone-200 hover:border-emerald-300 hover:bg-stone-50 hover:scale-[1.01]'
                       }`}
                     >
                       <input
@@ -232,15 +232,15 @@ ${data.surface_approximative ? `📐 *Surface approx.* : ${data.surface_approxim
                         className="sr-only"
                         {...register('type_projet')}
                       />
-                      <type.icon className={`h-8 w-8 mb-3 transition-colors duration-300 ${isSelected ? 'text-amber-600' : 'text-stone-400'}`} />
-                      <span className={`text-sm font-medium text-center transition-colors duration-300 ${isSelected ? 'text-amber-900' : 'text-stone-700'}`}>
+                      <type.icon className={`h-8 w-8 mb-3 transition-colors duration-300 ${isSelected ? 'text-emerald-600' : 'text-stone-400'}`} />
+                      <span className={`text-sm font-medium text-center transition-colors duration-300 ${isSelected ? 'text-emerald-900' : 'text-stone-700'}`}>
                         {type.label}
                       </span>
                       {isSelected && (
                         <motion.div
                           initial={{ scale: 0 }}
                           animate={{ scale: 1 }}
-                          className="absolute top-2 right-2 w-5 h-5 bg-amber-500 rounded-full flex items-center justify-center"
+                          className="absolute top-2 right-2 w-5 h-5 bg-emerald-500 rounded-full flex items-center justify-center"
                         >
                           <CheckCircle2 className="h-4 w-4 text-white" />
                         </motion.div>
@@ -275,13 +275,13 @@ ${data.surface_approximative ? `📐 *Surface approx.* : ${data.surface_approxim
               className="space-y-4"
             >
               <h3 className="text-xl font-bold text-stone-900 mb-6 font-serif">
-                Détails de votre projet
+                Détails de votre projet paysager
               </h3>
 
               <Textarea
                 id="description"
                 label="Description du projet *"
-                placeholder="Décrivez votre projet, vos besoins et vos attentes…"
+                placeholder="Décrivez votre projet d'aménagement paysager, vos besoins et vos attentes…"
                 error={errors.description?.message}
                 {...register('description')}
               />
@@ -303,14 +303,14 @@ ${data.surface_approximative ? `📐 *Surface approx.* : ${data.surface_approxim
                 <Input
                   id="delai_souhaite"
                   label="Délai souhaité"
-                  placeholder="Ex: 6 mois"
+                  placeholder="Ex: 3 mois"
                   icon={<Calendar className="h-4 w-4" />}
                   {...register('delai_souhaite')}
                 />
                 <Input
                   id="surface_approximative"
                   label="Surface approximative"
-                  placeholder="Ex: 150 m²"
+                  placeholder="Ex: 500 m²"
                   {...register('surface_approximative')}
                 />
               </div>
@@ -318,7 +318,7 @@ ${data.surface_approximative ? `📐 *Surface approx.* : ${data.surface_approxim
               <label className="flex items-center gap-3 mt-6 cursor-pointer group">
                 <input
                   type="checkbox"
-                  className="w-4 h-4 rounded border-stone-300 text-amber-600 focus:ring-amber-500 cursor-pointer"
+                  className="w-4 h-4 rounded border-stone-300 text-emerald-600 focus:ring-emerald-500 cursor-pointer"
                   {...register('newsletter')}
                 />
                 <span className="text-sm text-stone-600 group-hover:text-stone-900 transition-colors">
@@ -358,7 +358,7 @@ ${data.surface_approximative ? `📐 *Surface approx.* : ${data.surface_approxim
 
               <p className="text-sm text-stone-500 text-center">
                 En cliquant sur &quot;Envoyer ma demande&quot;, vous acceptez d&apos;être recontacté 
-                par notre équipe dans le cadre de votre projet.
+                par notre équipe dans le cadre de votre projet paysager.
               </p>
             </motion.div>
           )}

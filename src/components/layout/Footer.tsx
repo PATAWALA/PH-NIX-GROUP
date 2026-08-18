@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { 
   Phone, Mail, MapPin, Clock, 
-  Building2, Flower2, Palmtree,
+  Flower2, Palmtree, Leaf,
   ArrowRight 
 } from 'lucide-react'
 import {
@@ -17,9 +17,9 @@ import { Button } from '@/components/ui/Button'
 
 const footerLinks = {
   services: [
-    { name: 'Construction Bâtiments', href: '/services/construction-batiments', icon: Building2 },
     { name: 'Aménagement Extérieur', href: '/services/amenagement-exterieur', icon: Flower2 },
     { name: 'Paysagisme Artistique', href: '/services/paysagisme-artistique', icon: Palmtree },
+    { name: 'Entretien de Jardins', href: '/services/entretien-jardins', icon: Leaf },
   ],
   entreprise: [
     { name: 'À propos', href: '/a-propos' },
@@ -53,7 +53,7 @@ export function Footer() {
       {!isContactPage && (
         <div className="border-b border-stone-800">
           <div className="max-w-7xl mx-auto px-4 py-16">
-            <div className="bg-gradient-to-r from-amber-600 to-amber-800 rounded-3xl p-8 md:p-12 relative overflow-hidden">
+            <div className="bg-gradient-to-r from-emerald-600 to-emerald-800 rounded-3xl p-8 md:p-12 relative overflow-hidden">
               <div className="absolute inset-0 opacity-10" style={{
                 backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)',
                 backgroundSize: '20px 20px'
@@ -61,14 +61,14 @@ export function Footer() {
               <div className="relative flex flex-col md:flex-row items-center justify-between gap-8">
                 <div>
                   <h2 className="text-3xl md:text-4xl font-bold text-white font-serif mb-3">
-                    L’excellence à votre service
+                    L'excellence paysagère à votre service
                   </h2>
-                  <p className="text-amber-100 text-lg max-w-2xl">
-                    Un accompagnement sur mesure et un devis gratuit sous 48h pour concrétiser vos ambitions.
+                  <p className="text-emerald-100 text-lg max-w-2xl">
+                    Un accompagnement sur mesure et un devis gratuit sous 48h pour sublimer vos espaces extérieurs.
                   </p>
                 </div>
                 <Link href="/contact">
-                  <Button variant="secondary" size="lg" className="bg-white text-amber-800 hover:bg-amber-50 whitespace-nowrap">
+                  <Button variant="secondary" size="lg" className="bg-white text-emerald-800 hover:bg-emerald-50 whitespace-nowrap">
                     Demander mon devis
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
@@ -98,15 +98,15 @@ export function Footer() {
                 <h3 className="text-xl font-bold text-white font-serif tracking-wider leading-tight">
                   PHÉNIX GROUP
                 </h3>
-                <p className="text-amber-500 text-[10px] tracking-[0.2em] uppercase mt-0.5">
+                <p className="text-emerald-500 text-[10px] tracking-[0.2em] uppercase mt-0.5">
                   & JF DÉCOR
                 </p>
               </div>
             </div>
             
             <p className="text-stone-400 text-sm leading-relaxed mb-6">
-              L&apos;art et sa valeur depuis 1998. Experts en construction, aménagement 
-              et paysagisme pour des projets d&apos;exception.
+              L'art et sa valeur depuis 1998. Experts en aménagement extérieur 
+              et paysagisme pour des espaces d'exception.
             </p>
             
             <div className="flex items-center gap-3">
@@ -115,7 +115,7 @@ export function Footer() {
                   key={index}
                   href={social.href}
                   aria-label={social.label}
-                  className="w-10 h-10 rounded-lg bg-stone-800 flex items-center justify-center text-stone-400 hover:bg-amber-700 hover:text-white transition-all duration-300"
+                  className="w-10 h-10 rounded-lg bg-stone-800 flex items-center justify-center text-stone-400 hover:bg-emerald-700 hover:text-white transition-all duration-300"
                 >
                   <social.icon className="h-4 w-4" />
                 </a>
@@ -131,9 +131,9 @@ export function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="flex items-center gap-2 text-stone-400 hover:text-amber-400 transition-colors group"
+                    className="flex items-center gap-2 text-stone-400 hover:text-emerald-400 transition-colors group"
                   >
-                    <link.icon className="h-4 w-4 group-hover:text-amber-400 transition-colors" />
+                    <link.icon className="h-4 w-4 group-hover:text-emerald-400 transition-colors" />
                     <span className="text-sm">{link.name}</span>
                   </Link>
                 </li>
@@ -149,7 +149,7 @@ export function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-stone-400 hover:text-amber-400 transition-colors text-sm"
+                    className="text-stone-400 hover:text-emerald-400 transition-colors text-sm"
                   >
                     {link.name}
                   </Link>
@@ -164,11 +164,11 @@ export function Footer() {
             <ul className="space-y-4">
               {footerLinks.contact.map((item, index) => (
                 <li key={index} className="flex items-start gap-3">
-                  <item.icon className="h-5 w-5 text-amber-500 flex-shrink-0 mt-0.5" />
+                  <item.icon className="h-5 w-5 text-emerald-500 flex-shrink-0 mt-0.5" />
                   {item.href ? (
                     <a
                       href={item.href}
-                      className="text-stone-400 hover:text-amber-400 transition-colors text-sm"
+                      className="text-stone-400 hover:text-emerald-400 transition-colors text-sm"
                     >
                       {item.text}
                     </a>
@@ -187,7 +187,7 @@ export function Footer() {
         <div className="max-w-7xl mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-stone-500">
             <p>© {new Date().getFullYear()} PHÉNIX GROUP & JF DÉCOR. Tous droits réservés.</p>
-            <p>Développé avec passion pour l&apos;excellence.</p>
+            <p>L'art du paysagisme et de l'aménagement extérieur.</p>
           </div>
         </div>
       </div>

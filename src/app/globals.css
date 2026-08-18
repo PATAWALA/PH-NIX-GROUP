@@ -1,20 +1,45 @@
 @import 'tailwindcss';
 
-/* Thème personnalisé Tailwind v4 */
+/* Thème personnalisé Tailwind v4 - Vert Émeraude Paysagiste */
 @theme {
   --font-sans: var(--font-inter), system-ui, sans-serif;
   --font-serif: var(--font-playfair), Georgia, serif;
   
-  --color-amber-50: #fffbeb;
-  --color-amber-100: #fef3c7;
-  --color-amber-200: #fde68a;
-  --color-amber-300: #fcd34d;
-  --color-amber-400: #fbbf24;
-  --color-amber-500: #f59e0b;
-  --color-amber-600: #d97706;
-  --color-amber-700: #b45309;
-  --color-amber-800: #92400e;
-  --color-amber-900: #78350f;
+  /* Palette Vert Émeraude */
+  --color-emerald-50: #ecfdf5;
+  --color-emerald-100: #d1fae5;
+  --color-emerald-200: #a7f3d0;
+  --color-emerald-300: #6ee7b7;
+  --color-emerald-400: #34d399;
+  --color-emerald-500: #10b981;
+  --color-emerald-600: #059669;
+  --color-emerald-700: #047857;
+  --color-emerald-800: #065f46;
+  --color-emerald-900: #064e3b;
+  
+  /* Palette Vert Forêt (complémentaire) */
+  --color-forest-50: #f0fdf4;
+  --color-forest-100: #dcfce7;
+  --color-forest-200: #bbf7d0;
+  --color-forest-300: #86efac;
+  --color-forest-400: #4ade80;
+  --color-forest-500: #22c55e;
+  --color-forest-600: #16a34a;
+  --color-forest-700: #15803d;
+  --color-forest-800: #166534;
+  --color-forest-900: #14532d;
+  
+  /* Palette Nature (tons terreux) */
+  --color-nature-50: #f7fee7;
+  --color-nature-100: #ecfccb;
+  --color-nature-200: #d9f99d;
+  --color-nature-300: #bef264;
+  --color-nature-400: #a3e635;
+  --color-nature-500: #84cc16;
+  --color-nature-600: #65a30d;
+  --color-nature-700: #4d7c0f;
+  --color-nature-800: #3f6212;
+  --color-nature-900: #365314;
 }
 
 /* Animations personnalisées */
@@ -36,6 +61,11 @@
 @keyframes scaleIn {
   0% { opacity: 0; transform: scale(0.95); }
   100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes leafFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(5deg); }
 }
 
 /* Styles de base */
@@ -62,16 +92,32 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-stone-300);
+  background: var(--color-emerald-200);
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-stone-400);
+  background: var(--color-emerald-400);
 }
 
 /* Sélection */
 ::selection {
-  background-color: var(--color-amber-200);
-  color: var(--color-amber-900);
+  background-color: var(--color-emerald-200);
+  color: var(--color-emerald-900);
+}
+
+/* Classes utilitaires personnalisées */
+.text-gradient-emerald {
+  background: linear-gradient(135deg, #10b981 0%, #065f46 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bg-gradient-emerald {
+  background: linear-gradient(135deg, #10b981 0%, #047857 50%, #065f46 100%);
+}
+
+.shadow-emerald {
+  box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
 }

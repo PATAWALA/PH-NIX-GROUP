@@ -9,17 +9,17 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary:
-          'bg-amber-700 text-white hover:bg-amber-800 shadow-lg hover:shadow-xl active:scale-[0.98]',
+          'bg-emerald-700 text-white hover:bg-emerald-800 shadow-lg hover:shadow-xl active:scale-[0.98]',
         secondary:
           'bg-stone-200 text-stone-900 hover:bg-stone-300',
         outline:
-          'border-2 border-amber-700 text-amber-700 hover:bg-amber-700 hover:text-white',
+          'border-2 border-emerald-700 text-emerald-700 hover:bg-emerald-700 hover:text-white',
         ghost:
           'hover:bg-stone-100 text-stone-700 hover:text-stone-900',
         destructive:
           'bg-red-600 text-white hover:bg-red-700',
         gold:
-          'bg-gradient-to-r from-amber-500 to-amber-700 text-white hover:from-amber-600 hover:to-amber-800 shadow-lg hover:shadow-xl',
+          'bg-gradient-to-r from-emerald-500 to-emerald-700 text-white hover:from-emerald-600 hover:to-emerald-800 shadow-lg hover:shadow-xl',
       },
       size: {
         sm: 'h-9 px-4 text-xs',

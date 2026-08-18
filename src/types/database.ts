@@ -1,41 +1,45 @@
-export type ProjectType = 'construction' | 'amenagement' | 'paysagisme'
+import type { Database } from './supabase'
 
-export interface Service {
-  id: string
-  title: string
-  description: string
-  icon: string
-  category: ProjectType
-  features: string[]
-  image: string
-}
+// Types dérivés automatiquement de Supabase
+export type ProjectType = Database['public']['Enums']['type_projet_enum']
+export type BudgetEnum = Database['public']['Enums']['budget_enum']
+export type StatutDemandeEnum = Database['public']['Enums']['statut_demande_enum']
 
+// Types des tables
+export type Realisation = Database['public']['Tables']['realisations']['Row']
+export type Service = Database['public']['Tables']['services']['Row']
+export type Temoignage = Database['public']['Tables']['temoignages']['Row']
+export type DemandeDevis = Database['public']['Tables']['demandes_de_visis']['Row']
+
+// Types pour les insertions
+export type RealisationInsert = Database['public']['Tables']['realisations']['Insert']
+export type ServiceInsert = Database['public']['Tables']['services']['Insert']
+export type TemoignageInsert = Database['public']['Tables']['temoignages']['Insert']
+
+// Interface Project pour la galerie
 export interface Project {
   id: string
-  title: string
-  description: string
-  category: ProjectType
+  categorie: ProjectType
   images: string[]
-  location: string
-  year: number
-  client?: string
-  duration?: string
-  featured: boolean
+  created_at?: string | null
 }
 
+// Interface Testimonial pour les témoignages
 export interface Testimonial {
   id: string
   author: string
-  role: string
+  role?: string
   company?: string
   content: string
   rating: number
-  project_type: ProjectType
+  project_type: ProjectType | null
+  affiche?: boolean | null
 }
 
-export interface Stat {
-  label: string
-  value: number
-  suffix: string
-  icon: string
+// Type pour les statistiques
+export interface Stats {
+  projects: number
+  clients: number
+  experience: number
+  satisfaction: number
 }

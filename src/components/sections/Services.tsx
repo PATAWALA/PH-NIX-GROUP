@@ -3,23 +3,9 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ServiceCard } from '@/components/ui/Card'
-import { Building2, Flower2, Palmtree, ArrowRight } from 'lucide-react'
+import { Flower2, Palmtree, Leaf, ArrowRight } from 'lucide-react'
 
 const services = [
-  {
-    title: 'Construction de Bâtiments',
-    description: 'Hôtels, restaurants, complexes commerciaux et résidentiels. Nous réalisons des constructions d\'exception alliant esthétique et fonctionnalité.',
-    icon: <Building2 className="h-6 w-6" />,
-    features: [
-      'Hôtels et complexes hôteliers',
-      'Restaurants gastronomiques',
-      'Bâtiments commerciaux',
-      'Résidences de luxe',
-      'Rénovation haut de gamme',
-    ],
-    imageUrl: '/images/construction.jpg',
-    href: '/services/construction-batiments',
-  },
   {
     title: 'Aménagement Extérieur',
     description: 'Jardins, piscines, terrasses et espaces extérieurs conçus pour sublimer votre propriété et créer des espaces de vie uniques.',
@@ -48,6 +34,20 @@ const services = [
     imageUrl: '/images/paysagisme.jpg',
     href: '/services/paysagisme-artistique',
   },
+  {
+    title: 'Entretien de Jardins',
+    description: 'Maintenance et soins réguliers pour garder vos espaces verts éclatants toute l\'année.',
+    icon: <Leaf className="h-6 w-6" />,
+    features: [
+      'Tonte et taille',
+      'Traitement phytosanitaire',
+      'Arrosage automatique',
+      'Nettoyage de bassins',
+      'Contrats d\'entretien',
+    ],
+    imageUrl: '/images/entretien.jpg',
+    href: '/services/entretien-jardins',
+  },
 ]
 
 export function ServicesSection() {
@@ -62,15 +62,15 @@ export function ServicesSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="text-amber-700 font-semibold text-sm uppercase tracking-wider">
+          <span className="text-emerald-700 font-semibold text-sm uppercase tracking-wider">
             Nos Expertises
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-stone-900 mt-3 mb-6 font-serif">
-            Trois piliers d&apos;excellence
+            Trois piliers d&apos;excellence paysagère
           </h2>
           <p className="text-stone-600 text-lg max-w-2xl mx-auto">
             De la conception à la réalisation, notre équipe d&apos;experts vous accompagne 
-            dans tous vos projets de construction, d&apos;aménagement et de paysagisme.
+            dans tous vos projets d&apos;aménagement extérieur et de paysagisme.
           </p>
         </motion.div>
 
@@ -99,7 +99,7 @@ export function ServicesSection() {
         >
           <Link
             href="/services"
-            className="inline-flex items-center text-amber-700 font-semibold hover:text-amber-800 transition-colors group"
+            className="inline-flex items-center text-emerald-700 font-semibold hover:text-emerald-800 transition-colors group"
           >
             Découvrir tous nos services
             <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />

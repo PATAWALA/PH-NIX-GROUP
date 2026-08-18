@@ -19,27 +19,27 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   title: {
-    default: 'PHÉNIX GROUP & JF DÉCOR | Construction, aménagement & paysagisme de luxe',
+    default: 'PHÉNIX GROUP & JF DÉCOR | Aménagement & Paysagisme de luxe',
     template: '%s | PHÉNIX GROUP & JF DÉCOR',
   },
   description:
-    'Experts en construction, aménagement extérieur et paysagisme artistique en Côte d’Ivoire. Devis gratuit. 16 ans d’excellence.',
+    'Experts en aménagement extérieur, paysagisme artistique et entretien de jardins en Côte d’Ivoire. Jardins, piscines, cascades. Devis gratuit.',
   keywords: [
-    'construction villa Abidjan',
-    'paysagiste Cocody',
-    'aménagement piscine Abidjan',
-    'décoration intérieure Côte d\'Ivoire',
-    'entreprise BTP Abidjan',
-    'architecte d\'intérieur Abidjan',
+    'paysagiste Abidjan',
+    'aménagement jardin Cocody',
+    'cascade artificielle Abidjan',
+    'piscine design Côte d\'Ivoire',
+    'entretien jardin Abidjan',
     'jardin tropical Abidjan',
+    'aménagement terrasse Abidjan',
   ],
   openGraph: {
     type: 'website',
     locale: 'fr_FR',
     url: 'https://www.phenixgroupdecor.com',
     siteName: 'PHÉNIX GROUP & JF DÉCOR',
-    title: 'PHÉNIX GROUP & JF DÉCOR | L\'art et sa valeur',
-    description: 'Experts en construction, aménagement et paysagisme depuis 16 ans en Côte d’Ivoire.',
+    title: 'PHÉNIX GROUP & JF DÉCOR | L\'art du paysagisme',
+    description: 'Experts en aménagement extérieur et paysagisme depuis 16 ans en Côte d’Ivoire.',
     images: [
       {
         url: 'https://www.phenixgroupdecor.com/images/logo.jpg',
@@ -51,8 +51,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'PHÉNIX GROUP & JF DÉCOR | L\'art et sa valeur',
-    description: 'Experts en construction, aménagement et paysagisme depuis 16 ans en Côte d’Ivoire.',
+    title: 'PHÉNIX GROUP & JF DÉCOR | L\'art du paysagisme',
+    description: 'Experts en aménagement extérieur et paysagisme depuis 16 ans en Côte d’Ivoire.',
     images: ['https://www.phenixgroupdecor.com/images/logo.jpg'],
   },
   icons: {
@@ -96,7 +96,7 @@ export default function RootLayout({
               '@context': 'https://schema.org',
               '@type': 'HomeAndConstructionBusiness',
               name: 'PHÉNIX GROUP & JF DÉCOR',
-              description: 'Construction, aménagement et paysagisme de luxe en Côte d’Ivoire.',
+              description: 'Aménagement extérieur et paysagisme de luxe en Côte d’Ivoire. Jardins, piscines, cascades et décors naturels.',
               url: 'https://www.phenixgroupdecor.com',
               telephone: '+225 05 06 96 05 82',
               email: 'contact@phenixgroupdecor.com',

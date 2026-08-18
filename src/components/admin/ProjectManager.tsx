@@ -6,7 +6,6 @@ import { Plus, Edit3, Trash2, Loader2 } from 'lucide-react'
 import { createClient } from '@/lib/client'
 import { ImageUploader } from './ImageUploader'
 import { Button } from '@/components/ui/Button'
-
 interface Project {
   id: string
   categorie: string
@@ -19,7 +18,7 @@ export function ProjectManager() {
   const [editingProject, setEditingProject] = useState<Project | null>(null)
   const [showForm, setShowForm] = useState(false)
   const [form, setForm] = useState({
-    categorie: 'construction',
+    categorie: 'amenagement' as string,
     images: [] as string[],
   })
   const supabase = createClient()
@@ -35,7 +34,7 @@ export function ProjectManager() {
   }
 
   function resetForm() {
-    setForm({ categorie: 'construction', images: [] })
+    setForm({ categorie: 'amenagement', images: [] })
     setEditingProject(null)
     setShowForm(false)
   }
@@ -74,7 +73,7 @@ export function ProjectManager() {
           variant="gold"
           size="sm"
           onClick={() => { resetForm(); setShowForm(!showForm) }}
-          className="!bg-amber-600 !text-white hover:!bg-amber-700 shadow-lg shadow-amber-600/30"
+          className="!bg-emerald-600 !text-white hover:!bg-emerald-700 shadow-lg shadow-emerald-600/30"
         >
           <Plus className="h-4 w-4 mr-2" /> Nouveau projet
         </Button>
@@ -95,17 +94,18 @@ export function ProjectManager() {
                 <select
                   value={form.categorie}
                   onChange={(e) => setForm({ ...form, categorie: e.target.value })}
-                  className="w-full h-11 rounded-lg border border-stone-300 px-4 text-sm text-stone-900 bg-white focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                  className="w-full h-11 rounded-lg border border-stone-300 px-4 text-sm text-stone-900 bg-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                 >
-                  <option value="construction">Construction</option>
-                  <option value="amenagement">Aménagement</option>
-                  <option value="paysagisme">Paysagisme</option>
+                  <option value="amenagement">Aménagement Extérieur</option>
+                  <option value="paysagisme">Paysagisme Artistique</option>
+                  <option value="entretien">Entretien de Jardins</option>
+                  <option value="autre">Autre Projet Paysager</option>
                 </select>
               </div>
               <ImageUploader images={form.images} onImagesChange={(images) => setForm({ ...form, images })} />
             </div>
             <div className="flex gap-3 mt-6">
-              <Button type="submit" variant="gold" size="sm" className="!bg-amber-600 !text-white hover:!bg-amber-700 shadow-lg shadow-amber-600/30">
+              <Button type="submit" variant="gold" size="sm" className="!bg-emerald-600 !text-white hover:!bg-emerald-700 shadow-lg shadow-emerald-600/30">
                 {editingProject ? 'Mettre à jour' : 'Publier'}
               </Button>
               <Button type="button" variant="outline" size="sm" onClick={resetForm} className="text-stone-700 border-stone-300">
@@ -132,12 +132,15 @@ export function ProjectManager() {
                 ) : (
                   <div className="flex items-center justify-center h-full text-stone-400">Aucune image</div>
                 )}
-                <span className="absolute top-2 left-2 bg-white/90 text-xs px-2 py-1 rounded-full capitalize text-stone-800">
-                  {project.categorie}
+                <span className="absolute top-2 left-2 bg-white/90 text-xs px-2 py-1 rounded-full capitalize text-emerald-700">
+                  {project.categorie === 'amenagement' && 'Aménagement'}
+                  {project.categorie === 'paysagisme' && 'Paysagisme'}
+                  {project.categorie === 'entretien' && 'Entretien'}
+                  {project.categorie === 'autre' && 'Autre'}
                 </span>
               </div>
               <div className="p-4 flex justify-end gap-2">
-                <button onClick={() => startEdit(project)} className="p-2 text-stone-600 hover:text-amber-700"><Edit3 className="h-4 w-4" /></button>
+                <button onClick={() => startEdit(project)} className="p-2 text-stone-600 hover:text-emerald-700"><Edit3 className="h-4 w-4" /></button>
                 <button onClick={() => handleDelete(project.id)} className="p-2 text-stone-600 hover:text-red-600"><Trash2 className="h-4 w-4" /></button>
               </div>
             </div>

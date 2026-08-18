@@ -23,14 +23,14 @@ export function HeroSection() {
       <motion.div style={{ y }} className="absolute inset-0 h-[120%] -top-[10%]">
         <Image
           src="/images/hero1.png"
-          alt="PHÉNIX GROUP & JF DÉCOR – Construction de luxe"
+          alt="PHÉNIX GROUP & JF DÉCOR – Aménagement paysager de luxe"
           fill
           className="object-cover"
           priority
           sizes="100vw"
           quality={75}
           placeholder="blur"
-          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMCwsKCwsM..."
+          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMCwsKCw..."
         />
       </motion.div>
 
@@ -53,14 +53,14 @@ export function HeroSection() {
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white font-serif leading-tight mb-4 md:mb-6">
                 PHÉNIX GROUP
                 <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-600">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-emerald-600">
                   & JF DÉCOR
                 </span>
               </h1>
               <p className="text-base md:text-lg text-stone-300 mb-8 md:mb-10 max-w-2xl mx-auto leading-relaxed">
-                Construction, aménagement et paysagisme d&apos;exception en Côte d&apos;Ivoire. 
-                Nous concevons et réalisons des projets haut de gamme qui allient esthétique, 
-                durabilité et savoir‑faire artisanal à Abidjan, Bingerville et Grand‑Bassam.
+                Aménagement extérieur et paysagisme d&apos;exception en Côte d&apos;Ivoire. 
+                Nous créons des jardins, piscines, cascades et décors naturels qui subliment 
+                vos espaces de vie à Abidjan, Bingerville et Grand‑Bassam.
               </p>
             </motion.div>
 
@@ -101,7 +101,7 @@ export function HeroSection() {
           <motion.div
             animate={{ y: [0, 12, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-1.5 h-1.5 rounded-full bg-amber-400"
+            className="w-1.5 h-1.5 rounded-full bg-emerald-400"
           />
         </div>
       </motion.div>
