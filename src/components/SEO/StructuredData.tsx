@@ -2,9 +2,9 @@ export function StructuredData() {
   const organizationSchema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'PHÉNIX GROUP & JF DÉCOR',
-    url: 'https://www.phenixgroupdecor.com',
-    logo: 'https://www.phenixgroupdecor.com/images/logo.jpg',
+    name: 'JF DÉCOR',
+    url: 'https://www.jfdecor.ci',
+    logo: 'https://www.jfdecor.ci/images/logo.jpeg',
     description: 'Experts en aménagement extérieur, paysagisme artistique et entretien de jardins en Côte d\'Ivoire.',
     contactPoint: {
       '@type': 'ContactPoint',
@@ -22,11 +22,11 @@ export function StructuredData() {
   const localBusinessSchema = {
     '@context': 'https://schema.org',
     '@type': 'LandscapingBusiness',
-    name: 'PHÉNIX GROUP & JF DÉCOR',
+    name: 'JF DÉCOR',
     description: 'Service d\'aménagement paysager et d\'entretien de jardins en Côte d\'Ivoire.',
-    url: 'https://www.phenixgroupdecor.com',
+    url: 'https://www.jfdecor.ci',
     telephone: '+225 05 06 96 05 82',
-    email: 'contact@phenixgroup.ci',
+    email: 'contact@jfdecor.ci',
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Abidjan',

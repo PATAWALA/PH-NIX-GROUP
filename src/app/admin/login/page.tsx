@@ -8,7 +8,7 @@ import { Mail, Lock, Loader2, Eye, EyeOff } from 'lucide-react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 
-export default function LoginPage() {
+export default function AdminLoginPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -37,26 +37,32 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-stone-100 p-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-emerald-50 via-stone-50 to-emerald-100 p-4">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         className="w-full max-w-md"   
       >
-        <div className="bg-white rounded-2xl shadow-xl border border-stone-200 p-8">
+        <div className="bg-white rounded-2xl shadow-xl border border-emerald-100 p-8">
           {/* Logo */}
           <div className="flex flex-col items-center mb-8">
-            <div className="relative w-14 h-14 mb-4">
+            <div className="relative w-16 h-16 mb-4">
               <Image
-                src="/images/logo.jpg"
-                alt="PHÉNIX GROUP"
+                src="/images/logo.jpeg"
+                alt="JF DÉCOR"
                 fill
                 className="object-contain"
               />
             </div>
             <h1 className="text-xl font-serif font-bold text-stone-900">Administration</h1>
             <p className="text-xs text-stone-500 mt-1">Accès réservé</p>
+            <div className="mt-3 inline-flex items-center gap-2 bg-emerald-50 border border-emerald-100 rounded-full px-3 py-1">
+              <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full" />
+              <span className="text-[10px] font-medium text-emerald-700 uppercase tracking-wider">
+                JF DÉCOR
+              </span>
+            </div>
           </div>
 
           <form onSubmit={handleLogin} className="space-y-4">
@@ -79,7 +85,7 @@ export default function LoginPage() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full h-11 py-3 pl-10 pr-3 rounded-lg border border-stone-300 text-sm focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-colors"
+                  className="w-full h-11 py-3 pl-10 pr-3 rounded-lg border border-stone-300 text-sm focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-colors"
                   placeholder="admin@exemple.com"
                   required
                 />
@@ -95,7 +101,7 @@ export default function LoginPage() {
                   type={showPassword ? 'text' : 'password'}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full h-11 py-3 pl-10 pr-10 rounded-lg border border-stone-300 text-sm focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-colors"
+                  className="w-full h-11 py-3 pl-10 pr-10 rounded-lg border border-stone-300 text-sm focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-colors"
                   placeholder="••••••••"
                   required
                 />
@@ -121,7 +127,7 @@ export default function LoginPage() {
           </form>
 
           <p className="text-center text-xs text-stone-400 mt-5">
-            PHÉNIX GROUP & JF DÉCOR
+            © {new Date().getFullYear()} JF DÉCOR - L&apos;art et sa valeur
           </p>
         </div>
       </motion.div>

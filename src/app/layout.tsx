@@ -19,8 +19,8 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   title: {
-    default: 'PHÉNIX GROUP & JF DÉCOR | Aménagement & Paysagisme de luxe',
-    template: '%s | PHÉNIX GROUP & JF DÉCOR',
+    default: 'JF DÉCOR | Aménagement & Paysagisme de luxe',
+    template: '%s | JF DÉCOR',
   },
   description:
     'Experts en aménagement extérieur, paysagisme artistique et entretien de jardins en Côte d’Ivoire. Jardins, piscines, cascades. Devis gratuit.',
@@ -36,41 +36,32 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'fr_FR',
-    url: 'https://www.phenixgroupdecor.com',
-    siteName: 'PHÉNIX GROUP & JF DÉCOR',
-    title: 'PHÉNIX GROUP & JF DÉCOR | L\'art du paysagisme',
+    url: 'https://www.jfdecor.ci',
+    siteName: 'JF DÉCOR',
+    title: 'JF DÉCOR | L\'art du paysagisme',
     description: 'Experts en aménagement extérieur et paysagisme depuis 16 ans en Côte d’Ivoire.',
     images: [
       {
-        url: 'https://www.phenixgroupdecor.com/images/logo.jpg',
+        url: 'https://www.jfdecor.ci/images/logo.jpeg',
         width: 800,
         height: 600,
-        alt: 'PHÉNIX GROUP & JF DÉCOR',
+        alt: 'JF DÉCOR',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'PHÉNIX GROUP & JF DÉCOR | L\'art du paysagisme',
+    title: 'JF DÉCOR | L\'art du paysagisme',
     description: 'Experts en aménagement extérieur et paysagisme depuis 16 ans en Côte d’Ivoire.',
-    images: ['https://www.phenixgroupdecor.com/images/logo.jpg'],
+    images: ['https://www.jfdecor.ci/images/logo.jpeg'],
   },
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-    ],
-    apple: [
-      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
-    ],
-    other: [
-      { url: '/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
-      { url: '/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
     ],
   },
   alternates: {
-    canonical: 'https://www.phenixgroupdecor.com',
+    canonical: 'https://www.jfdecor.ci',
   },
   robots: {
     index: true,
@@ -94,12 +85,12 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               '@context': 'https://schema.org',
-              '@type': 'HomeAndConstructionBusiness',
-              name: 'PHÉNIX GROUP & JF DÉCOR',
+              '@type': 'LandscapingBusiness',
+              name: 'JF DÉCOR',
               description: 'Aménagement extérieur et paysagisme de luxe en Côte d’Ivoire. Jardins, piscines, cascades et décors naturels.',
-              url: 'https://www.phenixgroupdecor.com',
+              url: 'https://www.jfdecor.ci',
               telephone: '+225 05 06 96 05 82',
-              email: 'contact@phenixgroupdecor.com',
+              email: 'contact@jfdecor.ci',
               address: {
                 '@type': 'PostalAddress',
                 addressLocality: 'Abidjan',
@@ -107,7 +98,7 @@ export default function RootLayout({
                 addressCountry: 'CI',
               },
               areaServed: ['Abidjan', 'Cocody', 'Bingerville', 'Grand-Bassam', 'Côte d\'Ivoire'],
-              image: 'https://www.phenixgroupdecor.com/images/logo.jpg',
+              image: 'https://www.jfdecor.ci/images/logo.jpeg',
               openingHoursSpecification: {
                 '@type': 'OpeningHoursSpecification',
                 dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],

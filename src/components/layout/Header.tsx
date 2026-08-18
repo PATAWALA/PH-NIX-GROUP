@@ -83,8 +83,8 @@ export function Header() {
           <Link href="/" className="flex-shrink-0 group flex items-center gap-3">
             <div className="relative w-12 h-12 flex-shrink-0">
               <Image
-                src="/images/logo.jpg"
-                alt="PHÉNIX GROUP & JF DÉCOR"
+                src="/images/logo.jpeg"
+                alt="JF DÉCOR"
                 fill
                 className="object-contain"
                 priority
@@ -101,13 +101,13 @@ export function Header() {
                 'text-xl font-bold font-serif tracking-wider leading-tight transition-colors duration-500',
                 (!isHomePage || isScrolled) ? 'text-stone-900' : 'text-white'
               )}>
-                PHÉNIX GROUP
+                JF DÉCOR
               </span>
               <span className={cn(
                 'text-[10px] tracking-[0.2em] uppercase transition-colors duration-500',
                 (!isHomePage || isScrolled) ? 'text-emerald-700' : 'text-emerald-400'
               )}>
-                & JF DÉCOR
+                L&apos;art et sa valeur
               </span>
             </div>
           </Link>

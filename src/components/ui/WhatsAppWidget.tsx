@@ -6,7 +6,7 @@ import { MessageCircle, X } from 'lucide-react'
 
 const phoneNumber = '22542550779' // +225 42 55 07 79
 const defaultMessage = encodeURIComponent(
-  'Bonjour PHÉNIX GROUP & JF DÉCOR, je souhaite échanger au sujet d’un projet.'
+  'Bonjour JF DÉCOR, je souhaite échanger au sujet d’un projet.'
 )
 const whatsappUrl = `https://wa.me/${phoneNumber}?text=${defaultMessage}`
 
@@ -27,7 +27,7 @@ export function WhatsAppWidget() {
             <div className="flex items-start justify-between">
               <div>
                 <p className="font-semibold text-stone-800 text-sm">
-                  PHÉNIX GROUP & JF DÉCOR
+                  JF DÉCOR
                 </p>
                 <p className="text-xs text-stone-500 mt-0.5">
                   Habituellement répond en moins de 2h
@@ -40,7 +40,7 @@ export function WhatsAppWidget() {
                 <X className="h-4 w-4" />
               </button>
             </div>
-            <div className="bg-amber-50 rounded-xl p-3 border border-amber-100">
+            <div className="bg-emerald-50 rounded-xl p-3 border border-emerald-100">
               <p className="text-xs text-stone-600 leading-relaxed">
                 Bonjour ! 👋<br />
                 Dites‑nous tout sur votre projet, nous vous répondrons avec plaisir.

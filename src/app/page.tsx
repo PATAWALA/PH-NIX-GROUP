@@ -8,10 +8,10 @@ import { TestimonialsSection } from '@/components/sections/Testimonials'
 import { CTASection } from '@/components/sections/CTA'
 
 export const metadata: Metadata = {
-  title: 'PHÉNIX GROUP & JF DÉCOR | Aménagement & Paysagisme de luxe en Côte d’Ivoire',
+  title: 'JF DÉCOR | Aménagement & Paysagisme de luxe en Côte d’Ivoire',
   description: 'Experts en aménagement extérieur, paysagisme artistique et entretien de jardins à Abidjan, Cocody, Bingerville. Devis gratuit. 16 ans d’excellence.',
   alternates: {
-    canonical: 'https://www.phenixgroupdecor.com/',
+    canonical: 'https://www.jfdecor.ci/',
   },
   keywords: [
     'paysagiste Abidjan',
@@ -22,16 +22,16 @@ export const metadata: Metadata = {
     'jardin tropical Abidjan',
   ],
   openGraph: {
-    title: 'PHÉNIX GROUP & JF DÉCOR | L\'art du paysagisme',
+    title: 'JF DÉCOR | L\'art du paysagisme',
     description: 'Experts en aménagement extérieur et paysagisme depuis 16 ans en Côte d\'Ivoire.',
-    url: 'https://www.phenixgroupdecor.com',
-    siteName: 'PHÉNIX GROUP & JF DÉCOR',
+    url: 'https://www.jfdecor.ci',
+    siteName: 'JF DÉCOR',
     images: [
       {
-        url: 'https://www.phenixgroupdecor.com/images/logo.jpg',
+        url: 'https://www.jfdecor.ci/images/logo.jpeg',
         width: 800,
         height: 600,
-        alt: 'PHÉNIX GROUP & JF DÉCOR',
+        alt: 'JF DÉCOR',
       },
     ],
     locale: 'fr_FR',

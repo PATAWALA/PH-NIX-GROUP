@@ -31,7 +31,7 @@ const footerLinks = {
   contact: [
     { icon: Phone, text: '+2250749966009', href: 'tel:+2250749966009' },
     { icon: Phone, text: '+225 42 55 07 79', href: 'tel:+22542550779' },
-    { icon: Mail, text: 'contact@phenixgroup.ci', href: 'mailto:contact@phenixgroup.ci' },
+    { icon: Mail, text: 'contact@jfdecor.ci', href: 'mailto:contact@jfdecor.ci' },
     { icon: MapPin, text: 'Abidjan, Côte d\'Ivoire' },
     { icon: Clock, text: 'Lun-Ven: 8h-19h | Sam: 9h-17h' },
   ],
@@ -61,7 +61,7 @@ export function Footer() {
               <div className="relative flex flex-col md:flex-row items-center justify-between gap-8">
                 <div>
                   <h2 className="text-3xl md:text-4xl font-bold text-white font-serif mb-3">
-                    L'excellence paysagère à votre service
+                    L&apos;excellence paysagère à votre service
                   </h2>
                   <p className="text-emerald-100 text-lg max-w-2xl">
                     Un accompagnement sur mesure et un devis gratuit sous 48h pour sublimer vos espaces extérieurs.
@@ -87,8 +87,8 @@ export function Footer() {
             <div className="flex items-center gap-3 mb-6">
               <div className="relative w-10 h-10 flex-shrink-0">
                 <Image
-                  src="/images/logo.jpg"
-                  alt="PHÉNIX GROUP & JF DÉCOR"
+                  src="/images/logo.jpeg"
+                  alt="JF DÉCOR"
                   fill
                   className="object-contain"
                 />
@@ -96,17 +96,17 @@ export function Footer() {
               <div className="w-px h-8 bg-stone-700" />
               <div>
                 <h3 className="text-xl font-bold text-white font-serif tracking-wider leading-tight">
-                  PHÉNIX GROUP
+                  JF DÉCOR
                 </h3>
                 <p className="text-emerald-500 text-[10px] tracking-[0.2em] uppercase mt-0.5">
-                  & JF DÉCOR
+                  L&apos;art et sa valeur
                 </p>
               </div>
             </div>
             
             <p className="text-stone-400 text-sm leading-relaxed mb-6">
-              L'art et sa valeur depuis 1998. Experts en aménagement extérieur 
-              et paysagisme pour des espaces d'exception.
+              L&apos;art et sa valeur depuis 2008. Experts en aménagement extérieur 
+              et paysagisme pour des espaces d&apos;exception.
             </p>
             
             <div className="flex items-center gap-3">
@@ -186,8 +186,8 @@ export function Footer() {
       <div className="border-t border-stone-800">
         <div className="max-w-7xl mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-stone-500">
-            <p>© {new Date().getFullYear()} PHÉNIX GROUP & JF DÉCOR. Tous droits réservés.</p>
-            <p>L'art du paysagisme et de l'aménagement extérieur.</p>
+            <p>© {new Date().getFullYear()} JF DÉCOR. Tous droits réservés.</p>
+            <p>L&apos;art du paysagisme et de l&apos;aménagement extérieur.</p>
           </div>
         </div>
       </div>
