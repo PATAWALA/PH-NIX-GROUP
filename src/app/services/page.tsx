@@ -1,76 +1,28 @@
 import { Metadata } from 'next'
-import Link from 'next/link'
-import { Flower2, Palmtree, Leaf, ArrowRight } from 'lucide-react'
-import { Card } from '@/components/ui/Card'
+import { GalleryGrid } from '@/components/gallery/GalleryGrid'
 
 export const metadata: Metadata = {
-  title: 'Nos Services | Aménagement & Paysagisme | JF DÉCOR',
-  description: 'Découvrez nos services d\'aménagement extérieur, paysagisme artistique et entretien de jardins en Côte d\'Ivoire.',
-  alternates: { canonical: 'https://www.jfdecor.ci/services' },
+  title: 'Nos Réalisations | JF DÉCOR',
+  description: 'Découvrez nos réalisations d\'exception en aménagement extérieur et paysagisme.',
 }
 
-const services = [
-  {
-    title: 'Aménagement Extérieur',
-    description: 'Jardins, piscines, terrasses et espaces extérieurs.',
-    icon: Flower2,
-    href: '/services/amenagement-exterieur',
-  },
-  {
-    title: 'Paysagisme Artistique',
-    description: 'Cascades, grottes artificielles et décors spectaculaires.',
-    icon: Palmtree,
-    href: '/services/paysagisme-artistique',
-  },
-  {
-    title: 'Entretien de Jardins',
-    description: 'Maintenance, soins et entretien régulier de vos espaces verts.',
-    icon: Leaf,
-    href: '/services/entretien-jardins',
-  },
-]
-
-export default function ServicesPage() {
+export default function RealisationsPage() {
   return (
     <div className="pt-32 pb-24">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-16">
           <span className="text-emerald-700 font-semibold text-sm uppercase tracking-wider">
-            Nos Expertises
+            Portfolio
           </span>
           <h1 className="text-4xl md:text-5xl font-bold text-stone-900 mt-3 mb-6 font-serif">
-            Nos services paysagers
+            Nos réalisations
           </h1>
           <p className="text-stone-600 text-lg max-w-2xl mx-auto">
-            Trois piliers d&apos;excellence pour sublimer tous vos espaces extérieurs.
+            Découvrez notre savoir-faire à travers une sélection de projets d&apos;exception.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <Link key={index} href={service.href}>
-              <Card hover className="h-full group">
-                <div className="flex items-start gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-xl bg-emerald-100 flex items-center justify-center text-emerald-700">
-                    <service.icon className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-stone-900 mb-2 font-serif">
-                      {service.title}
-                    </h3>
-                    <p className="text-stone-600 text-sm leading-relaxed">
-                      {service.description}
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-center text-emerald-700 font-medium text-sm group-hover:text-emerald-800 transition-colors">
-                  En savoir plus
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </div>
-              </Card>
-            </Link>
-          ))}
-        </div>
+        <GalleryGrid />
       </div>
     </div>
   )

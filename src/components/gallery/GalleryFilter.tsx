@@ -4,9 +4,9 @@ import { cn } from '@/lib/utils'
 
 const filters = [
   { id: 'all', label: 'Tous les projets' },
-  { id: 'construction', label: 'Construction' },
   { id: 'amenagement', label: 'Aménagement' },
   { id: 'paysagisme', label: 'Paysagisme' },
+  { id: 'entretien', label: 'Entretien' },
 ]
 
 interface GalleryFilterProps {
@@ -24,7 +24,7 @@ export function GalleryFilter({ activeFilter, onFilterChange }: GalleryFilterPro
           className={cn(
             'px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300',
             activeFilter === filter.id
-              ? 'bg-amber-700 text-white shadow-lg shadow-amber-700/30'
+              ? 'bg-emerald-700 text-white shadow-lg shadow-emerald-700/30'
               : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
           )}
         >

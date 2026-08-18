@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { GalleryFilter } from './GalleryFilter'
 import { GalleryLightbox } from './GalleryLightbox'
 import { createClient } from '@/lib/client'
-import { ZoomIn } from 'lucide-react' // ✅ import icône
+import { ZoomIn } from 'lucide-react'
 
 interface Project {
   id: string
@@ -33,6 +33,21 @@ export function GalleryGrid() {
   const filtered = activeFilter === 'all'
     ? projects
     : projects.filter(p => p.categorie === activeFilter)
+
+  const getCategoryLabel = (categorie: string) => {
+    switch (categorie) {
+      case 'amenagement':
+        return 'Aménagement'
+      case 'paysagisme':
+        return 'Paysagisme'
+      case 'entretien':
+        return 'Entretien'
+      case 'autre':
+        return 'Autre'
+      default:
+        return categorie
+    }
+  }
 
   return (
     <>
@@ -65,7 +80,12 @@ export function GalleryGrid() {
                   </div>
                 )}
 
-                {/* ✅ Overlay "Agrandir" au survol */}
+                {/* Badge catégorie */}
+                <div className="absolute top-2 left-2 bg-emerald-700/90 text-white text-xs px-2 py-1 rounded-full">
+                  {getCategoryLabel(project.categorie)}
+                </div>
+
+                {/* Overlay "Agrandir" au survol */}
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
                   <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center gap-2 text-white">
                     <ZoomIn className="h-8 w-8" />
@@ -77,6 +97,12 @@ export function GalleryGrid() {
           ))}
         </AnimatePresence>
       </div>
+
+      {filtered.length === 0 && (
+        <div className="text-center py-16">
+          <p className="text-stone-500 text-lg">Aucun projet dans cette catégorie.</p>
+        </div>
+      )}
 
       <GalleryLightbox
         projects={filtered}
