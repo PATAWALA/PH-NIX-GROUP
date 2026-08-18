@@ -6,8 +6,8 @@ import { Button } from '@/components/ui/Button'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Contact & Devis | PHÉNIX GROUP & JF DÉCOR',
-  description: 'Contactez-nous pour un devis gratuit. Notre équipe vous répond sous 48h pour concrétiser votre projet.',
+  title: 'Contact & Devis | JF DÉCOR',
+  description: 'Contactez-nous pour un devis gratuit. Notre équipe vous répond sous 48h pour concrétiser votre projet paysager.',
 }
 
 const contactInfo = [
@@ -20,7 +20,7 @@ const contactInfo = [
   {
     icon: Mail,
     title: 'Email',
-    details: ['contact@phenixgroup.ci'],
+    details: ['contact@jfdecor.ci'],
     description: 'Réponse sous 24h',
   },
   {
@@ -42,7 +42,7 @@ export default function ContactPage() {
     <div className="pt-32 pb-24">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-16">
-          <span className="text-amber-700 font-semibold text-sm uppercase tracking-wider">Contact</span>
+          <span className="text-emerald-700 font-semibold text-sm uppercase tracking-wider">Contact</span>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-stone-900 mt-3 mb-6 font-serif">
             Parlons de votre projet
           </h1>
@@ -56,8 +56,8 @@ export default function ContactPage() {
           <div className="lg:col-span-2">
             <Card className="p-8">
               <div className="flex items-center gap-3 mb-8">
-                <div className="w-12 h-12 rounded-xl bg-amber-100 flex items-center justify-center">
-                  <MessageSquare className="h-6 w-6 text-amber-700" />
+                <div className="w-12 h-12 rounded-xl bg-emerald-100 flex items-center justify-center">
+                  <MessageSquare className="h-6 w-6 text-emerald-700" />
                 </div>
                 <div>
                   <h2 className="text-2xl font-bold text-stone-900 font-serif">Demande de devis</h2>
@@ -72,8 +72,8 @@ export default function ContactPage() {
             {contactInfo.map((item, index) => (
               <Card key={index} className="p-6 hover:shadow-lg transition-shadow">
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-amber-100 flex items-center justify-center flex-shrink-0">
-                    <item.icon className="h-5 w-5 text-amber-700" />
+                  <div className="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center flex-shrink-0">
+                    <item.icon className="h-5 w-5 text-emerald-700" />
                   </div>
                   <div>
                     <h3 className="font-semibold text-stone-900 mb-2">{item.title}</h3>
@@ -87,20 +87,20 @@ export default function ContactPage() {
             ))}
 
             {/* Bouton WhatsApp direct */}
-            <Card className="p-6 bg-green-50 border-green-200">
+            <Card className="p-6 bg-emerald-50 border-emerald-200">
               <div className="text-center">
-                <p className="text-sm text-green-800 mb-3 font-medium">
+                <p className="text-sm text-emerald-800 mb-3 font-medium">
                   Ou écrivez-nous directement sur WhatsApp
                 </p>
                 <a
-                  href="https://wa.me/22542550779?text=Bonjour%20PHÉNIX%20GROUP%20%26%20JF%20DÉCOR,%20je%20souhaite%20échanger%20au%20sujet%20d'un%20projet."
+                  href="https://wa.me/22542550779?text=Bonjour%20JF%20DÉCOR,%20je%20souhaite%20échanger%20au%20sujet%20d'un%20projet."
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <Button
                     variant="gold"
                     size="lg"
-                    className="w-full bg-green-600 hover:bg-green-700 text-white shadow-lg shadow-green-600/30"
+                    className="w-full bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg shadow-emerald-600/30"
                   >
                     <MessageSquare className="h-5 w-5 mr-2" />
                     Discuter sur WhatsApp
